@@ -1,0 +1,6 @@
+Modelle/Sprites:
+    https://opengameart.org/
+    https://www.textures.com/
+Musik/Sound:
+    https://incompetech.com/
+    https://freesound.org/
