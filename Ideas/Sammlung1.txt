@@ -1,4 +1,4 @@
-So 'n Spiel mit Action und so was.
+﻿So 'n Spiel mit Action und so was.
 
 Jump 'n Run:
     Wave Shift
@@ -62,6 +62,10 @@ Sonstiges:
     Point 'n Click
     
     Textadventure mit Grafiken
+    
+    Online oder Offline?
+    
+    Missionen oder freies Spiel?
 
 
 
