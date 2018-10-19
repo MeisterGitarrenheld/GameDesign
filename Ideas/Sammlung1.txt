@@ -1,1 +1,76 @@
 So 'n Spiel mit Action und so was.
+
+Jump 'n Run:
+    Wave Shift
+        - Plattformer durch das Level, wie Rayman Origins/Legends
+        - Durch Wände und Plattformen kann mit der richtigen Wellenlänge durchgesprungen werden
+        - Schultertasten für Rennen + Springen
+        - Rechter Stick wählt die Wellenlänge
+
+    Ninja Gaiden / Strider - Klon
+        - Hat einen Angriff
+        - Gegner respawnen wenn nicht mehr im Bild
+        - Kann die Wände hochklettern
+        
+        
+    Story Plattformer
+        - Vergangenheit, spielt aber in der Zukunft, Mystery
+        - An Orten im Level kann man auf Hinweise Stoßen
+
+    Gravity Groove 
+        - Plattformer, kann die Gravitation (Global oder nur für Objekte) verändern
+        - Boden kann zerbrochen werden wenn man die Gravitation erhöht
+        - Blöcke können mit wenig Gravitation verschoben werden
+        - Über kopf laufen
+        - Schwarze Löcher, die die Gravitation lokal verändern
+        
+First Person Shooter:
+    Takeover
+        - Verschiedene Gegner und Objekte besessen können
+        - ...
+        
+Real Time Strategy:
+    Action Brettspiel
+        - Schach, Pachisi, Monopoly, Mühle, Backgammon, Die Siedler von Katan
+        - Keine Runden, Jeder Hat Cooldown nach nem Move
+        
+    Pizza Backen
+        - Richtige Zutaten wählen 
+        - Pizza belegen und backen
+    
+    Städtebau Sim?
+    
+Runden Basiertes Strategie:
+    Xcom Klon
+        - Grid basierte Karte
+        - Truppen Aufstellen
+        - Zug planen und ausführen
+
+Sonstiges:
+    Time Shift
+        - Zeit vor und zurück schieben.
+        - Puzzle lösen oder Actions ausführen.
+        
+    Portale
+        - Was portale halt so machen.
+        
+    Planeten Erkunden
+        - Planeten zufällig generieren und erforschen 
+        - 2D Gebogene Tiles
+        - Terraria Light
+        
+    Point 'n Click
+    
+    Textadventure mit Grafiken
+
+
+
+
+
+
+
+
+
+
+
+
