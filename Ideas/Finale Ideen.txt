@@ -1,0 +1,53 @@
+Struktur:
+    Multiplayer
+    3rd
+    
+    
+    Fighting Game
+    Final Fight Beat 'em Up
+    Puzzle
+    
+    
+Game Elemente:
+    Rogue Light
+    Boss Rush
+    
+
+Fighting Game
+    4 Spieler Koop
+    Spieler kämpfen und können Items verwenden
+    Gegner Wellen
+    Bossfight am ende
+    
+    
+    
+Big Pong
+    4 Spieler
+    Ein Spieler auf jeder Seite des Spielfelds
+    Ein Ball auf dem Spielfeld
+    Versuche den Ball in das Tor des Gegners zu schießen und kriege Punkte
+    Verschiedene Spielmodi
+    Upgrades und Power für die Spieler
+    
+
+Planeten Erkundung
+    4 Player (4 vs 0/ 2 vs 2)
+    Starten auf verschiedenen Planeten
+    Aufrüsten, dann zum nächsten Planeten
+    Resourcen auf Planeten für Items
+
+
+Base Building
+    4 Player Coop
+    Resourcen Sammeln
+    Base aufbauen
+    Wellen überleben
+    
+    
+    
+    
+
+
+
+
+
