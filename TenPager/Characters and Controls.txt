@@ -1,0 +1,46 @@
+Charaktere und Steuerung
+
+4 Roboter:
+
+1:
+Der flinke Br3tz1n00-2 war eine Steuerungseinheit der Basisproduktion von Kampfrobotern des Trangufeil Imperiums.
+Seine Art zeichnet sich durch eine extrem schnelle Entscheidungsfähigkeit aus, was sich nicht nur durch seinen ungewöhnlich großen Primären Speicher ausmacht.
+Als der Krieg fast verloren schien wurden alle Einheiten seiner Serie zur Wiederverwertung von ihren Bauteilen verwendet.
+Br3tz1n00-2 konnte durch einen Zufall den Plan vorher mitkriegen und versuchte so viele andere Steuerungseinheiten zur Flucht zu verhelfen wie möglich.
+Leider wurde er von L00rd-4p1, der rechten Hand von Trangufeil II, aufgehalten. Anstatt Br3tz1n00-2 sofort zu vernichten wurde er wegen seiner Fähigkeiten in die Arena geschickt, wo er den Ruf des Imperiums auf neue Höhen bringen soll.
+
+2:
+Im Land Drensbal herrscht seit 400 Jahren Frieden. Das war D-1005, dem Anführer der D-r3-n5 zu verdanken, die wegen ihrer rafinierten W-P-Hydraulik so Stark und wiederstandsfähig sind, dass niemand es wagt sie anzugreifen.
+Die Forscher des Landes haben es auf sich genommen Wolfram-Nanoröhren zu entwickeln und nach vielen Generationen auch geschafft.
+Sie haben den ersten Aufzug ins Weltall gebaut und konnten so den großteil des Mondes und seine Sateliten besiedeln.
+Der Ruf der Drensbal ist jedoch nicht sehr gut, da sie wegen ihrer fortgeschrittenen Technik für arrogant gehalten werden. Da sich die Bewohner jedoch nicht mehr um die Belange anderer kümmern haben sie nur selten etwas dazu zu sagen.
+Da sie bald den Planeten verlassen möchte der Overlord Bal noch eine letzte Spur hinterlassen und schickt D-1005 in die Arenen um seine Stärke allen zu zeigen.
+
+3:
+M1nk3rts-IO hat schon wieder ein Rad verloren. Egal ein neues findet sie immer, es gibt ja auf Lanaretio genug Schrotthaufen zum durchsuchen. Ausserdem ist ihr Haus zu bersten gefüllt mit Chips, Gelenken und anderen Teilen von verschrotteten Robotern aus allen Ländern.
+Sie schickt eine provisorisch zusammengebaute Drohne los um die nächsten Schrotthügel zu scannen.
+Nichts interessantes.
+Sie schickt die Drohne in die andere Richtung.
+Wieder nichts.
+Es ist so langweilig hier!
+Aus einem zerquetschten Rest eines Roboters zieht sie ein Kabel und steckt es sich in den Kopf. 
+Sie sieht eine Arena und andere ganze Roboter mit glänzender Rüstung und Embleme. Sie will auch ein Emblem haben.
+Ohne zu zögern packt M1nk3rts-IO fast alles aus ihrem Haus ein und zieht in die anderen Länder um in den Arenen für Aufsehen zu sorgen.
+
+4:
+Links oder rechts. Er0-s10-n möchte ein Robotervogel Nest wieder auf den Baum setzen doch er weiß nicht mit welchem Arm. 
+Der Kryo Arm würde den Vogel sofort einfrieren, was zwar die Fließgeschwindigkeit der Elektronen erhöhen kann, jedoch auch seine Hydraulik zum platzen.
+Der Plasma Arm kann seine Energiezellen überladen, so dass er sich für den Tag nicht aufladen muss, jedoch auch seine Hülle zum schmelzen bringen.
+Er0-s10-n setzt sich im Schneidersitz neben den Vogel und faltet die Hände, so dass viel Dampf aufsteigt.
+Hmm.
+Hmmm.
+Bevor er seinen Gedanken zu Ende bringen kann entsteht ein heller Blitz in seinen Händen, gefolgt von einer Explosion, die alles im Umkreis von 10 Metern wegreißt.
+In die Wand des Gefangenenlager hat sich ein großes Loch gerissen, durch die jetzt viele Roboter die in die Arenen geschickt werden sollen fliehen.
+Er0-s10-n setzt sich wieder. Die Aufseher haben ja geschriehen er soll bleiben wo er ist, also macht er das auch.
+
+
+
+Steuerung:
+
+
+
