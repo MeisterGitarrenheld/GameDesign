@@ -10,7 +10,7 @@ Br3tz1n00-2 konnte durch einen Zufall den Plan vorher mitkriegen und versuchte s
 Leider wurde er von L00rd-4p1, der rechten Hand von Trangufeil II, aufgehalten. Anstatt Br3tz1n00-2 sofort zu vernichten wurde er wegen seiner Fähigkeiten in die Arena geschickt, wo er den Ruf des Imperiums auf neue Höhen bringen soll.
 
 2:
-Im Land Drensbal herrscht seit 400 Jahren Frieden. Das war D-1005, dem Anführer der D-r3-n5 zu verdanken, die wegen ihrer rafinierten W-P-Hydraulik so Stark und wiederstandsfähig sind, dass niemand es wagt sie anzugreifen.
+Im Land Drensbal herrscht seit 400 Jahren Frieden. Das war D-1005, dem Anführer der D-r3-n5 zu verdanken, die wegen ihrer rafinierten W-P-Hydraulik so stark und widerstandsfähig sind, dass niemand es wagt sie anzugreifen.
 Die Forscher des Landes haben es auf sich genommen Wolfram-Nanoröhren zu entwickeln und nach vielen Generationen auch geschafft.
 Sie haben den ersten Aufzug ins Weltall gebaut und konnten so den großteil des Mondes und seine Sateliten besiedeln.
 Der Ruf der Drensbal ist jedoch nicht sehr gut, da sie wegen ihrer fortgeschrittenen Technik für arrogant gehalten werden. Da sich die Bewohner jedoch nicht mehr um die Belange anderer kümmern haben sie nur selten etwas dazu zu sagen.
@@ -41,6 +41,19 @@ Er0-s10-n setzt sich wieder. Die Aufseher haben ja geschriehen er soll bleiben w
 
 
 Steuerung:
+
+Kameraansicht: 3rd Person
+Zu Verteilen auf die Knöpfe: 
+    Bewegen
+    Zielen
+    Schuss Aufladen / zu richtigem Zeitpunkt für Schuss drücken
+    Springen / In die Luft bewegen
+    Powerup Einsetzen
+    Fähigkeit einsetzen
+    Sprinten
+    Kamera einstellen
+    Pausieren
+    (Upgrades einsetzen)
 
 
 
