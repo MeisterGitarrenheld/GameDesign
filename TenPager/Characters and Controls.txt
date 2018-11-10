@@ -1,4 +1,4 @@
-Charaktere und Steuerung
+﻿Charaktere und Steuerung
 
 4 Roboter:
 
@@ -41,6 +41,13 @@ Er0-s10-n setzt sich wieder. Die Aufseher haben ja geschriehen er soll bleiben w
 
 
 Steuerung:
+
+Der Spieler bewegt sich innerhalb seines Strafraumes vor dem Tor.
+Er kann mit dem Schild frei Zielen. Der Winkel bestimmt wohin der Ball fliegt nachdem er abgewehrt wurde.
+Wenn die Schießen Taste im richtigen Zeitpunkt gedrückt wird, fliegt der Ball mit einem bestimmten Effekt weiter.
+Während dem Spiel können Powerups und Fähigkeiten eingesetzt werden. Die Powerups sind benutzbare Items, die aufgebraucht werden. Die Fähigkeiten haben einen Cooldown und können so oft wie nötig eingesetzt werden.
+
+Zwischen den Spielen können Upgrades gekauft werden, die automatisch beim nächsten Spiel eingesetzt sind.
 
 Kameraansicht: 3rd Person
 Zu Verteilen auf die Knöpfe: 
