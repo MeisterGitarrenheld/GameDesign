@@ -1,16 +1,16 @@
-The supercontinent Klobertiose is ruled by four fractions since the year 1.5k. Trangufeil, Drensbal, Lanaretio and Frestrost.
-Since the destruction of almost the whole population 436 years ago, the fractions decided to not wage war amongst them. To display their power anyway there are relentless Arenafights. These fights have different rules depending on where they are held.
+The supercontinent Klobertiose is ruled by four factions since the year 1.5k. Trangufeil, Drensbal, Lanaretio and Frestrost.
+Since the destruction of almost the whole population 436 years ago, the factions decided to not wage war amongst them. To display their power anyway there are relentless Arenafights. These fights have different rules depending on where they are held.
 
 Trangufeil is a split country. The monarchs, who follow Trangufeil II and believe in the strength of a single processing unit, fight the anarchist, who believe in parallel processing of all citicens.
 The fight was even until the anarchists prooved P = NP and gained the upper hand.
 
 Drensbal is a country composed of multiple tribes, who either build large cities and stayed there or live as nomads and move across the country.
-The Drensbal are a proud people. Their reputation is not prestigous though, since they are thought of as arrogant and pretentious because of their superior technoligy. But since the people don't care about the needs of others they seldomly have something to say about that.
+The Drensbal are a proud people. Their reputation is not prestigous though, since they are thought of as arrogant and pretentious because of their superior technology. But since the people don't care about the needs of others they seldomly have something to say about that.
 
 The country of Lanaretio was founded about 400 years ago. Robots who died in the destruction were brought here. A few could reassemble themselves from spare parts of other robots and founded the country.
-The other fractions don't think much of this land, they consider them abominations.
+The other factions don't think much of this land, they consider them abominations.
 There are a few robots doing administrative jobs, however there is no specified hierarchy.
 
 Frestrost is a war hungry land. If their access rights were not prohibited by the other countries, they would start a war immediately.
-Hence they created a Random Generator, that sorts the hierarchial structures every quater year, so that every permutation comes up at least once until the same hierarchy can be selected twice.
+Hence they created a Random Generator, that selects the hierarchial structures every quater year, so that every permutation comes up at least once until the same hierarchy can be selected twice.
 Thats how everybody can be a Tyrant, but has to be opressed at some point too.
