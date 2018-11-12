@@ -1,0 +1,50 @@
+1:
+The agile Br3tz1n00-2 was a control unit of the base production of Trangufeil Empire Robot Troops. 
+His kind is distinguished by his extreme fast decision making process, which is not only caused by his unusually big primary memory.
+When the war seemed lost, all Units of his series were disassembled and scrapped for parts. 
+Br3tz1n00-2 got notice of this plan by luck and tried to save as many Control units as possible.
+Unfortunately he was stopped and captured by L00rd-4p1, the right hand of Trangufeil II. Instead of destroying Br3tz1n00-2 immediately, he was send to fight in the Arenas because of his abilities, to restore the reputation of the Empire.
+
+Abilities : 1.  Dash into a direction of choice
+	   2. By holding the Jump button, he can slowly descend instead of falling back down.
+	   3. can throw his shield forwards, but after that it takes a few seconds for the shield to return to him
+
+
+2:
+The Land of Drensbal has been peaceful for 400 years now. This is by courtesy of D-1005, the leader of the D-r3-n5 and other Robots of his production Line, which got so strong and robust because of T-P-Hydraulic Technology that no body dares to start a fight with their kind.
+The Researchers of the Land took it upon them to develop Tungsten-Nanotubes. After a lot of generations they finally succeeded.
+They built the first space elevator and were able to colonize most of the Moon and its satellites.
+Since they soon want to leave planet Earth completely, Overlord Bal wants to leave one last mark by sending D-1005 in the Arenas to display his strength.
+
+Abilities: 1. Can hydraulically extend his shield in three directions where it stays for as long as he holds the 		button, but inhibits movement.
+	2. can hold the ball for a short duration if the timing of the button press is right
+	3. can block dangerous shots if the timing is right	
+
+3:
+M1nk3rts-IO lost another wheel. Doesn't matter, she always finds a new one. In Lanaretio there are enough scrap piles to loot. Besides, her home is filled to the roof with chips, joints and other parts of destroyed robots from all over the World.
+M1nk3rts-IO is one of many recycling units that have been tasked to repurpose the trash of a civilization that continues to throw functioning hardware away. These robots are the property of a Company and as such, they don't have any rights of their own. When M1nk3rts-IO tried to speak up for this, she was removed from the scrapyard and thrown into the arena as a punishment.
+
+Abilities : 1. leave the shield standing in a position while moving on with a smaller shield; also can pick 		the old shield up again
+	2. unleashes a few small robots in an approximate direction which inhibit the movement of robots near them 
+	3. splatters oil In a certain direction, leaving a puddle that makes other robots slide around in it
+
+4:
+Left or right. Er0-s10-n wants to put a robotbird nest back ontop a tree but he doesn't know with wich arm. 
+The cryo arm would freeze the bird immediately, which would increase the flowspeed of electrons in its body, however it would burst its hydraulic system.
+The plasma arm can overcharge its energy cores in a way that it doesn't have to reload for the whole day, however it would melt its outer layers.
+Er0-s10-n stays a while next to the bird, folding his arms and causing a lot of steam to rise.
+Hmm.
+Hmmm.
+Before he could finish his thought a bright flash shines from his hands followed by an explosion, which destroyes everything in a 10 meter radius.
+A big gap got blown into the wall of the prison camp, through which many robots who were sent to the Arenas fled.
+Er0-s10-n stayes where he is. The guards shouted he should stay, so he does.
+Abilities:
+1. Can use the ball he is moving on to shoot and score goals, but stays unable to move for a few seconds
+2. ice over the ball or an enemy with a ray of ice. The ball gets heavier and slower, just as hit enemies
+3. shoot plasma at an enemy or the ball, making the ball unable to be held and locking the rotation of hit enemies
+
+
+Controls:
+Movement is controlled via the left stick on the controller or the WASD keys.
+The direction the robot is facing is controlled by the right stick or the mouse. By pressing the stick or pressing the mouse wheel  the view can be locked onto the ball. The characters can jump by use of A on the controller or the space bar. Abilites and Powerups are activated via the shoulder buttons or the number keys on the keyboard. To add additional momentum to thee ball, the players can click the left mouse key or the right bumper on the controller.
+The menu can be navigated via the left stick and the A and B buttons.

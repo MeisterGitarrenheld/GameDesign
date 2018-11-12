@@ -1,0 +1,11 @@
+Powerups
+
+Powerups randomly spawn during the duration of the game. They can be collected by stepping on them or shooting the ball at them. Once collected thay can be used by pressing a button on the controller, unleashing their individual effects that either hinder the opponents or help the caster.
+
+The first planned Powerups are:
+
+1. Enlarge Shield: Grants the user a bigger shield for a certein duration, which makes it easier to block and deflect the ball.
+2. Increase speed: Increases the Movement speed of the character, so that he can more easily deflect the ball
+3. Mine : lets the user place a mine on the field, that either pushes enemies in the proximity away or can be used to redirect the ball whaen it is near the mine. The mine can be activated by pressing the button a second time
+4. Black hole : Attrackts everything in proximity and can alter the direction the ball is moving.
+	Stays active for about 10 seconds before disappearing. The location of the black hole is chosen by the user via a a birds eye view of the arena win which the user quickly aims a crossheir on the ground.
