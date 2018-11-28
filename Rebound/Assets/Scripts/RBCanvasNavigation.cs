@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class RBCanvasNavigation : MonoBehaviour
 {
-    public event Action OnFadeInStarted;
-    public event Action OnFadeInEnded;
+    public event Action<RBCanvasNavigation> OnFadeInStarted;
+    public event Action<RBCanvasNavigation> OnFadeInEnded;
+    public event Action<RBCanvasNavigation> OnFadeOutStarted;
+    public event Action<RBCanvasNavigation> OnFadeOutEnded;
     private static event Action _onFadeInStarted;
     private static event Action _onFadeOutStarted;
 
@@ -91,6 +93,7 @@ public class RBCanvasNavigation : MonoBehaviour
                     _onFadeInStarted?.Invoke();
                 }
 
+                OnFadeOutEnded?.Invoke(this);
                 _fadeOutState = 0.0f;
 
                 _cvGroup.alpha = 0.0f;
@@ -112,7 +115,7 @@ public class RBCanvasNavigation : MonoBehaviour
                     _cvGroup.alpha = 1.0f;
                     _cvGroup.blocksRaycasts = true;
                     _cvGroup.interactable = true;
-                    OnFadeInEnded?.Invoke();
+                    OnFadeInEnded?.Invoke(this);
                 }
             }
             else _fadeInState = 0.0f;
@@ -125,7 +128,7 @@ public class RBCanvasNavigation : MonoBehaviour
     public void FadeIn()
     {
         _fadeInState = FADE_DURATION;
-        OnFadeInStarted?.Invoke();
+        OnFadeInStarted?.Invoke(this);
     }
 
     /// <summary>
@@ -134,6 +137,7 @@ public class RBCanvasNavigation : MonoBehaviour
     public void FadeOut()
     {
         _fadeOutState = FADE_DURATION;
+        OnFadeOutStarted?.Invoke(this);
     }
 
     /// <summary>
