@@ -11,6 +11,8 @@ public class RBNetworkDiscovery : NetworkDiscovery
 
     public event Action<RBLanConnectionInfo, ModifyState> OnUpdateMatchInfo;
 
+    public RBMatchInfo CurrentHostingMatch { get; private set; }
+
     private float _timeOut = 5f;
     private Dictionary<RBLanConnectionInfo, float> _lanAddresses = new Dictionary<RBLanConnectionInfo, float>();
 
@@ -46,23 +48,46 @@ public class RBNetworkDiscovery : NetworkDiscovery
     /// <summary>
     /// Starts a match as host and broadcasts the match info periodically.
     /// </summary>
-    public void StartServer()
+    public void StartServer(RBMatchInfo matchInfo)
     {
-        StopBroadcast();
-
-        // TODO: wtf is this?
-        RBMatchInfo matchInfo = new RBMatchInfo()
-        {
-            CurrentPlayerCount = 2,
-            MaxPlayerCount = 4,
-            HostPlayerName = "Ho ho host",
-            Port = 4321
-        };
-
+        StopServer();
+        
+        CurrentHostingMatch = matchInfo;
         broadcastData = JsonUtility.ToJson(matchInfo, false);
 
         base.Initialize();
         base.StartAsServer();
+    }
+
+    /// <summary>
+    /// <see cref="StartServer(RBMatchInfo)"/>
+    /// </summary>
+    public void StartServer()
+    {
+        RBMatchInfo matchInfo = new RBMatchInfo()
+        {
+            CurrentPlayerCount = 1,
+            MaxPlayerCount = 4,
+            HostPlayerName = RBLocalUser.Instance.Username,
+            Port = 7777
+        };
+
+        StartServer(matchInfo);
+    }
+
+
+    /// <summary>
+    /// Stops the match hosting and broadcasting of the match infos
+    /// </summary>
+    public void StopServer()
+    {
+        StopBroadcast();
+        if (NetworkTransport.IsBroadcastDiscoveryRunning())
+        {
+            NetworkTransport.StopBroadcastDiscovery();
+            NetworkTransport.Shutdown();
+            NetworkTransport.Init();
+        }
     }
 
     /// <summary>

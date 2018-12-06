@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Sockets;
 using UnityEngine;
 
 /// <summary>
@@ -10,6 +12,7 @@ public class RBLocalUser : RBMonoBehaviourSingleton<RBLocalUser>
 {
     public RBUserProfileType ProfileType { get; set; } = RBUserProfileType.None;
     public string Username { get; set; } = string.Empty;
+    public IPAddress LocalIpAddress { get { return GetLocalIp(); } }
 
     /// <summary>
     /// <see cref="RBMonoBehaviourSingleton{T}.AwakeSingleton"/>
@@ -25,5 +28,21 @@ public class RBLocalUser : RBMonoBehaviourSingleton<RBLocalUser>
     protected override void OnDestroyUnityObject()
     {
         
+    }
+
+    private IPAddress GetLocalIp()
+    {
+        IPHostEntry host;
+        host = Dns.GetHostEntry(Dns.GetHostName());
+
+        foreach(var ip in host.AddressList)
+        {
+            if(ip.AddressFamily == AddressFamily.InterNetwork)
+            {
+                return ip;
+            }
+        }
+
+        return null;
     }
 }

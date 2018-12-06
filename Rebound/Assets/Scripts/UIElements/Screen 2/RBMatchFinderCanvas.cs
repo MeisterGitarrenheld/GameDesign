@@ -74,10 +74,9 @@ public class RBMatchFinderCanvas : RBCanvas
     /// <summary>
     /// Starts a match as host and switches to the lobby screen.
     /// </summary>
-    public void OnHostButtonClick()
+    public void OnHostButtonClick(RBCanvasNavigation pageToSwitch)
     {
-        // TODO: vvvv
-        // scene wechsel lobby
-        // network discovery server
+        pageToSwitch.Show();
+        NetworkDiscovery.StartServer();
     }
 }
