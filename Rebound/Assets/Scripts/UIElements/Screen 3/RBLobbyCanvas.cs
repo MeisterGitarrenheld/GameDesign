@@ -35,4 +35,9 @@ public class RBLobbyCanvas : RBCanvas {
         NetworkDiscovery.StopServer();
         GetComponent<RBCanvasNavigation>().PageBack();
     }
+
+    public void OnShowError()
+    {
+        RBErrorMessage.Instance.ShowError("This is an error with some info. Please make sure to not ignore this.", RBErrorMessage.ErrorType.Error);
+    }
 }

@@ -21,6 +21,12 @@ public class RBNetworkDiscovery : NetworkDiscovery
     /// </summary>
     public void StartClient()
     {
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            RBErrorMessage.Instance.ShowError("There is no valid lan connection. Please check you connection and try again.", RBErrorMessage.ErrorType.Warning);
+            return;
+        }
+
         base.Initialize();
         base.StartAsClient();
 
