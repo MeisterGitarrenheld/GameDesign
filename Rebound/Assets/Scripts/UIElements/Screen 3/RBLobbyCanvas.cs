@@ -20,19 +20,19 @@ public class RBLobbyCanvas : RBCanvas {
     {
         var matchInfo = NetworkDiscovery.CurrentHostingMatch;
         matchInfo.CurrentPlayerCount += 1;
-        NetworkDiscovery.StartServer(matchInfo);
+        NetworkDiscovery.CurrentHostingMatch = matchInfo;
     }
 
     public void OnPlayerCountDec()
     {
         var matchInfo = NetworkDiscovery.CurrentHostingMatch;
         matchInfo.CurrentPlayerCount -= 1;
-        NetworkDiscovery.StartServer(matchInfo);
+        NetworkDiscovery.CurrentHostingMatch = matchInfo;
     }
 
     public void OnLeaveLobby()
     {
-        NetworkDiscovery.StopServer();
+        NetworkDiscovery.StopSendingMulticasts();
         GetComponent<RBCanvasNavigation>().PageBack();
     }
 

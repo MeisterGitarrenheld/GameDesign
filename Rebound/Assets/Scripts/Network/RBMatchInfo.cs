@@ -5,7 +5,6 @@ using UnityEngine;
 
 public struct RBMatchInfo
 {
-    public bool IsNull => HostPlayerName != "";
     public int Port;
     public string HostPlayerName;
     public int CurrentPlayerCount;

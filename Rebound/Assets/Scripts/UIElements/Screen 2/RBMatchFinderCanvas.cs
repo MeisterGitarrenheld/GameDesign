@@ -24,7 +24,7 @@ public class RBMatchFinderCanvas : RBCanvas
 
         NetworkDiscovery.OnUpdateMatchInfo -= NetworkDiscovery_OnUpdateMatchInfo;
         NetworkDiscovery.OnUpdateMatchInfo += NetworkDiscovery_OnUpdateMatchInfo;
-        NetworkDiscovery.StartClient();
+        NetworkDiscovery.StartListeningForMulticasts();
 
     }
 
@@ -32,10 +32,7 @@ public class RBMatchFinderCanvas : RBCanvas
     {
         base.OnFadeOutEnded(navPage);
 
-        if (NetworkDiscovery.isClient)
-        {
-            NetworkDiscovery.StopClient();
-        }
+        NetworkDiscovery.StopListeningForMulticasts();
     }
 
     /// <summary>
@@ -77,6 +74,7 @@ public class RBMatchFinderCanvas : RBCanvas
     public void OnHostButtonClick(RBCanvasNavigation pageToSwitch)
     {
         pageToSwitch.Show();
-        NetworkDiscovery.StartServer();
+
+        NetworkDiscovery.StartSendingMulticasts();
     }
 }

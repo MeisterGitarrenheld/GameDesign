@@ -5,21 +5,99 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class RBNetworkDiscovery : NetworkDiscovery
+public class RBNetworkDiscovery : MonoBehaviour
 {
     public enum ModifyState { None, Changed, Removed, Added }
 
     public event Action<RBLanConnectionInfo, ModifyState> OnUpdateMatchInfo;
 
-    public RBMatchInfo CurrentHostingMatch { get; private set; }
+
+    public RBMatchInfo CurrentHostingMatch
+    {
+        get { return _currentHostingMatch; }
+        set
+        {
+            _currentHostingMatch = value;
+            McMessage = JsonUtility.ToJson(value, false);
+        }
+    }
+    private RBMatchInfo _currentHostingMatch;
 
     private float _timeOut = 5f;
     private Dictionary<RBLanConnectionInfo, float> _lanAddresses = new Dictionary<RBLanConnectionInfo, float>();
 
+
+    #region Multicast-Config
+    private RBTimedUdpMulticast _udpMulticast = new RBTimedUdpMulticast();
+
+    [SerializeField]
+    private int _port = RBTimedUdpMulticast.DEFAULT_PORT;
+    public int Port
+    {
+        get { return _port; }
+        set
+        {
+            _port = value;
+            _udpMulticast.Port = value;
+        }
+    }
+
+    [SerializeField]
+    private int _mcInterval = RBTimedUdpMulticast.DEFAULT_MULTICAST_INTERVAL;
+    public int McInterval
+    {
+        get { return _mcInterval; }
+        set
+        {
+            _mcInterval = value;
+            _udpMulticast.MulticastInterval = value;
+        }
+    }
+
+    [SerializeField]
+    private string _mcMessage = RBTimedUdpMulticast.DEFAULT_MESSAGE;
+    public string McMessage
+    {
+        get { return _mcMessage; }
+        set
+        {
+            _mcMessage = value ?? string.Empty;
+            _udpMulticast.MulticastMessage = value ?? string.Empty;
+        }
+    }
+
+    [SerializeField]
+    private string _mcAddress = RBTimedUdpMulticast.DEFAULT_MULTICAST_ADDRESS;
+    public string McAddress
+    {
+        get { return _mcAddress; }
+        set
+        {
+            _mcAddress = value ?? string.Empty;
+            _udpMulticast.MulticastMessage = value ?? string.Empty;
+        }
+    }
+    #endregion
+
+
+    void Awake()
+    {
+        _udpMulticast.Port = Port;
+        _udpMulticast.MulticastMessage = McMessage;
+        _udpMulticast.MulticastInterval = McInterval;
+        _udpMulticast.MulticastAddress = McAddress;
+        _udpMulticast.OnMulticastReceived += UdpBroadcast_OnMulticastReceived;
+    }
+
+    void Update()
+    {
+        _udpMulticast.CheckForMulticasts();
+    }
+
     /// <summary>
-    /// Starts listening for broadcasts and checks for closed matches.
+    /// Starts listening for multicasts and checks for closed matches.
     /// </summary>
-    public void StartClient()
+    public void StartListeningForMulticasts()
     {
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
@@ -27,23 +105,22 @@ public class RBNetworkDiscovery : NetworkDiscovery
             return;
         }
 
-        base.Initialize();
-        base.StartAsClient();
-
         StartCoroutine(CleanupExpiredEntries());
+
+        _udpMulticast.StartListeningForMulticasts();
     }
 
     /// <summary>
-    /// Stops listening for broadcasts and removes all match infos.
+    /// Stops listening for multicasts and removes all match infos.
     /// </summary>
-    public void StopClient()
+    public void StopListeningForMulticasts()
     {
-        StopBroadcast();
+        _udpMulticast.StopListeningForMulticasts();
 
         StopAllCoroutines();
         var keys = _lanAddresses.Keys.ToList();
 
-        for(int i = keys.Count-1; i >= 0 ; i--)
+        for (int i = keys.Count - 1; i >= 0; i--)
         {
             UpdateMatchInfos(keys[i], ModifyState.Removed);
         }
@@ -52,48 +129,41 @@ public class RBNetworkDiscovery : NetworkDiscovery
     }
 
     /// <summary>
-    /// Starts a match as host and broadcasts the match info periodically.
+    /// Starts a match as host and multicasts the match info periodically.
     /// </summary>
-    public void StartServer(RBMatchInfo matchInfo)
+    public void StartSendingMulticasts(RBMatchInfo matchInfo)
     {
-        StopServer();
-        
-        CurrentHostingMatch = matchInfo;
-        broadcastData = JsonUtility.ToJson(matchInfo, false);
+        StopListeningForMulticasts();
+        _udpMulticast.StopMulticast();
 
-        base.Initialize();
-        base.StartAsServer();
+        CurrentHostingMatch = matchInfo;
+
+        _udpMulticast.StartMulticast();
     }
 
     /// <summary>
-    /// <see cref="StartServer(RBMatchInfo)"/>
+    /// <see cref="StartSendingMulticasts(RBMatchInfo)"/>
     /// </summary>
-    public void StartServer()
+    public void StartSendingMulticasts()
     {
         RBMatchInfo matchInfo = new RBMatchInfo()
         {
             CurrentPlayerCount = 1,
             MaxPlayerCount = 4,
             HostPlayerName = RBLocalUser.Instance.Username,
-            Port = 7777
+            Port = Port
         };
 
-        StartServer(matchInfo);
+        StartSendingMulticasts(matchInfo);
     }
 
 
     /// <summary>
-    /// Stops the match hosting and broadcasting of the match infos
+    /// Stops the match hosting and multicasting of the match infos
     /// </summary>
-    public void StopServer()
+    public void StopSendingMulticasts()
     {
-        StopBroadcast();
-        if (NetworkTransport.IsBroadcastDiscoveryRunning())
-        {
-            NetworkTransport.StopBroadcastDiscovery();
-            NetworkTransport.Shutdown();
-            NetworkTransport.Init();
-        }
+        _udpMulticast.StopMulticast();
     }
 
     /// <summary>
@@ -120,12 +190,13 @@ public class RBNetworkDiscovery : NetworkDiscovery
     /// Creates or updates the match infos depending on the broadcast message.
     /// </summary>
     /// <param name="fromAddress">Server ip address</param>
-    /// <param name="data">match info as json string. Example: {"Port":4321,"HostPlayerName":"Ho ho host","CurrentPlayerCount":2,"MaxPlayerCount":4}</param>
-    public override void OnReceivedBroadcast(string fromAddress, string data)
+    /// <param name="fromPort">Source port of the broadcast</param>
+    /// <param name="message">match info as json string. Example: {"Port":4321,"HostPlayerName":"Ho ho host","CurrentPlayerCount":2,"MaxPlayerCount":4}</param>
+    private void UdpBroadcast_OnMulticastReceived(string fromAddress, int fromPort, string message)
     {
-        base.OnReceivedBroadcast(fromAddress, data);
+        RBLanConnectionInfo info = new RBLanConnectionInfo(fromAddress, message);
 
-        RBLanConnectionInfo info = new RBLanConnectionInfo(fromAddress, data);
+        if (string.Equals(info.MatchInfo.HostPlayerName, RBLocalUser.Instance.Username)) return;
 
         ModifyState state = ModifyState.None;
 
