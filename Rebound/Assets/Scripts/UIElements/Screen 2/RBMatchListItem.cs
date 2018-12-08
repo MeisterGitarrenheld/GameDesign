@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class RBMatchListItem : MonoBehaviour
@@ -25,5 +26,10 @@ public class RBMatchListItem : MonoBehaviour
         _hostname.text = connInfo.MatchInfo.HostPlayerName;
         _ipAddress.text = connInfo.IpAddress;
         _playerCount.text = connInfo.MatchInfo.CurrentPlayerCount + "/" + connInfo.MatchInfo.MaxPlayerCount;
+    }
+
+    public void OnJoinButtonClick()
+    {
+        RBNetworkManager.Instance.StartClient(ConnInfo);
     }
 }

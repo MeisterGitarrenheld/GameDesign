@@ -133,6 +133,9 @@ public class RBNetworkDiscovery : MonoBehaviour
     /// </summary>
     public void StartSendingMulticasts(RBMatchInfo matchInfo)
     {
+        matchInfo.HostPlayerName = RBLocalUser.Instance.Username;
+        matchInfo.Port = RBNetworkManager.Instance.networkPort;
+
         StopListeningForMulticasts();
         _udpMulticast.StopMulticast();
 
@@ -150,8 +153,6 @@ public class RBNetworkDiscovery : MonoBehaviour
         {
             CurrentPlayerCount = 1,
             MaxPlayerCount = 4,
-            HostPlayerName = RBLocalUser.Instance.Username,
-            Port = Port
         };
 
         StartSendingMulticasts(matchInfo);

@@ -74,7 +74,8 @@ public class RBMatchFinderCanvas : RBCanvas
     public void OnHostButtonClick(RBCanvasNavigation pageToSwitch)
     {
         pageToSwitch.Show();
-
         NetworkDiscovery.StartSendingMulticasts();
+
+        RBNetworkManager.Instance.StartHost();
     }
 }
