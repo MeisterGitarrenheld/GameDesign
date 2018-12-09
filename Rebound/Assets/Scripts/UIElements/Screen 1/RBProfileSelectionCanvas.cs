@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RBProfileSelectionCanvas : RBCanvas
 {
@@ -9,6 +10,8 @@ public class RBProfileSelectionCanvas : RBCanvas
     public RBCanvasNavigation ExistingProfileScreen = null;
     public RBCanvasNavigation GuestProfileScreen = null;
     public RBCanvasNavigation MatchFinderScreen = null;
+
+    public List<Toggle> NavToggles;
 
     private RBCanvasNavigation _activeProfileScreen = null;
 

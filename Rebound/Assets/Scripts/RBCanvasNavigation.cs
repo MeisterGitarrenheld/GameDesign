@@ -20,7 +20,7 @@ public class RBCanvasNavigation : MonoBehaviour
     public RBCanvasNavigation Previous = null;
     private List<RBCanvasNavigation> _children = new List<RBCanvasNavigation>();
 
-    public const float FADE_DURATION = .3f;
+    public const float FADE_DURATION = .2f;
 
     private CanvasGroup _cvGroup;
     private float _fadeInState = 0.0f;
