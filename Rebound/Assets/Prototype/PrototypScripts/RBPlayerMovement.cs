@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class RBPlayerMovement : MonoBehaviour
+public class RBPlayerMovement : NetworkBehaviour
 {
-
     public float MaxMoveSpeed;
     public float RotationSpeed;
     public float ShieldMoveSpeed;
@@ -14,7 +14,6 @@ public class RBPlayerMovement : MonoBehaviour
     public float ShieldRotationRate;
 
     private Rigidbody _rb;
-    private Camera _cam;
     private Vector3 _movementVector;
 
     //Shield Variables
@@ -24,11 +23,12 @@ public class RBPlayerMovement : MonoBehaviour
 
     void Start()
     {
-
+        DontDestroyOnLoad(gameObject);
+        if (!isLocalPlayer) return;
+        
         Cursor.lockState = CursorLockMode.Locked;
 
         _rb = GetComponent<Rigidbody>();
-        _cam = Camera.main;
         _shieldTransform = transform.Find("Shield");
         _shieldOffset = _shieldTransform.localPosition;
         _initYOffset = _shieldOffset.y;
@@ -36,6 +36,8 @@ public class RBPlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!isLocalPlayer) return;
+
         float xInput = Input.GetAxis("Horizontal") * MaxMoveSpeed;
         float zInput = Input.GetAxis("Vertical") * MaxMoveSpeed;
         float xMouseDelta = Input.GetAxis("Mouse X") * RotationSpeed;

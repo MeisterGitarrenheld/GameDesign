@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class BallSpawn : MonoBehaviour
+public class BallSpawn : NetworkBehaviour
 {
 
     public GameObject Ball;
@@ -25,11 +26,17 @@ public class BallSpawn : MonoBehaviour
     
     void Update()
     {
+        if (!isServer) return;
+
         if(_spawnTimer > SpawnRate)
         {
             Vector3 spawnPosition = new Vector3(0, Random.Range(0, _spawnHeight), Random.Range(0, _spawnWidth));
+
             var ball = Instantiate(Ball, spawnPosition + col.center, Quaternion.identity).GetComponent<Rigidbody>();
-            ball.AddForce((Player.position - ball.position).normalized * Random.Range(MinForce, MaxForce));
+            NetworkServer.Spawn(ball.gameObject);
+            
+            //ball.AddForce((Player.position - ball.position).normalized * Random.Range(MinForce, MaxForce));
+
             _spawnTimer = 0;
         }
         _spawnTimer += Time.deltaTime;

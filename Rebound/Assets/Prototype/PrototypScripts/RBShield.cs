@@ -10,7 +10,7 @@ public class RBShield : MonoBehaviour
         {
             Rigidbody oRB = other.GetComponent<Rigidbody>();
             //oRB.velocity = Vector3.Reflect(oRB.velocity, transform.forward);
-            oRB.velocity = transform.forward * oRB.velocity.magnitude;
+            oRB.velocity = transform.forward * oRB.velocity.magnitude * 20;
         }
     }
 }
