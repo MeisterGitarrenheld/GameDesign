@@ -1,13 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class RBNetworkManager : NetworkManager
 {
-    private int _clientCount = 0;
+    private short _clientCount = 0;
 
     public static RBNetworkManager Instance { get { return singleton as RBNetworkManager; } }
+
+    public event Action OnAddPlayer;
+    public event Action OnRemovePlayer;
+
 
     public override NetworkClient StartHost()
     {
@@ -29,21 +34,34 @@ public class RBNetworkManager : NetworkManager
     /// <param name="connection"></param>
     public override void OnClientConnect(NetworkConnection connection)
     {
-        Debug.Log("Client online: " + connection.address);
+        Debug.Log("Client online: " + connection.address + "with id: " + connection.connectionId);
         ClientScene.AddPlayer(connection, 2);
+    }
+
+    public override void OnClientDisconnect(NetworkConnection conn)
+    {
+        ClientScene.RemovePlayer(2);
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
         base.OnServerAddPlayer(conn, playerControllerId);
         _clientCount++;
+        OnAddPlayer?.Invoke();
 
-        if(_clientCount == 2)
+        if(_clientCount == 3)
         {
             ServerChangeScene("VerticalPrototypeArena");
         }
     }
-    
+
+    public override void OnServerRemovePlayer(NetworkConnection conn, PlayerController player)
+    {
+        base.OnServerRemovePlayer(conn, player);
+        _clientCount--;
+        OnRemovePlayer?.Invoke();
+    }
+
     public override void OnServerConnect(NetworkConnection conn)
     {
         Debug.Log("New client connected: " + conn.address);

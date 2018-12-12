@@ -14,30 +14,28 @@ public class RBLobbyCanvas : RBCanvas {
         base.OnFadeInStarted(navPage);
         Username.text = RBLocalUser.Instance.Username;
         IpAddress.text = RBLocalUser.Instance.LocalIpAddress?.ToString();
+
+        RBNetworkManager.Instance.OnAddPlayer += Instance_OnAddPlayer;
+        RBNetworkManager.Instance.OnRemovePlayer += Instance_OnRemovePlayer;
     }
 
-    public void OnPlayerCountInc()
-    {
-        var matchInfo = NetworkDiscovery.CurrentHostingMatch;
-        matchInfo.CurrentPlayerCount += 1;
-        NetworkDiscovery.CurrentHostingMatch = matchInfo;
-    }
-
-    public void OnPlayerCountDec()
+    private void Instance_OnRemovePlayer()
     {
         var matchInfo = NetworkDiscovery.CurrentHostingMatch;
         matchInfo.CurrentPlayerCount -= 1;
         NetworkDiscovery.CurrentHostingMatch = matchInfo;
     }
 
-    public void OnLeaveLobby()
+    private void Instance_OnAddPlayer()
     {
-        NetworkDiscovery.StopSendingMulticasts();
-        GetComponent<RBCanvasNavigation>().PageBack();
+        var matchInfo = NetworkDiscovery.CurrentHostingMatch;
+        matchInfo.CurrentPlayerCount += 1;
+        NetworkDiscovery.CurrentHostingMatch = matchInfo;
     }
 
-    public void OnShowError()
+    protected override void OnFadeOutStarted(RBCanvasNavigation navPage)
     {
-        RBErrorMessage.Instance.ShowError("This is an error with some info. Please make sure to not ignore this.", RBErrorMessage.ErrorType.Error);
+        base.OnFadeOutEnded(navPage);
+        NetworkDiscovery.StopSendingMulticasts();
     }
 }
