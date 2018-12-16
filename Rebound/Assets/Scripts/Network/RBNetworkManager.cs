@@ -34,13 +34,8 @@ public class RBNetworkManager : NetworkManager
     /// <param name="connection"></param>
     public override void OnClientConnect(NetworkConnection connection)
     {
-        Debug.Log("Client online: " + connection.address + "with id: " + connection.connectionId);
+        Debug.Log("Client online: " + connection.address);
         ClientScene.AddPlayer(connection, 2);
-    }
-
-    public override void OnClientDisconnect(NetworkConnection conn)
-    {
-        ClientScene.RemovePlayer(2);
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
@@ -49,7 +44,7 @@ public class RBNetworkManager : NetworkManager
         _clientCount++;
         OnAddPlayer?.Invoke();
 
-        if(_clientCount == 3)
+        if(_clientCount == 2)
         {
             ServerChangeScene("VerticalPrototypeArena");
         }

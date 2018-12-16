@@ -21,6 +21,7 @@ public class RBMatchFinderCanvas : RBCanvas
         base.OnFadeInStarted(navPage);
 
         UsernameDisp.text = RBLocalUser.Instance.Username;
+        RBLocalUser.Instance.IsHost = false;
 
         NetworkDiscovery.OnUpdateMatchInfo -= NetworkDiscovery_OnUpdateMatchInfo;
         NetworkDiscovery.OnUpdateMatchInfo += NetworkDiscovery_OnUpdateMatchInfo;
@@ -75,6 +76,7 @@ public class RBMatchFinderCanvas : RBCanvas
     {
         pageToSwitch.Show();
         NetworkDiscovery.StartSendingMulticasts();
+        RBLocalUser.Instance.IsHost = true;
 
         RBNetworkManager.Instance.StartHost();
     }
