@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 224216098135915948}
   - component: {fileID: 114159554037383692}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Toggle - Ready
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 114162294545047586}
   - component: {fileID: 114292165249530230}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Panel - Unready
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 114083035198453050}
   - component: {fileID: 114872562061157438}
   m_Layer: 5
-  m_Name: PlayerSlotReady
+  m_Name: Panel - Ready
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 114688535521150896}
   - component: {fileID: 114346196704817090}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: Dropdown - Team
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,8 +327,9 @@ GameObject:
   - component: {fileID: 224573756051526704}
   - component: {fileID: 222682922058770482}
   - component: {fileID: 114995998038770432}
+  - component: {fileID: 114031362063632458}
   m_Layer: 5
-  m_Name: PlayerSlots
+  m_Name: LobbyPlayerSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,6 +419,22 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Ready
+--- !u!114 &114031362063632458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1902779829835856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dce2a816017033e408a54ea20bbffa87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _readyToggle: {fileID: 114159554037383692}
+  _usernameText: {fileID: 114476226285351842}
+  _teamDropdown: {fileID: 114346196704817090}
+  _readyPanel: {fileID: 224134732986983210}
+  _unreadyPanel: {fileID: 224982776003381826}
 --- !u!114 &114083035198453050
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -600,7 +617,18 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114031362063632458}
+        m_MethodName: set_IsReady
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
@@ -788,7 +816,7 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 114688535521150896}
   m_Template: {fileID: 224390220016235342}
   m_CaptionText: {fileID: 114124307012046628}
@@ -808,7 +836,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114031362063632458}
+        m_MethodName: set_SelectedTeam
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114472166102118136
