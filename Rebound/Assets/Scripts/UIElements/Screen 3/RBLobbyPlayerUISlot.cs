@@ -6,18 +6,6 @@ using UnityEngine.UI;
 
 public class RBLobbyPlayerUISlot : MonoBehaviour
 {
-    /// <summary>
-    /// Called when the slot corresponds to the local player and
-    /// he toggles the ready button.
-    /// </summary>
-    public event Action<bool> OnReadyStateChanged;
-
-    /// <summary>
-    /// Called when the local player is the host and he
-    /// changes the slots team.
-    /// </summary>
-    public event Action<int> OnTeamChanged;
-
     [SerializeField]
     private Toggle _readyToggle = null;
 
@@ -62,7 +50,8 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
             _readyPanel.gameObject.SetActive(value);
             _unreadyPanel.gameObject.SetActive(!value);
 
-            OnReadyStateChanged?.Invoke(value);
+            if (Player != null)
+                Player.IsReady = value;
         }
     }
 
@@ -83,11 +72,15 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
         get { return _teamDropdown.value + 1; }
         set
         {
-            _teamDropdown.value = value - 1;
-
-            OnTeamChanged?.Invoke(value - 1);
+            if (Player != null)
+                Player.Team = value + 1;
         }
     }
+
+    /// <summary>
+    /// The corresponding player object.
+    /// </summary>
+    public RBPlayer Player { get; private set; }
 
     /// <summary>
     /// The number of available teams that should be displayed in the slot.
@@ -101,5 +94,34 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
             for (int i = 1; i <= value; i++)
                 _teamDropdown.options.Add(new Dropdown.OptionData("Team " + i));
         }
+    }
+
+    /// <summary>
+    /// Resets all properties to their default values.
+    /// </summary>
+    public void Reset()
+    {
+        IsHost = RBNetworkManager.Instance.IsHost;
+        IsReady = false;
+        IsLocalPlayer = false;
+        Username = string.Empty;
+        SelectedTeam = 1;
+        TeamCount = RBMatch.Instance.TeamCount;
+        Player = null;
+    }
+
+    /// <summary>
+    /// Updates the slot data based on the given player object.
+    /// </summary>
+    /// <param name="player"></param>
+    public void SetPlayer(RBPlayer player)
+    {
+        IsHost = RBNetworkManager.Instance.IsHost;
+        IsReady = player.IsReady;
+        IsLocalPlayer = player.IsLocalUser;
+        Username = player.Username;
+        SelectedTeam = player.Team;
+        TeamCount = RBMatch.Instance.TeamCount;
+        Player = player;
     }
 }

@@ -1,41 +1,93 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class RBLobbyCanvas : RBCanvas {
-
+public class RBLobbyCanvas : RBCanvas
+{
     public RBNetworkDiscovery NetworkDiscovery;
-    public Text Username;
-    public Text IpAddress;
+    public Text UsernamePageHeader;
+    public Text IpAddressPageHeader;
 
+    [SerializeField]
+    private List<RBLobbyPlayerUISlot> _playerSlots;
+
+    /// <summary>
+    /// - Updates the lobby header information and joins host events.
+    /// - Updates the player slots based on the current match data.
+    /// </summary>
+    /// <param name="navPage"></param>
     protected override void OnFadeInStarted(RBCanvasNavigation navPage)
     {
         base.OnFadeInStarted(navPage);
-        Username.text = RBLocalUser.Instance.Username;
-        IpAddress.text = RBLocalUser.Instance.LocalIpAddress?.ToString();
+        UsernamePageHeader.text = RBLocalUser.Instance.Username;
+        IpAddressPageHeader.text = RBLocalUser.Instance.LocalIpAddress?.ToString(); // TODO change to host ip
 
-        RBNetworkManager.Instance.OnAddPlayer += Instance_OnAddPlayer;
-        RBNetworkManager.Instance.OnRemovePlayer += Instance_OnRemovePlayer;
+        RBNetworkManager.Instance.OnPlayerAdded -= NetworkHost_OnAddPlayer;
+        RBNetworkManager.Instance.OnPlayerAdded += NetworkHost_OnAddPlayer;
+        RBNetworkManager.Instance.OnPlayerRemoved -= NetworkHost_OnRemovePlayer;
+        RBNetworkManager.Instance.OnPlayerRemoved += NetworkHost_OnRemovePlayer;
+
+        RBMatch.Instance.OnMatchChanged -= Match_OnMatchChanged;
+        RBMatch.Instance.OnMatchChanged += Match_OnMatchChanged;
+
+        UpdatePlayerSlots();
     }
 
-    private void Instance_OnRemovePlayer()
+    /// <summary>
+    /// Updates the player slots based on the current match data.
+    /// </summary>
+    private void Match_OnMatchChanged()
+    {
+        UpdatePlayerSlots();
+    }
+
+    /// <summary>
+    /// Updates the player slots based on the current match data.
+    /// </summary>
+    private void UpdatePlayerSlots()
+    {
+        _playerSlots.ForEach(x => x.Reset());
+
+        for (int i = 0; i < RBMatch.Instance.Players.Count; i++)
+            _playerSlots[i].SetPlayer(RBMatch.Instance.Players[i]);
+    }
+
+
+    /// <summary>
+    /// Called when the player decides to leave the lobby screen (back button) and does not
+    /// start the game.
+    /// </summary>
+    /// <param name="navPage"></param>
+    protected override void OnFadeOutStarted(RBCanvasNavigation navPage)
+    {
+        base.OnFadeOutEnded(navPage);
+        NetworkDiscovery.StopSendingMulticasts();
+        NetworkManager.singleton.StopHost();
+    }
+
+
+    /// <summary>
+    /// Decreases the current player count for the match and updates the
+    /// current match info.
+    /// </summary>
+    private void NetworkHost_OnRemovePlayer()
     {
         var matchInfo = NetworkDiscovery.CurrentHostingMatch;
         matchInfo.CurrentPlayerCount -= 1;
         NetworkDiscovery.CurrentHostingMatch = matchInfo;
     }
 
-    private void Instance_OnAddPlayer()
+
+    /// <summary>
+    /// Increases the current player count for the match and updates the
+    /// current match info.
+    /// </summary>
+    private void NetworkHost_OnAddPlayer()
     {
         var matchInfo = NetworkDiscovery.CurrentHostingMatch;
         matchInfo.CurrentPlayerCount += 1;
         NetworkDiscovery.CurrentHostingMatch = matchInfo;
-    }
-
-    protected override void OnFadeOutStarted(RBCanvasNavigation navPage)
-    {
-        base.OnFadeOutEnded(navPage);
-        NetworkDiscovery.StopSendingMulticasts();
     }
 }

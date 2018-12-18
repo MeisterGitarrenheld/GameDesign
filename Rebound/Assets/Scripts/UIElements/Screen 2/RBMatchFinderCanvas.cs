@@ -11,9 +11,21 @@ public class RBMatchFinderCanvas : RBCanvas
     public GameObject MatchListItemPrefab;
     public GameObject MatchList;
 
+    [SerializeField]
+    private RBCanvasNavigation _lobbyPage;
+
     protected override void Awake()
     {
         base.Awake();
+        RBNetworkManager.Instance.OnClientStarted += NetworkManager_OnClientStarted;
+    }
+
+    /// <summary>
+    /// Switches to the lobby screen when the client is connected to the host.
+    /// </summary>
+    private void NetworkManager_OnClientStarted()
+    {
+        _lobbyPage?.Show();
     }
 
     protected override void OnFadeInStarted(RBCanvasNavigation navPage)
@@ -21,12 +33,10 @@ public class RBMatchFinderCanvas : RBCanvas
         base.OnFadeInStarted(navPage);
 
         UsernameDisp.text = RBLocalUser.Instance.Username;
-        RBLocalUser.Instance.IsHost = false;
 
         NetworkDiscovery.OnUpdateMatchInfo -= NetworkDiscovery_OnUpdateMatchInfo;
         NetworkDiscovery.OnUpdateMatchInfo += NetworkDiscovery_OnUpdateMatchInfo;
         NetworkDiscovery.StartListeningForMulticasts();
-
     }
 
     protected override void OnFadeOutEnded(RBCanvasNavigation navPage)
@@ -43,7 +53,7 @@ public class RBMatchFinderCanvas : RBCanvas
     /// <param name="state">State which describes the action which is done on the list.</param>
     private void NetworkDiscovery_OnUpdateMatchInfo(RBLanConnectionInfo connInfo, RBNetworkDiscovery.ModifyState state)
     {
-        switch(state)
+        switch (state)
         {
             case RBNetworkDiscovery.ModifyState.Added:
                 Instantiate(MatchListItemPrefab, MatchList.transform).GetComponent<RBMatchListItem>().ConnInfo = connInfo;
@@ -72,11 +82,9 @@ public class RBMatchFinderCanvas : RBCanvas
     /// <summary>
     /// Starts a match as host and switches to the lobby screen.
     /// </summary>
-    public void OnHostButtonClick(RBCanvasNavigation pageToSwitch)
+    public void OnHostButtonClick()
     {
-        pageToSwitch.Show();
         NetworkDiscovery.StartSendingMulticasts();
-        RBLocalUser.Instance.IsHost = true;
 
         RBNetworkManager.Instance.StartHost();
     }

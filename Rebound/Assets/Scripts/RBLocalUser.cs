@@ -13,7 +13,6 @@ public class RBLocalUser : RBMonoBehaviourSingleton<RBLocalUser>
     public RBUserProfileType ProfileType { get; set; } = RBUserProfileType.None;
     public string Username { get; set; } = string.Empty;
     public IPAddress LocalIpAddress { get { return GetLocalIp(); } }
-    public bool IsHost { get; set; } = false;
 
     /// <summary>
     /// <see cref="RBMonoBehaviourSingleton{T}.AwakeSingleton"/>

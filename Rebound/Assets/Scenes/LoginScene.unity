@@ -1443,6 +1443,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 248642057}
   m_CullTransparentMesh: 0
+--- !u!114 &265437821 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114031362063632458, guid: b837ae8826258f24086e3e0194eb48b9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1147101935}
+  m_Script: {fileID: 11500000, guid: dce2a816017033e408a54ea20bbffa87, type: 3}
 --- !u!1 &319912810
 GameObject:
   m_ObjectHideFlags: 0
@@ -3344,7 +3350,7 @@ GameObject:
   - component: {fileID: 1020926312}
   - component: {fileID: 1020926311}
   m_Layer: 5
-  m_Name: Text - localip
+  m_Name: Text - Host IP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5878,6 +5884,7 @@ MonoBehaviour:
   MatchListItemPrefab: {fileID: 1837911819999538, guid: 286b0a9975e5d8d438f29413ba2a8cd9,
     type: 2}
   MatchList: {fileID: 101583162}
+  _lobbyPage: {fileID: 2049110286}
 --- !u!1 &1725475562
 GameObject:
   m_ObjectHideFlags: 0
@@ -6256,6 +6263,12 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1777714819}
   m_CullTransparentMesh: 0
+--- !u!114 &1794301550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114031362063632458, guid: b837ae8826258f24086e3e0194eb48b9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1213628135}
+  m_Script: {fileID: 11500000, guid: dce2a816017033e408a54ea20bbffa87, type: 3}
 --- !u!1 &1851794099
 GameObject:
   m_ObjectHideFlags: 0
@@ -6596,10 +6609,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1715222000}
         m_MethodName: OnHostButtonClick
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 2049110286}
-          m_ObjectArgumentAssemblyTypeName: RBCanvasNavigation, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6830,6 +6843,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: -80, y: -100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1928435737 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114031362063632458, guid: b837ae8826258f24086e3e0194eb48b9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1896997006}
+  m_Script: {fileID: 11500000, guid: dce2a816017033e408a54ea20bbffa87, type: 3}
+--- !u!114 &1985329606 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114031362063632458, guid: b837ae8826258f24086e3e0194eb48b9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1315462154}
+  m_Script: {fileID: 11500000, guid: dce2a816017033e408a54ea20bbffa87, type: 3}
 --- !u!1 &1998858422
 GameObject:
   m_ObjectHideFlags: 0
@@ -7115,8 +7140,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIComponent: {fileID: 0}
   NetworkDiscovery: {fileID: 1245402112}
-  Username: {fileID: 149116620}
-  IpAddress: {fileID: 1020926311}
+  UsernamePageHeader: {fileID: 149116620}
+  IpAddressPageHeader: {fileID: 1020926311}
+  _playerSlots:
+  - {fileID: 1985329606}
+  - {fileID: 1928435737}
+  - {fileID: 265437821}
+  - {fileID: 1794301550}
 --- !u!1 &2107254485
 GameObject:
   m_ObjectHideFlags: 0
