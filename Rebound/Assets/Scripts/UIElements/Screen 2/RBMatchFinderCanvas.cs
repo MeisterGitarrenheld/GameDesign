@@ -33,6 +33,7 @@ public class RBMatchFinderCanvas : RBCanvas
         base.OnFadeInStarted(navPage);
 
         UsernameDisp.text = RBLocalUser.Instance.Username;
+        RBMatchListItem.SelectedItem = null;
 
         NetworkDiscovery.OnUpdateMatchInfo -= NetworkDiscovery_OnUpdateMatchInfo;
         NetworkDiscovery.OnUpdateMatchInfo += NetworkDiscovery_OnUpdateMatchInfo;
@@ -56,7 +57,9 @@ public class RBMatchFinderCanvas : RBCanvas
         switch (state)
         {
             case RBNetworkDiscovery.ModifyState.Added:
-                Instantiate(MatchListItemPrefab, MatchList.transform).GetComponent<RBMatchListItem>().ConnInfo = connInfo;
+                var obj = Instantiate(MatchListItemPrefab, MatchList.transform);
+                obj.GetComponent<Toggle>().group = MatchList.GetComponent<ToggleGroup>();
+                obj.GetComponent<RBMatchListItem>().ConnInfo = connInfo;
                 break;
             case RBNetworkDiscovery.ModifyState.Changed:
                 var items = MatchList.gameObject.GetComponentsInChildren<RBMatchListItem>();
@@ -77,6 +80,11 @@ public class RBMatchFinderCanvas : RBCanvas
                     }
                 break;
         }
+    }
+
+    public void OnJoinButtonClick()
+    {
+        RBMatchListItem.SelectedItem?.OnJoinButtonClick();
     }
 
     /// <summary>

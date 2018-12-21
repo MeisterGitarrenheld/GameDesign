@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RBCanvasNavigation : MonoBehaviour
 {
@@ -96,6 +97,7 @@ public class RBCanvasNavigation : MonoBehaviour
                 OnFadeOutEnded?.Invoke(this);
                 _fadeOutState = 0.0f;
 
+                EventSystem.current.SetSelectedGameObject(null);
                 _cvGroup.alpha = 0.0f;
                 _cvGroup.blocksRaycasts = false;
                 _cvGroup.interactable = false;
