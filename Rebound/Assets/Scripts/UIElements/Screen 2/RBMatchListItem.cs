@@ -41,8 +41,9 @@ public class RBMatchListItem : MonoBehaviour
             SelectedItem = null;
     }
 
-    public void OnJoinButtonClick()
+    public void JoinMatch()
     {
+        Debug.Log("Join match was called");
         RBNetworkManager.Instance.StartClient(ConnInfo);
     }
 }

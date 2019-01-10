@@ -10,6 +10,8 @@ public class RBMatchFinderCanvas : RBCanvas
     public RBNetworkDiscovery NetworkDiscovery;
     public GameObject MatchListItemPrefab;
     public GameObject MatchList;
+    public RBInputField ConcretIPAddress;
+    public Button JoinButton;
 
     [SerializeField]
     private RBCanvasNavigation _lobbyPage;
@@ -34,6 +36,7 @@ public class RBMatchFinderCanvas : RBCanvas
 
         UsernameDisp.text = RBLocalUser.Instance.Username;
         RBMatchListItem.SelectedItem = null;
+        JoinButton.interactable = false;
 
         NetworkDiscovery.OnUpdateMatchInfo -= NetworkDiscovery_OnUpdateMatchInfo;
         NetworkDiscovery.OnUpdateMatchInfo += NetworkDiscovery_OnUpdateMatchInfo;
@@ -59,6 +62,7 @@ public class RBMatchFinderCanvas : RBCanvas
             case RBNetworkDiscovery.ModifyState.Added:
                 var obj = Instantiate(MatchListItemPrefab, MatchList.transform);
                 obj.GetComponent<Toggle>().group = MatchList.GetComponent<ToggleGroup>();
+                obj.GetComponent<Toggle>().onValueChanged.AddListener(delegate { UpdateJoinButtonState(); });
                 obj.GetComponent<RBMatchListItem>().ConnInfo = connInfo;
                 break;
             case RBNetworkDiscovery.ModifyState.Changed:
@@ -84,7 +88,21 @@ public class RBMatchFinderCanvas : RBCanvas
 
     public void OnJoinButtonClick()
     {
-        RBMatchListItem.SelectedItem?.OnJoinButtonClick();
+        if(ConcretIPAddress.ContainsText)
+        {
+            // TODO do join to explicit ip address
+            RBErrorMessage.Instance.ShowError("Join to specific IPs are not implemented yet.", RBErrorMessage.ErrorType.Error);
+        }
+        else
+            RBMatchListItem.SelectedItem?.JoinMatch();
+    }
+
+    public void UpdateJoinButtonState()
+    {
+        if (ConcretIPAddress.ContainsText || RBMatchListItem.SelectedItem != null)
+            JoinButton.interactable = true;
+        else
+            JoinButton.interactable = false;
     }
 
     /// <summary>
