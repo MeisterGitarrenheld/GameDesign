@@ -18,7 +18,7 @@ public class RBNetworkDiscovery : MonoBehaviour
         set
         {
             _currentHostingMatch = value;
-            McMessage = JsonUtility.ToJson(value, false);
+            McMessage = RBSerializer.Serialize(value, false);
         }
     }
     private RBMatchInfo _currentHostingMatch;

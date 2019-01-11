@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,13 +46,10 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
     public bool IsReady
     {
         get { return _readyPanel.gameObject.activeSelf; }
-        set
+        private set
         {
             _readyPanel.gameObject.SetActive(value);
             _unreadyPanel.gameObject.SetActive(!value);
-
-            if (Player != null)
-                Player.IsReady = value;
         }
     }
 
@@ -70,11 +68,6 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
     public int SelectedTeam
     {
         get { return _teamDropdown.value + 1; }
-        set
-        {
-            if (Player != null)
-                Player.Team = value + 1;
-        }
     }
 
     /// <summary>
@@ -96,18 +89,30 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
         }
     }
 
+    public void ToggleIsReadyUI(bool ready)
+    {
+        IsReady = ready;
+        Player?.SetIsReady(ready);
+    }
+
+    public void SwitchSelectedTeamUI(int team)
+    {
+        Debug.Log("switch team");
+        Player?.SetTeam(team + 1);
+    }
+
     /// <summary>
     /// Resets all properties to their default values.
     /// </summary>
     public void Reset()
     {
+        Player = null;
         IsHost = RBNetworkManager.Instance.IsHost;
         IsReady = false;
         IsLocalPlayer = false;
         Username = string.Empty;
-        SelectedTeam = 1;
+        _teamDropdown.value = 0;
         TeamCount = RBMatch.Instance.TeamCount;
-        Player = null;
     }
 
     /// <summary>
@@ -120,7 +125,9 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
         IsReady = player.IsReady;
         IsLocalPlayer = player.IsLocalUser;
         Username = player.Username;
-        SelectedTeam = player.Team;
+        //Debug.Log(string.Join(" <- ", new List<System.Diagnostics.StackFrame>(new System.Diagnostics.StackTrace().GetFrames()).Select(f => f.GetMethod().Name).Take(10)));
+        //SelectedTeam = player.Team;
+        _teamDropdown.value = player.Team - 1;
         TeamCount = RBMatch.Instance.TeamCount;
         Player = player;
     }

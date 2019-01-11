@@ -38,6 +38,14 @@ public class RBMatch
             _players.Insert(0, player);
         else
             _players.Add(player);
+
+        player.OnReadyStateChanged += Player_OnReadyStateChanged;
+
+        OnMatchChanged?.Invoke();
+    }
+
+    private void Player_OnReadyStateChanged(RBPlayer player, bool state)
+    {
         OnMatchChanged?.Invoke();
     }
 
@@ -49,12 +57,29 @@ public class RBMatch
     /// <returns></returns>
     public bool RemovePlayer(RBPlayer player)
     {
+        if (player == null) return false;
+
         var success = _players.Remove(player);
 
         if (success)
+        {
+            player.OnReadyStateChanged -= Player_OnReadyStateChanged;
             OnMatchChanged?.Invoke();
+        }
 
         return success;
+    }
+
+
+    /// <summary>
+    /// Removes a player form the current match.
+    /// </summary>
+    /// <param name="connId"></param>
+    /// <returns></returns>
+    public bool RemovePlayerById(int connId)
+    {
+        var player = _players.Find(p => p.ConnectionId == connId);
+        return RemovePlayer(player);
     }
 
 
@@ -65,6 +90,8 @@ public class RBMatch
     public void RemoveAllPlayers(bool silent = false)
     {
         var cnt = _players.Count;
+
+        _players.ForEach(player => player.OnReadyStateChanged -= Player_OnReadyStateChanged);
 
         _players.Clear();
 

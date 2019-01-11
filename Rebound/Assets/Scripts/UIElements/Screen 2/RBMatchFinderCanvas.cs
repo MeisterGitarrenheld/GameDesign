@@ -36,11 +36,17 @@ public class RBMatchFinderCanvas : RBCanvas
 
         UsernameDisp.text = RBLocalUser.Instance.Username;
         RBMatchListItem.SelectedItem = null;
-        JoinButton.interactable = false;
 
         NetworkDiscovery.OnUpdateMatchInfo -= NetworkDiscovery_OnUpdateMatchInfo;
         NetworkDiscovery.OnUpdateMatchInfo += NetworkDiscovery_OnUpdateMatchInfo;
         NetworkDiscovery.StartListeningForMulticasts();
+    }
+
+    protected override void OnFadeInEnded(RBCanvasNavigation navPage)
+    {
+        base.OnFadeInEnded(navPage);
+
+        JoinButton.interactable = false;
     }
 
     protected override void OnFadeOutEnded(RBCanvasNavigation navPage)

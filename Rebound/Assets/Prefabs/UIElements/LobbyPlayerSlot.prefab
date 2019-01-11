@@ -619,7 +619,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114031362063632458}
-        m_MethodName: set_IsReady
+        m_MethodName: ToggleIsReadyUI
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -838,7 +838,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114031362063632458}
-        m_MethodName: set_SelectedTeam
+        m_MethodName: SwitchSelectedTeamUI
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -43,7 +43,6 @@ public class RBMatchListItem : MonoBehaviour
 
     public void JoinMatch()
     {
-        Debug.Log("Join match was called");
         RBNetworkManager.Instance.StartClient(ConnInfo);
     }
 }

@@ -31,6 +31,7 @@ public class RBNetworkManager : NetworkManager
         IsHost = true;
         var client = base.StartHost();
         NetworkServer.RegisterHandler(RBInitPlayerMessage.MSG_TYPE, OnInitPlayerMessageReceived);
+        NetworkServer.RegisterHandler(RBLobbyMatchUpdateMessage.MSG_TYPE, OnClientCharacterUpdateReceived);
         return client;
     }
 
@@ -78,8 +79,7 @@ public class RBNetworkManager : NetworkManager
             RBPlayer host = new RBPlayer
             {
                 Username = RBLocalUser.Instance.Username,
-                IsHost = true,
-                Team = 1
+                IsHost = true
             };
 
             host.OnReadyStateChanged += Player_OnReadyStateChanged;
@@ -107,12 +107,28 @@ public class RBNetworkManager : NetworkManager
 
             foreach (var playerData in updateMsg.Players)
             {
-                var player = JsonUtility.FromJson<RBPlayer>(playerData);
+                Debug.Log(playerData);
+                var player = RBSerializer.Deserialize<RBPlayer>(playerData);
                 player.OnReadyStateChanged += Player_OnReadyStateChanged;
                 player.OnTeamChanged += Player_OnTeamChanged;
                 RBMatch.Instance.AddPlayer(player);
             }
         }
+    }
+
+    /// <summary>
+    /// Called on the server when the client changes his character settings.
+    /// </summary>
+    /// <param name="netMsg"></param>
+    private void OnClientCharacterUpdateReceived(NetworkMessage netMsg)
+    {
+        var updateMsg = netMsg.ReadMessage<RBLobbyMatchUpdateMessage>();
+
+        var changedPlayer = RBSerializer.Deserialize<RBPlayer>(updateMsg.Players[0]);
+        Debug.Log("Received player update: " + updateMsg.Players[0]);
+        foreach (var existingPlayer in RBMatch.Instance.Players)
+            if (changedPlayer.Username == existingPlayer.Username)
+                existingPlayer.SetIsReady(changedPlayer.IsReady);
     }
 
     private void Player_OnReadyStateChanged(RBPlayer player, bool isReady)
@@ -125,7 +141,9 @@ public class RBNetworkManager : NetworkManager
     private void Player_OnTeamChanged(RBPlayer player, int team)
     {
         Debug.Log("The team of " + player.Username + " changed to " + team + ".");
-        SendLobbyMatchUpdateToClients();
+
+        if (IsHost)
+            SendLobbyMatchUpdateToClients();
     }
 
 
@@ -134,17 +152,37 @@ public class RBNetworkManager : NetworkManager
     /// </summary>
     private void SendLobbyMatchUpdateToClients()
     {
+        Debug.Log("Send match update... (from host? " + IsHost + ")");
+        var updateMsg = new RBLobbyMatchUpdateMessage();
+        var players = RBMatch.Instance.Players;
+        updateMsg.FromHost = IsHost;
+
         if (IsHost)
         {
-            var updateMsg = new RBLobbyMatchUpdateMessage();
-            var players = RBMatch.Instance.Players;
             updateMsg.Players = new string[players.Count];
             for (int i = 0; i < players.Count; i++)
             {
-                updateMsg.Players[i] = JsonUtility.ToJson(players[i]);
+                Debug.Log("Send " + RBSerializer.Serialize(players[i]));
+                updateMsg.Players[i] = RBSerializer.Serialize(players[i]);
             }
 
             NetworkServer.SendToAll(RBLobbyMatchUpdateMessage.MSG_TYPE, updateMsg);
+        }
+        else
+        {
+            // Notify server about client update
+            updateMsg.Players = new string[1];
+
+            foreach (var player in players)
+            {
+                if (player.IsLocalUser)
+                {
+                    updateMsg.Players[0] = RBSerializer.Serialize(player);
+                    break;
+                }
+            }
+
+            client.Send(RBLobbyMatchUpdateMessage.MSG_TYPE, updateMsg);
         }
     }
 
@@ -179,14 +217,16 @@ public class RBNetworkManager : NetworkManager
             var player = new RBPlayer
             {
                 IsHost = isNewPlayerHost,
-                IsReady = false,
-                Username = initMsg.Username
+                Username = initMsg.Username,
+                ConnectionId = netMsg.conn.connectionId
             };
 
             player.OnReadyStateChanged += Player_OnReadyStateChanged;
             player.OnTeamChanged += Player_OnTeamChanged;
 
             RBMatch.Instance.AddPlayer(player);
+
+            SendLobbyMatchUpdateToClients();
         }
     }
 
@@ -228,7 +268,10 @@ public class RBNetworkManager : NetworkManager
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
-        Debug.Log("Client disconnected: " + conn.address);
+        Debug.Log("Client disconnected: " + conn.address + " " + conn.connectionId);
+        _clientCount--;
+        OnPlayerRemoved?.Invoke();
+        RBMatch.Instance.RemovePlayerById(conn.connectionId);
     }
 
 

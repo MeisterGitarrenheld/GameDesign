@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -8,6 +9,8 @@ public class RBPlayer
 {
     public event Action<RBPlayer, bool> OnReadyStateChanged;
     public event Action<RBPlayer, int> OnTeamChanged;
+
+    public int ConnectionId { get; set; } = -1;
 
     /// <summary>
     /// The name of the player.
@@ -21,19 +24,10 @@ public class RBPlayer
 
     /// <summary>
     /// True, if the corresponding player has hit the ready button.
+    /// Use <see cref="SetIsReady(bool, bool)"/> for setting.
+    /// The public setter is only needed for serialization.
     /// </summary>
-    public bool IsReady
-    {
-        get { return _isReady; }
-        set
-        {
-            var changed = _isReady != value;
-            _isReady = value;
-            if (changed)
-                OnReadyStateChanged?.Invoke(this, value);
-        }
-    }
-    private bool _isReady = false;
+    public bool IsReady { get; set; } = false;
 
     /// <summary>
     /// True, if the object corresponds to the local player.
@@ -42,17 +36,38 @@ public class RBPlayer
 
     /// <summary>
     /// The team number of the player.
+    /// Use <see cref="SetTeam(int, bool)"/> for setting.
+    /// The public setter is only needed for serialization.
     /// </summary>
-    public int Team
+    public int Team { get; set; } = 1;
+
+    /// <summary>
+    /// Updates the ready state of the player.
+    /// Triggers the <see cref="OnReadyStateChanged"/> event if changed and not silent.
+    /// </summary>
+    /// <param name="ready"></param>
+    /// <param name="silent"></param>
+    public void SetIsReady(bool ready, bool silent = false)
     {
-        get { return _team; }
-        set
-        {
-            var changed = _team != value;
-            _team = value;
-            if (changed)
-                OnTeamChanged?.Invoke(this, value);
-        }
+        var changed = IsReady != ready;
+        IsReady = ready;
+
+        if (!silent && changed)
+            OnReadyStateChanged?.Invoke(this, ready);
     }
-    private int _team = 1;
+
+    /// <summary>
+    /// Updates the team of the player.
+    /// Triggers the <see cref="OnTeamChanged"/> event if changed and not silent.
+    /// </summary>
+    /// <param name="team"></param>
+    /// <param name="silent"></param>
+    public void SetTeam(int team, bool silent = false)
+    {
+        var changed = Team != team;
+        Team = team;
+
+        if (!silent && changed)
+            OnTeamChanged?.Invoke(this, team);
+    }
 }

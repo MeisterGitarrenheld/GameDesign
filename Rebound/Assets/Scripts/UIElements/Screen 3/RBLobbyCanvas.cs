@@ -48,10 +48,11 @@ public class RBLobbyCanvas : RBCanvas
     /// </summary>
     private void UpdatePlayerSlots()
     {
-        _playerSlots.ForEach(x => x.Reset());
-
         for (int i = 0; i < RBMatch.Instance.Players.Count; i++)
             _playerSlots[i].SetPlayer(RBMatch.Instance.Players[i]);
+
+        for (int i = RBMatch.Instance.Players.Count; i < _playerSlots.Count; i++)
+            _playerSlots[i].Reset();
     }
 
 

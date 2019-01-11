@@ -13,7 +13,7 @@ public struct RBLanConnectionInfo
         var addressParts = fromAddress.Split(':');
         IpAddress = addressParts[addressParts.Length - 1];
         Debug.Log(data);
-        MatchInfo = JsonUtility.FromJson<RBMatchInfo>(data);
+        MatchInfo = RBSerializer.Deserialize<RBMatchInfo>(data);
     }
 
     /// <summary>
