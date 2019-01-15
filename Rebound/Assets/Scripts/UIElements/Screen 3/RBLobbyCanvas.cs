@@ -33,6 +33,7 @@ public class RBLobbyCanvas : RBCanvas
         RBMatch.Instance.OnMatchChanged += Match_OnMatchChanged;
 
         UpdatePlayerSlots();
+        RBCharacterPreview.Instance.ClearPreview();
     }
 
     /// <summary>
