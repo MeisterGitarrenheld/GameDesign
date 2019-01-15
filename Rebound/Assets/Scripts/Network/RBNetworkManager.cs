@@ -84,6 +84,7 @@ public class RBNetworkManager : NetworkManager
 
             host.OnReadyStateChanged += Player_OnReadyStateChanged;
             host.OnTeamChanged += Player_OnTeamChanged;
+            host.OnCharacterIdChanged += Player_OnCharacterIdChanged;
 
             RBMatch.Instance.AddPlayer(host);
         }
@@ -111,6 +112,7 @@ public class RBNetworkManager : NetworkManager
                 var player = RBSerializer.Deserialize<RBPlayer>(playerData);
                 player.OnReadyStateChanged += Player_OnReadyStateChanged;
                 player.OnTeamChanged += Player_OnTeamChanged;
+                player.OnCharacterIdChanged += Player_OnCharacterIdChanged;
                 RBMatch.Instance.AddPlayer(player);
             }
         }
@@ -146,6 +148,11 @@ public class RBNetworkManager : NetworkManager
             SendLobbyMatchUpdateToClients();
     }
 
+    private void Player_OnCharacterIdChanged(RBPlayer player, int characterId)
+    {
+        Debug.Log("The character id of " + player.Username + " changed to " + characterId + ".");
+        SendLobbyMatchUpdateToClients();
+    }
 
     /// <summary>
     /// Sends the current match configuration to the clients in the lobby screen.
@@ -223,6 +230,7 @@ public class RBNetworkManager : NetworkManager
 
             player.OnReadyStateChanged += Player_OnReadyStateChanged;
             player.OnTeamChanged += Player_OnTeamChanged;
+            player.OnCharacterIdChanged += Player_OnCharacterIdChanged;
 
             RBMatch.Instance.AddPlayer(player);
 

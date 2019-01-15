@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RBCharacterInfo : RBMonoBehaviourSingleton<RBCharacterInfo> {
 
@@ -15,5 +16,15 @@ public class RBCharacterInfo : RBMonoBehaviourSingleton<RBCharacterInfo> {
         }
 
         return null;
+    }
+
+    public RBCharacter GetDefaultCharacter()
+    {
+        return CharacterPrefabs[0];
+    }
+
+    public Sprite GetCharacterSprite(int id)
+    {
+        return Resources.Load<Sprite>("Images/Character/CharacterImage_" + id);
     }
 }

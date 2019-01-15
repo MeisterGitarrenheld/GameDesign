@@ -10,18 +10,20 @@ public class RBCharacterPreview : RBMonoBehaviourSingleton<RBCharacterPreview>
 
     public void SetPreview(int characterId)
     {
-        var charPrefab = RBCharacterInfo.Instance.GetCharacterById(characterId).gameObject;
+        var charPrefab = RBCharacterInfo.Instance.GetCharacterById(characterId);
 
-        if (_displayedCharacter != null)
-        {
-            Destroy(_displayedCharacter);
-        }
+        SetPreview(charPrefab);
+    }
 
-        if (charPrefab == null) return;
+    public void SetPreview(RBCharacter character)
+    {
+        ClearPreview();
+
+        if (character == null) return;
 
         Vector3 position = CharacterPosition.transform.position;
 
-        var @char = Instantiate(charPrefab, gameObject.transform);
+        var @char = Instantiate(character.gameObject, gameObject.transform);
         _displayedCharacter = @char;
         @char.transform.position = position;
         @char.gameObject.SetLayerRecursively(LayerMask.NameToLayer("CharacterPreview"));
@@ -29,7 +31,10 @@ public class RBCharacterPreview : RBMonoBehaviourSingleton<RBCharacterPreview>
 
     public void ClearPreview()
     {
-        SetPreview(-1);
+        if (_displayedCharacter != null)
+        {
+            Destroy(_displayedCharacter);
+        }
     }
 
     public GameObject GetSelectedCharacter()

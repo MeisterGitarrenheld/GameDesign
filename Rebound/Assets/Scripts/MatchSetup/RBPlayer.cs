@@ -9,6 +9,7 @@ public class RBPlayer
 {
     public event Action<RBPlayer, bool> OnReadyStateChanged;
     public event Action<RBPlayer, int> OnTeamChanged;
+    public event Action<RBPlayer, int> OnCharacterIdChanged;
 
     public int ConnectionId { get; set; } = -1;
 
@@ -42,6 +43,13 @@ public class RBPlayer
     public int Team { get; set; } = 1;
 
     /// <summary>
+    /// The character id of the player.
+    /// Use <see cref="SetCharacterId(int, bool)"/> for setting.
+    /// The public setter is only needed for serialization.
+    /// </summary>
+    public int CharacterId { get; set; } = 0;
+
+    /// <summary>
     /// Updates the ready state of the player.
     /// Triggers the <see cref="OnReadyStateChanged"/> event if changed and not silent.
     /// </summary>
@@ -69,5 +77,20 @@ public class RBPlayer
 
         if (!silent && changed)
             OnTeamChanged?.Invoke(this, team);
+    }
+
+    /// <summary>
+    /// Updates the selected character of the player.
+    /// Triggers the <see cref="OnCharacterIdChanged"/> event if changed and not silent.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="silent"></param>
+    public void SetCharacterId(int id, bool silent = false)
+    {
+        var changed = CharacterId != id;
+        CharacterId = id;
+
+        if (!silent && changed)
+            OnCharacterIdChanged?.Invoke(this, id);
     }
 }

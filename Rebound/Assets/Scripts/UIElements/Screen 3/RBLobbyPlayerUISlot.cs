@@ -22,6 +22,12 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
     [SerializeField]
     private RectTransform _unreadyPanel = null;
 
+    [SerializeField]
+    private Image _characterImageReady = null;
+
+    [SerializeField]
+    private Image _characterImageUnready = null;
+
     /// <summary>
     /// True, if the local player is the host.
     /// </summary>
@@ -91,6 +97,7 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
 
     public void ToggleIsReadyUI(bool ready)
     {
+        Debug.Log("toggle ready");
         IsReady = ready;
         Player?.SetIsReady(ready);
     }
@@ -129,6 +136,23 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
         //SelectedTeam = player.Team;
         _teamDropdown.value = player.Team - 1;
         TeamCount = RBMatch.Instance.TeamCount;
+        SetCharacter(player.CharacterId, true);
         Player = player;
+    }
+
+    /// <summary>
+    /// Updates the images for the player slot and forwards
+    /// the update to the network player object.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="silent"></param>
+    public void SetCharacter(int id, bool silent = false)
+    {
+        var sprite = RBCharacterInfo.Instance.GetCharacterSprite(id);
+        _characterImageReady.sprite = sprite;
+        _characterImageUnready.sprite = sprite;
+
+        if (!silent)
+            Player?.SetCharacterId(id);
     }
 }
