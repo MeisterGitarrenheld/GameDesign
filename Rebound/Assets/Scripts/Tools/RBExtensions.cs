@@ -31,4 +31,17 @@ public static class RBExtensions
     {
         return (short)conn.connectionId;
     }
+
+    public static void SetLayerRecursively(this GameObject obj, int layer)
+    {
+        if (obj == null) return;
+
+        obj.layer = layer;
+
+        foreach(Transform child in obj.transform)
+        {
+            if (child == null) continue;
+            child.gameObject.SetLayerRecursively(layer);
+        }
+    }
 }
