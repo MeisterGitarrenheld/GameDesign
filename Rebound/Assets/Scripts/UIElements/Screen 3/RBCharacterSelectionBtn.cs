@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RBCharacterSelectionBtn : MonoBehaviour
 {
     [SerializeField]
-    public RBLobbyPlayerUISlot _localPlayerSlot = null;
+    public RBLobbyCanvas _lobbyCanvas = null;
 
     [SerializeField]
     public RBCharacter _character = null;
@@ -22,16 +23,25 @@ public class RBCharacterSelectionBtn : MonoBehaviour
         btn.onClick.AddListener(() => RBCharacterPreview.Instance.SetPreview(_character.ID));
 
         // Change the selected character in the local player slot on click
-        btn.onClick.AddListener(() => _localPlayerSlot.SetCharacter(_character.ID));
+        btn.onClick.AddListener(() => _lobbyCanvas.GetLocalPlayerUISlot().SetCharacter(_character.ID));
 
         // Activate/deactivate the button when the player is ready or not
-        foreach (Transform child in _localPlayerSlot.gameObject.transform)
+        foreach (var uiPlayerSlot in _lobbyCanvas.GetAllPlayerUISlots())
         {
-            var readyToggle = child.gameObject.GetComponent<Toggle>();
-            if (readyToggle != null)
+            foreach (Transform child in uiPlayerSlot.gameObject.transform)
             {
-                readyToggle.onValueChanged.AddListener((bool ready) => btn.interactable = !ready);
-                break;
+                var readyToggle = child.gameObject.GetComponent<Toggle>();
+                if (readyToggle != null)
+                {
+                    readyToggle.onValueChanged.AddListener(
+                        (bool ready) =>
+                        {
+                            if (uiPlayerSlot.IsLocalPlayer)
+                                btn.interactable = !ready;
+                        }
+                    );
+                    break;
+                }
             }
         }
     }

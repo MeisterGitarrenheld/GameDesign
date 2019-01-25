@@ -129,8 +129,13 @@ public class RBNetworkManager : NetworkManager
         var changedPlayer = RBSerializer.Deserialize<RBPlayer>(updateMsg.Players[0]);
         Debug.Log("Received player update: " + updateMsg.Players[0]);
         foreach (var existingPlayer in RBMatch.Instance.Players)
+        {
             if (changedPlayer.Username == existingPlayer.Username)
+            {
                 existingPlayer.SetIsReady(changedPlayer.IsReady);
+                existingPlayer.SetCharacterId(changedPlayer.CharacterId);
+            }
+        }
     }
 
     private void Player_OnReadyStateChanged(RBPlayer player, bool isReady)

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -56,6 +57,23 @@ public class RBLobbyCanvas : RBCanvas
             _playerSlots[i].Reset();
     }
 
+    /// <summary>
+    /// Searches the ui slot for the local player. Returns null, if not found.
+    /// </summary>
+    /// <returns></returns>
+    public RBLobbyPlayerUISlot GetLocalPlayerUISlot()
+    {
+        return _playerSlots.Find(x => x.IsLocalPlayer);
+    }
+
+    /// <summary>
+    /// Returns all ui player slots.
+    /// </summary>
+    /// <returns></returns>
+    public ReadOnlyCollection<RBLobbyPlayerUISlot> GetAllPlayerUISlots()
+    {
+        return _playerSlots.AsReadOnly();
+    }
 
     /// <summary>
     /// Called when the player decides to leave the lobby screen (back button) and does not

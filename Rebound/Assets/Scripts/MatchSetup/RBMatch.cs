@@ -40,7 +40,13 @@ public class RBMatch
             _players.Add(player);
 
         player.OnReadyStateChanged += Player_OnReadyStateChanged;
+        player.OnCharacterIdChanged += Player_OnCharacterIdChanged;
 
+        OnMatchChanged?.Invoke();
+    }
+
+    private void Player_OnCharacterIdChanged(RBPlayer player, int characterId)
+    {
         OnMatchChanged?.Invoke();
     }
 
@@ -64,6 +70,7 @@ public class RBMatch
         if (success)
         {
             player.OnReadyStateChanged -= Player_OnReadyStateChanged;
+            player.OnCharacterIdChanged -= Player_OnCharacterIdChanged;
             OnMatchChanged?.Invoke();
         }
 
@@ -91,7 +98,11 @@ public class RBMatch
     {
         var cnt = _players.Count;
 
-        _players.ForEach(player => player.OnReadyStateChanged -= Player_OnReadyStateChanged);
+        _players.ForEach(player =>
+        {
+            player.OnReadyStateChanged -= Player_OnReadyStateChanged;
+            player.OnCharacterIdChanged -= Player_OnCharacterIdChanged;
+        });
 
         _players.Clear();
 
