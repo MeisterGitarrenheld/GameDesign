@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
@@ -13,6 +14,9 @@ public class RBLobbyCanvas : RBCanvas
 
     [SerializeField]
     private List<RBLobbyPlayerUISlot> _playerSlots;
+
+    [SerializeField]
+    private RBAnimatedButton _matchStartButton;
 
     /// <summary>
     /// - Updates the lobby header information and joins host events.
@@ -35,6 +39,11 @@ public class RBLobbyCanvas : RBCanvas
 
         UpdatePlayerSlots();
         RBCharacterPreview.Instance.SetPreview(RBCharacterInfo.Instance.GetDefaultCharacter());
+        _matchStartButton.Disable();
+
+        // TODO Is this the right way to hide the button?
+        if (!RBMatch.Instance.IsLocalUserHost())
+            _matchStartButton.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -43,6 +52,24 @@ public class RBLobbyCanvas : RBCanvas
     private void Match_OnMatchChanged()
     {
         UpdatePlayerSlots();
+        UpdateMatchStartButton();
+    }
+
+    /// <summary>
+    /// Shows or hides the match start button, depending on the ready state and
+    /// the host information.
+    /// </summary>
+    private void UpdateMatchStartButton()
+    {
+        if (RBMatch.Instance.IsLocalUserHost() && RBMatch.Instance.IsEveryoneReady())
+        {   // show the start button
+            _matchStartButton.Show();
+        }
+        else
+        {
+            // hide the start button
+            _matchStartButton.Disable();
+        }
     }
 
     /// <summary>
@@ -85,6 +112,18 @@ public class RBLobbyCanvas : RBCanvas
         base.OnFadeOutEnded(navPage);
         NetworkDiscovery.StopSendingMulticasts();
         NetworkManager.singleton.StopHost();
+    }
+
+    protected override void OnFadeOutEnded(RBCanvasNavigation navPage)
+    {
+        base.OnFadeOutEnded(navPage);
+
+
+
+
+        // TODO Show start button
+        _matchStartButton.gameObject.SetActive(true);
+        _matchStartButton.Disable();
     }
 
 

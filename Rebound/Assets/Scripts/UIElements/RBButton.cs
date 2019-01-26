@@ -9,7 +9,6 @@ public class RBButton : ARBUIElement<Button> {
     protected override void OnFadeOutEnded(RBCanvasNavigation navPage)
     {
         gameObject.GetComponent<Button>().interactable = false;
-        gameObject.GetComponent<Animator>()?.SetTrigger("Normal");
     }
 
     protected override void OnFadeInStarted(RBCanvasNavigation navPage)

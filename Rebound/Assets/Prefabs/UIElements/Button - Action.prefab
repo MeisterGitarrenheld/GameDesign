@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 95369495766053698}
   - component: {fileID: 114008075452919156}
   - component: {fileID: 114093194348274156}
-  - component: {fileID: 114222941931903612}
+  - component: {fileID: 114165799084651700}
   m_Layer: 0
   m_Name: Button - Action
   m_TagString: Untagged
@@ -111,6 +111,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &114165799084651700
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1144237075751006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a1d5ba4974449428f5d3b629a69072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIComponent: {fileID: 0}
 --- !u!114 &114192099227542412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -163,18 +175,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114222941931903612
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1144237075751006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fafc63246d3e1504393ef0021d07d0b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UIComponent: {fileID: 0}
 --- !u!114 &114332363624624588
 MonoBehaviour:
   m_ObjectHideFlags: 1

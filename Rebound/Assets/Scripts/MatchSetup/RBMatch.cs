@@ -55,6 +55,38 @@ public class RBMatch
         OnMatchChanged?.Invoke();
     }
 
+    /// <summary>
+    /// Checks, if all players are ready.
+    /// </summary>
+    /// <returns></returns>
+    public bool IsEveryoneReady()
+    {
+        foreach (var player in _players)
+            if (!player.IsReady)
+                return false;
+        return true;
+    }
+
+    /// <summary>
+    /// Searches the local user in the player list.
+    /// Returns null, if not found.
+    /// </summary>
+    /// <returns></returns>
+    public RBPlayer GetLocalUser()
+    {
+        return _players.Find(x => x.IsLocalUser);
+    }
+
+    /// <summary>
+    /// Searches the local player and checks whether he is the host or not.
+    /// </summary>
+    /// <returns></returns>
+    public bool IsLocalUserHost()
+    {
+        var localUser = GetLocalUser();
+
+        return localUser != null && localUser.IsHost;
+    }
 
     /// <summary>
     /// Removes a player from the current match.
