@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RBCharacterInfo : RBMonoBehaviourSingleton<RBCharacterInfo> {
+public class RBCharacterInfo : RBMonoBehaviourSingleton<RBCharacterInfo>
+{
 
     public RBCharacter[] CharacterPrefabs;
 
     public RBCharacter GetCharacterById(int id)
     {
-        foreach(var @char in CharacterPrefabs)
+        foreach (var @char in CharacterPrefabs)
         {
             if (@char.ID == id)
                 return @char;
@@ -21,10 +22,5 @@ public class RBCharacterInfo : RBMonoBehaviourSingleton<RBCharacterInfo> {
     public RBCharacter GetDefaultCharacter()
     {
         return CharacterPrefabs[0];
-    }
-
-    public Sprite GetCharacterSprite(int id)
-    {
-        return Resources.Load<Sprite>("Images/Character/CharacterImage_" + id);
     }
 }

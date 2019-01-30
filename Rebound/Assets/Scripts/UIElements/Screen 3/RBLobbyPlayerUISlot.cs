@@ -22,12 +22,6 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
     [SerializeField]
     private RectTransform _unreadyPanel = null;
 
-    [SerializeField]
-    private Image _characterImageReady = null;
-
-    [SerializeField]
-    private Image _characterImageUnready = null;
-
     /// <summary>
     /// True, if the local player is the host.
     /// </summary>
@@ -81,6 +75,8 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
     /// </summary>
     public RBPlayer Player { get; private set; }
 
+    public PreviewPosition PrevPosition { get; private set; } = null;
+
     /// <summary>
     /// The number of available teams that should be displayed in the slot.
     /// </summary>
@@ -106,19 +102,28 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
     {
         Debug.Log("switch team");
         Player?.SetTeam(team + 1);
+        if (Player != null)
+            SetTeamCharacter(Player);
+        LocalPlayerTeamChanged?.Invoke();
     }
+
+    public static int _localPlayerTeamId = -1;
+    public static Action LocalPlayerTeamChanged;
 
     /// <summary>
     /// Resets all properties to their default values.
     /// </summary>
     public void Reset()
     {
+        RBCharacterPreview.Instance.ClearTeamPreview(PrevPosition);
+        PrevPosition = null;
         Player = null;
         IsHost = RBNetworkManager.Instance.IsHost;
         IsReady = false;
         IsLocalPlayer = false;
         Username = string.Empty;
         _teamDropdown.value = 0;
+        _teamDropdown.gameObject.SetActive(false);
         TeamCount = RBMatch.Instance.TeamCount;
     }
 
@@ -132,27 +137,26 @@ public class RBLobbyPlayerUISlot : MonoBehaviour
         IsReady = player.IsReady;
         IsLocalPlayer = player.IsLocalUser;
         Username = player.Username;
-        //Debug.Log(string.Join(" <- ", new List<System.Diagnostics.StackFrame>(new System.Diagnostics.StackTrace().GetFrames()).Select(f => f.GetMethod().Name).Take(10)));
-        //SelectedTeam = player.Team;
+        _teamDropdown.gameObject.SetActive(true);
         _teamDropdown.value = player.Team - 1;
         TeamCount = RBMatch.Instance.TeamCount;
-        SetCharacter(player.CharacterId, true);
         Player = player;
+
+        SetTeamCharacter(player);
     }
 
     /// <summary>
-    /// Updates the images for the player slot and forwards
-    /// the update to the network player object.
+    /// Updates the character preview of team member
     /// </summary>
-    /// <param name="id"></param>
-    /// <param name="silent"></param>
-    public void SetCharacter(int id, bool silent = false)
+    /// <param name="player"></param>
+    public void SetTeamCharacter(RBPlayer player)
     {
-        var sprite = RBCharacterInfo.Instance.GetCharacterSprite(id);
-        _characterImageReady.sprite = sprite;
-        _characterImageUnready.sprite = sprite;
-
-        if (!silent)
-            Player?.SetCharacterId(id);
+        if(!player.IsLocalUser && _localPlayerTeamId == SelectedTeam)
+            PrevPosition = RBCharacterPreview.Instance.SetTeamPreview(player, PrevPosition);
+        else
+        { 
+            RBCharacterPreview.Instance.ClearTeamPreview(PrevPosition);
+            PrevPosition = null;
+        }
     }
 }

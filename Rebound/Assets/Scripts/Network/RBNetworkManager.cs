@@ -285,6 +285,7 @@ public class RBNetworkManager : NetworkManager
         _clientCount--;
         OnPlayerRemoved?.Invoke();
         RBMatch.Instance.RemovePlayerById(conn.connectionId);
+        SendLobbyMatchUpdateToClients();
     }
 
 

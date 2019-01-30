@@ -23,7 +23,7 @@ public class RBCharacterSelectionBtn : MonoBehaviour
         btn.onClick.AddListener(() => RBCharacterPreview.Instance.SetPreview(_character.ID));
 
         // Change the selected character in the local player slot on click
-        btn.onClick.AddListener(() => _lobbyCanvas.GetLocalPlayerUISlot().SetCharacter(_character.ID));
+        btn.onClick.AddListener(() => _lobbyCanvas.GetLocalPlayerUISlot().Player?.SetCharacterId(_character.ID));
 
         // Activate/deactivate the button when the player is ready or not
         foreach (var uiPlayerSlot in _lobbyCanvas.GetAllPlayerUISlots())

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -33,6 +34,9 @@ public class RBLobbyCanvas : RBCanvas
         RBNetworkManager.Instance.OnPlayerAdded += NetworkHost_OnAddPlayer;
         RBNetworkManager.Instance.OnPlayerRemoved -= NetworkHost_OnRemovePlayer;
         RBNetworkManager.Instance.OnPlayerRemoved += NetworkHost_OnRemovePlayer;
+
+        RBLobbyPlayerUISlot.LocalPlayerTeamChanged -= LocalPlayerTeamChanged;
+        RBLobbyPlayerUISlot.LocalPlayerTeamChanged += LocalPlayerTeamChanged;
 
         RBMatch.Instance.OnMatchChanged -= Match_OnMatchChanged;
         RBMatch.Instance.OnMatchChanged += Match_OnMatchChanged;
@@ -72,11 +76,18 @@ public class RBLobbyCanvas : RBCanvas
         }
     }
 
+    private void LocalPlayerTeamChanged()
+    {
+        UpdatePlayerSlots();
+    }
+
     /// <summary>
     /// Updates the player slots based on the current match data.
     /// </summary>
     private void UpdatePlayerSlots()
     {
+        RBLobbyPlayerUISlot._localPlayerTeamId = RBMatch.Instance.Players.FirstOrDefault(x => x.IsLocalUser)?.Team ?? RBLobbyPlayerUISlot._localPlayerTeamId;
+
         for (int i = 0; i < RBMatch.Instance.Players.Count; i++)
             _playerSlots[i].SetPlayer(RBMatch.Instance.Players[i]);
 
