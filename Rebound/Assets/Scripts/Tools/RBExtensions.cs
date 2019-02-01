@@ -19,7 +19,7 @@ public static class RBExtensions
             }
             t = t.parent?.transform;
         }
-        throw new Exception(gobj.GetType() + "has no parent with component " + typeof(T));
+        throw new Exception(gobj.GetType() + " has no parent with component " + typeof(T));
     }
 
     /// <summary>

@@ -20,17 +20,11 @@ public class RBAnimatedButton : RBButton
 
     public void Show()
     {
-        /*
-        gameObject.SetActive(true);
-        _animator.SetTrigger("Normal");
-        */
-        Debug.Log("ENABLE");
         UIComponent.interactable = true;
     }
 
     public void Disable()
     {
-        Debug.Log("DISABLE");
         UIComponent.interactable = false;
     }
 }

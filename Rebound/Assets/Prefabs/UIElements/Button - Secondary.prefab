@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 95880836037692834}
   - component: {fileID: 114857075312950794}
   - component: {fileID: 114899234360101602}
-  - component: {fileID: 114683234841309048}
+  - component: {fileID: 114943977640634374}
   m_Layer: 0
   m_Name: Button - Secondary
   m_TagString: Untagged
@@ -101,18 +101,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &114683234841309048
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1222516125168238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fafc63246d3e1504393ef0021d07d0b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UIComponent: {fileID: 0}
 --- !u!114 &114857075312950794
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -139,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.15263437, g: 0.69088, b: 0.9245283, a: 1}
+  m_Color: {r: 0.07450981, g: 0.5529412, b: 0.5647059, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -218,6 +206,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114943977640634374
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1222516125168238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60a1d5ba4974449428f5d3b629a69072, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIComponent: {fileID: 0}
 --- !u!222 &222397709068920782
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114980051473372108}
   - component: {fileID: 114858034752216966}
   - component: {fileID: 95691875484205656}
-  - component: {fileID: 114134775573287300}
+  - component: {fileID: 114472080388393778}
   m_Layer: 0
   m_Name: Button - Minor
   m_TagString: Untagged
@@ -99,7 +99,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
---- !u!114 &114134775573287300
+--- !u!114 &114472080388393778
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}

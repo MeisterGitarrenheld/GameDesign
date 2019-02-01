@@ -8,6 +8,7 @@ public class RBErrorMessage : RBMonoBehaviourSingleton<RBErrorMessage> {
     
     public Text Headline;
     public Text Message;
+    public RBAnimatedButton Button;
 
     private CanvasGroup _cvGroup;
 
@@ -25,6 +26,8 @@ public class RBErrorMessage : RBMonoBehaviourSingleton<RBErrorMessage> {
         _cvGroup.interactable = true;
         _cvGroup.blocksRaycasts = true;
 
+        Button.Show();
+
         switch (errType)
         {
             case ErrorType.Warning:
@@ -39,9 +42,7 @@ public class RBErrorMessage : RBMonoBehaviourSingleton<RBErrorMessage> {
     }
 
     public void CloseError()
-    { 
-        _cvGroup.alpha = 0;
-        _cvGroup.interactable = false;
-        _cvGroup.blocksRaycasts = false;
+    {
+        gameObject.GetComponent<RBCanvasNavigation>().FadeOut();
     }
 }
