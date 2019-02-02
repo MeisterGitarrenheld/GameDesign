@@ -10,11 +10,14 @@ public class RBMatchFinderCanvas : RBCanvas
     public RBNetworkDiscovery NetworkDiscovery;
     public GameObject MatchListItemPrefab;
     public GameObject MatchList;
+    public Text MatchListPlaceholder;
     public RBInputField ConcretIPAddress;
     public Button JoinButton;
 
     [SerializeField]
     private RBCanvasNavigation _lobbyPage;
+
+    private int MatchCount = 0;
 
     protected override void Awake()
     {
@@ -70,6 +73,7 @@ public class RBMatchFinderCanvas : RBCanvas
                 obj.GetComponent<Toggle>().group = MatchList.GetComponent<ToggleGroup>();
                 obj.GetComponent<Toggle>().onValueChanged.AddListener(delegate { UpdateJoinButtonState(); });
                 obj.GetComponent<RBMatchListItem>().ConnInfo = connInfo;
+                MatchCount++;
                 break;
             case RBNetworkDiscovery.ModifyState.Changed:
                 var items = MatchList.gameObject.GetComponentsInChildren<RBMatchListItem>();
@@ -86,10 +90,21 @@ public class RBMatchFinderCanvas : RBCanvas
                     if (items[i].ConnInfo.EqualsHost(connInfo))
                     {
                         Destroy(items[0].gameObject);
+                        MatchCount--;
                         break;
                     }
                 break;
         }
+
+        UpdateMatchListPlaceholder();
+    }
+
+    private void UpdateMatchListPlaceholder()
+    {
+        if (MatchCount == 0)
+            MatchListPlaceholder.gameObject.SetActive(true);
+        else
+            MatchListPlaceholder.gameObject.SetActive(false);
     }
 
     public void OnJoinButtonClick()
@@ -97,7 +112,7 @@ public class RBMatchFinderCanvas : RBCanvas
         if(ConcretIPAddress.ContainsText)
         {
             // TODO do join to explicit ip address
-            RBErrorMessage.Instance.ShowError("Join to specific IPs are not implemented yet.", RBErrorMessage.ErrorType.Error);
+            RBErrorMessage.Instance.ShowError("Join to specific IPs are not implemented yet.", RBErrorMessage.ErrorType.Error, "Not Implemented");
         }
         else
             RBMatchListItem.SelectedItem?.JoinMatch();

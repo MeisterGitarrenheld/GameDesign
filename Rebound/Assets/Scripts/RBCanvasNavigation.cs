@@ -21,7 +21,7 @@ public class RBCanvasNavigation : MonoBehaviour
     public RBCanvasNavigation Previous = null;
     private List<RBCanvasNavigation> _children = new List<RBCanvasNavigation>();
 
-    public const float FADE_DURATION = .2f;
+    public float FadeDuration = .2f;
 
     private CanvasGroup _cvGroup;
     private float _fadeInState = 0.0f;
@@ -80,7 +80,7 @@ public class RBCanvasNavigation : MonoBehaviour
     {
         if (_fadeOutState > 0.0f)
         {
-            _cvGroup.alpha -= Time.deltaTime / FADE_DURATION;
+            _cvGroup.alpha -= Time.deltaTime / FadeDuration;
             _fadeOutState -= Time.deltaTime;
 
             // show the next page, if the previous page is faded out
@@ -107,7 +107,7 @@ public class RBCanvasNavigation : MonoBehaviour
         {   // prevent spamming the buttons
             if (CurrentPage == this || _children.Contains(CurrentPage))
             {
-                _cvGroup.alpha += Time.deltaTime / FADE_DURATION;
+                _cvGroup.alpha += Time.deltaTime / FadeDuration;
                 _fadeInState -= Time.deltaTime;
 
                 if (_fadeInState <= 0.0f)
@@ -129,7 +129,7 @@ public class RBCanvasNavigation : MonoBehaviour
     /// </summary>
     public void FadeIn()
     {
-        _fadeInState = FADE_DURATION;
+        _fadeInState = FadeDuration;
         OnFadeInStarted?.Invoke(this);
     }
 
@@ -138,7 +138,7 @@ public class RBCanvasNavigation : MonoBehaviour
     /// </summary>
     public void FadeOut()
     {
-        _fadeOutState = FADE_DURATION;
+        _fadeOutState = FadeDuration;
         OnFadeOutStarted?.Invoke(this);
     }
 
