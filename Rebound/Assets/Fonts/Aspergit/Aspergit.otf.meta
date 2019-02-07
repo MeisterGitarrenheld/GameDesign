@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7189256eec2162342b6c7479f9ad6dd2
+guid: 1c22ce7c8b0673048a3b708c73ce4ffa
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,13 +8,11 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: cuyabra
+  fontName: Aspergit
   fontNames:
-  - cuyabra
+  - Aspergit
   fallbackFontReferences:
-  - {fileID: 12800000, guid: 5029a0742fdb51644b2d63cc3e429b37, type: 3}
-  - {fileID: 12800000, guid: 670610c4925d3f246b1c99e8dad537e6, type: 3}
-  - {fileID: 12800000, guid: 542b20fc232c05c4f9a343b13dd4d194, type: 3}
+  - {fileID: 12800000, guid: 0bbfeddde0749a4468d73a46a2de8dab, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
