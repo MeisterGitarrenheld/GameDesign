@@ -9,10 +9,12 @@ public class RBErrorMessage : RBMonoBehaviourSingleton<RBErrorMessage> {
     public Text Headline;
     public Text Message;
     public RBAnimatedButton Button;
+    public AudioClip OpenSound;
 
     [SerializeField]
     private Animator _animator;
 
+    private AudioSource _source { get { return GetComponent<AudioSource>(); } }
     private CanvasGroup _cvGroup;
 
     protected override void AwakeSingleton()
@@ -30,6 +32,7 @@ public class RBErrorMessage : RBMonoBehaviourSingleton<RBErrorMessage> {
         _cvGroup.blocksRaycasts = true;
 
         _animator.SetBool("open", true);
+        _source.PlayOneShot(OpenSound);
         Button.Show();
 
         switch (errType)
