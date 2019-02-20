@@ -32,6 +32,8 @@ public class RBCharacterPreview : RBMonoBehaviourSingleton<RBCharacterPreview>
     public RectTransform TeamMember2Position;
     public RectTransform TeamMember3Position;
 
+    public AudioClip SelectionSound;
+
     private GameObject _displayedCharacter;
     private List<PreviewPosition> _positions = new List<PreviewPosition>();
 
@@ -64,12 +66,24 @@ public class RBCharacterPreview : RBMonoBehaviourSingleton<RBCharacterPreview>
         if (character == null) return;
 
         Vector3 position = CharacterPosition.transform.position;
+        var pss = CharacterPosition.gameObject.GetComponentsInChildren<ParticleSystem>();
+        foreach (var ps in pss)
+        {
+            ps.Simulate(0.0f, true, true);
+            ps.Play();
+        }
+        PlaySound();
 
         var @char = Instantiate(character.gameObject, gameObject.transform);
         _displayedCharacter = @char;
         @char.transform.position = position;
         @char.transform.localScale *= 1.5f;
         @char.gameObject.SetLayerRecursively(LayerMask.NameToLayer("CharacterPreview"));
+    }
+
+    private void PlaySound()
+    {
+        gameObject.GetComponent<AudioSource>().PlayOneShot(SelectionSound);
     }
 
     /// <summary>
