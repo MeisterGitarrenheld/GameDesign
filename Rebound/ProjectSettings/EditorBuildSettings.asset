@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/IngameMovementTestScene.unity
+    guid: b57900e06e667554580bb696300d50a8
+  - enabled: 0
     path: Assets/Scenes/LoginScene.unity
     guid: 8c363fb19609eea49adf7b81dc2bfe4f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/VerticalPrototypeArena.unity
     guid: b72bf63d0e7ca3c4cb6b0c7f40fe9a0b
   - enabled: 0

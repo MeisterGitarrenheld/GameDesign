@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 1c22ce7c8b0673048a3b708c73ce4ffa
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Aspergit
+  fontNames:
+  - Aspergit
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0bbfeddde0749a4468d73a46a2de8dab, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

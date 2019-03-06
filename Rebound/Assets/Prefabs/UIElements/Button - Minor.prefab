@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114858034752216966}
   - component: {fileID: 95691875484205656}
   - component: {fileID: 114472080388393778}
+  - component: {fileID: 114320659849605698}
   m_Layer: 0
   m_Name: Button - Minor
   m_TagString: Untagged
@@ -86,7 +87,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 670610c4925d3f246b1c99e8dad537e6, type: 3}
+    m_Font: {fileID: 12800000, guid: 1c22ce7c8b0673048a3b708c73ce4ffa, type: 3}
     m_FontSize: 17
     m_FontStyle: 3
     m_BestFit: 0
@@ -99,6 +100,19 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
+--- !u!114 &114320659849605698
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1282294845234522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6e416ee59e09a54f9d0c23c2f75cdb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClickSound: {fileID: 8300000, guid: a8938d1fadac9f44c8b056631ff2ceb1, type: 3}
+  HoverSound: {fileID: 8300000, guid: ab8160681c482034e9cfddf43d4164c8, type: 3}
 --- !u!114 &114472080388393778
 MonoBehaviour:
   m_ObjectHideFlags: 1
