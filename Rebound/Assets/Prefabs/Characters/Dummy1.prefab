@@ -20,9 +20,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4565516435933886}
   - component: {fileID: 114398516274222284}
+  - component: {fileID: 114059854989813304}
+  - component: {fileID: 114955716738280642}
+  - component: {fileID: 114881630961486610}
+  - component: {fileID: 114506672040857432}
   m_Layer: 0
   m_Name: Dummy1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -221,6 +225,38 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1904376585313564}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114059854989813304
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1041470822929520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 251
+    i1: 75
+    i2: 250
+    i3: 53
+    i4: 185
+    i5: 223
+    i6: 59
+    i7: 196
+    i8: 152
+    i9: 254
+    i10: 191
+    i11: 56
+    i12: 60
+    i13: 187
+    i14: 35
+    i15: 253
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &114398516274222284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,6 +270,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   Name: MickyMouse
+--- !u!114 &114506672040857432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1041470822929520}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 758a82004b54b6a42a6e9f3bc08764fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxMoveSpeed: 10
+  RotationSpeed: 1
+  ShieldMoveSpeed: 0.1
+  RotationPivot: {x: 0, y: 1, z: 0}
+  MaxShieldHeight: 6
+  MinShieldHeight: 0
+  ShieldRotationRate: 10
+--- !u!114 &114881630961486610
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1041470822929520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d85f2b5669e76c46b6bab198edd2a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114955716738280642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1041470822929520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!135 &135350325276297664
 SphereCollider:
   m_ObjectHideFlags: 1

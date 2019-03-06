@@ -144,9 +144,12 @@ public class RBLobbyCanvas : RBCanvas
         {
             var playerPrefab = RBCharacterInfo.Instance.GetCharacterById(player.CharacterId);
             var characterObject = Instantiate(playerPrefab);
+            
             RBNetworkManager.Instance.SpawnPlayer(player, characterObject.gameObject);
         }
-        RBNetworkManager.Instance.ServerChangeScene("VerticalPrototypeArena");
+        //RBNetworkManager.Instance.ServerChangeScene("VerticalPrototypeArena");
+        //RBNetworkManager.Instance.ServerChangeScene("IngameGamePlayTestScene");
+        RBNetworkManager.Instance.ServerChangeScene("IngameScene");
     }
 
     /// <summary>
