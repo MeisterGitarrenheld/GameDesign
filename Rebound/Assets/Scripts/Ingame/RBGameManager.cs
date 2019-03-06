@@ -7,9 +7,7 @@ public class RBGameManager : MonoBehaviour {
 
     public static RBGameManager Instance { get; private set; }
     public Dictionary<string, GameObject> ConnectedPlayers { get; set; }
-
     public int NumberConnectedPlayers { get; private set; }
-
     public string PlayerID { get; private set; }
 
     private void Start()
@@ -63,4 +61,7 @@ public class RBGameManager : MonoBehaviour {
 
         return null;
     }
+
+
+
 }

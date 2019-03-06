@@ -11,4 +11,5 @@ public class RBPlayerPhysicsMessage : MessageBase
     /// Not normalized, Velocity is length of vector.
     /// </summary>
     public Vector3 objectHitDirection;
+    public string PlayerHitName;
 }

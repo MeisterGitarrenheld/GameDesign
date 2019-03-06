@@ -14,14 +14,6 @@ public class RBNetworkMovementSync : NetworkBehaviour {
     public float timeBetweenMovementStart;
     public float timeBetweenMovementEnd;
 
-    private Rigidbody _rb;
-    private Vector3 _movementVector;
-
-    //Shield Variables
-    private Transform _shieldTransform;
-    private Vector3 _shieldOffset;
-    private float _initYOffset;
-
     public bool isLerpingPosition;
     public bool isLerpingRotation;
     public Vector3 realPosition;
@@ -40,11 +32,6 @@ public class RBNetworkMovementSync : NetworkBehaviour {
         if (isLocalPlayer)
         {
             RBGameManager.Instance.SetLocalPlayerID(playerID);
-
-            _rb = GetComponent<Rigidbody>();
-            _shieldTransform = transform.Find("Shield");
-            _shieldOffset = _shieldTransform.localPosition;
-            _initYOffset = _shieldOffset.y;
 
             canSendNetworkMovement = false;
             RegisterNetworkMessages();

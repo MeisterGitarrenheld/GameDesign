@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114736278972461372}
   m_Layer: 0
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: Shield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,6 +278,9 @@ MonoBehaviour:
   MaxShieldHeight: 6
   MinShieldHeight: 0
   ShieldRotationRate: 10
+  Offline: 0
+  PlayerStartPos: {fileID: 0}
+  MaxGoalDistance: 50
 --- !u!114 &114541871186349204
 MonoBehaviour:
   m_ObjectHideFlags: 1

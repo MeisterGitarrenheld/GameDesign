@@ -22,7 +22,6 @@ public class RBPhysicsSync : NetworkBehaviour {
     private void OnReceivePhysicsMessage(NetworkMessage _message)
     {
         RBPlayerPhysicsMessage _msg = _message.ReadMessage<RBPlayerPhysicsMessage>();
-        print("Hello!!");
         if (rb.velocity.magnitude < 0.1f)
             rb.velocity = _msg.objectHitDirection.normalized * 10;
         else
@@ -38,7 +37,6 @@ public class RBPhysicsSync : NetworkBehaviour {
                 rb.velocity = Vector3.Reflect(rb.velocity, -_msg.objectHitDirection);
             }
         }
-        print(rb.velocity);
     }
 
 }

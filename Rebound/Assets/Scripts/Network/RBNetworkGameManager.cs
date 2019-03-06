@@ -10,8 +10,10 @@ public class RBNetworkGameManager : NetworkBehaviour {
 
     public GameObject Ball;
     public Transform BallSpawnPosition;
+    public Transform[] PlayerSpawnPositions;
     
     private GameObject spawnedBall;
+    
 
     private void Start()
     {
@@ -49,7 +51,6 @@ public class RBNetworkGameManager : NetworkBehaviour {
 
     private void OnRecievePlayerPhysicsMessage(NetworkMessage _message)
     {
-        print("Server Recieve");
         RBPlayerPhysicsMessage _msg = _message.ReadMessage<RBPlayerPhysicsMessage>();
         NetworkServer.SendToAll((short)RBCustomMsgTypes.RBPlayerPhysicsMessage, _msg);
     }
