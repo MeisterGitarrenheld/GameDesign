@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public enum RBCustomMsgTypes { RBInitPlayerMessage = 1000, RBLobbyMatchUpdateMessage }
+public enum RBCustomMsgTypes { RBInitPlayerMessage = 1000, RBLobbyMatchUpdateMessage, RBPlayerMovementMessage, RBPlayerPhysicsMessage }
 
 public class RBNetworkManager : NetworkManager
 {
@@ -16,6 +16,8 @@ public class RBNetworkManager : NetworkManager
     public event Action OnClientStarted;
     public event Action OnPlayerAdded;
     public event Action OnPlayerRemoved;
+
+    private Dictionary<string, NetworkConnection> _connMapping = new Dictionary<string, NetworkConnection>(); // <username, connection>
 
     /// <summary>
     /// True, if the local player is the host.
@@ -224,6 +226,8 @@ public class RBNetworkManager : NetworkManager
 
         var isNewPlayerHost = RBLocalUser.Instance.Username == initMsg.Username;
 
+        _connMapping[initMsg.Username] = netMsg.conn;
+
         if (!isNewPlayerHost)
         {
             var player = new RBPlayer
@@ -251,14 +255,16 @@ public class RBNetworkManager : NetworkManager
     /// <param name="playerControllerId"></param>
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId)
     {
-        base.OnServerAddPlayer(conn, playerControllerId);
+        //base.OnServerAddPlayer(conn, playerControllerId);
         _clientCount++;
         OnPlayerAdded?.Invoke();
 
+        /*
         if (_clientCount == RBMatch.Instance.MaxPlayerCount)
         {
             ServerChangeScene("VerticalPrototypeArena");
         }
+        */
     }
 
 
@@ -279,13 +285,34 @@ public class RBNetworkManager : NetworkManager
         Debug.Log("New client connected: " + conn.address + " " + conn.connectionId);
     }
 
+    /// <summary>
+    /// Called on the server when a client disconnects.
+    /// </summary>
+    /// <param name="conn"></param>
     public override void OnServerDisconnect(NetworkConnection conn)
     {
         Debug.Log("Client disconnected: " + conn.address + " " + conn.connectionId);
         _clientCount--;
         OnPlayerRemoved?.Invoke();
-        RBMatch.Instance.RemovePlayerById(conn.connectionId);
+
+        var playerToRemove = RBMatch.Instance.FindPlayerById(conn.connectionId);
+
+        RBMatch.Instance.RemovePlayer(playerToRemove);
         SendLobbyMatchUpdateToClients();
+
+        _connMapping.Remove(playerToRemove.Username);
+    }
+
+    /// <summary>
+    /// Should be called on the host to send the character creation to the clients.
+    /// </summary>
+    /// <param name="player"></param>
+    /// <param name="playerObject"></param>
+    /// <returns></returns>
+    public bool SpawnPlayer(RBPlayer player, GameObject playerObject)
+    {
+        var playerConn = _connMapping[player.Username];
+        return NetworkServer.AddPlayerForConnection(playerConn, playerObject, playerConn.GetPlayerId());
     }
 
 

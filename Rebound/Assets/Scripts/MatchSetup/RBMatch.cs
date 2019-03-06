@@ -117,8 +117,18 @@ public class RBMatch
     /// <returns></returns>
     public bool RemovePlayerById(int connId)
     {
-        var player = _players.Find(p => p.ConnectionId == connId);
+        var player = FindPlayerById(connId);
         return RemovePlayer(player);
+    }
+
+    /// <summary>
+    /// Searches a player based on the given connection id.
+    /// </summary>
+    /// <param name="connId"></param>
+    /// <returns></returns>
+    public RBPlayer FindPlayerById(int connId)
+    {
+        return _players.Find(p => p.ConnectionId == connId);
     }
 
 

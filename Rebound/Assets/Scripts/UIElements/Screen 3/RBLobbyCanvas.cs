@@ -138,6 +138,17 @@ public class RBLobbyCanvas : RBCanvas
     }
 
 
+    public void MatchStartBtnClicked()
+    {
+        foreach(var player in RBMatch.Instance.Players)
+        {
+            var playerPrefab = RBCharacterInfo.Instance.GetCharacterById(player.CharacterId);
+            var characterObject = Instantiate(playerPrefab);
+            RBNetworkManager.Instance.SpawnPlayer(player, characterObject.gameObject);
+        }
+        RBNetworkManager.Instance.ServerChangeScene("VerticalPrototypeArena");
+    }
+
     /// <summary>
     /// Decreases the current player count for the match and updates the
     /// current match info.
