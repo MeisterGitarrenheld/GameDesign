@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 114541871186349204}
   - component: {fileID: 114619984800251312}
   - component: {fileID: 114089571152915398}
+  - component: {fileID: 114462356460615642}
   m_Layer: 0
   m_Name: Robot4
   m_TagString: Player
@@ -281,6 +282,20 @@ MonoBehaviour:
   Offline: 0
   PlayerStartPos: {fileID: 0}
   MaxGoalDistance: 50
+  ID: 0
+--- !u!114 &114462356460615642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1730414501727662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f73cfc0bf5c0fd444bd8d4d0c85a5747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Plasma: {fileID: 1616512324572072, guid: 1e1e7debdc6a18348be5c43cd63fdf1b, type: 2}
+  PlasmaSpeed: 100
 --- !u!114 &114541871186349204
 MonoBehaviour:
   m_ObjectHideFlags: 1
