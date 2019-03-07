@@ -22,8 +22,8 @@ public class RBPowerupSpeedupHandler : ARBPowerupActionHandler
 
             if (rbPlayer.Username == playerName)
             {
-                var movementScript = player.GetComponent<RBPlayerMovement>();
-                movementScript.MaxMoveSpeed = 100;
+                var playerController = player.GetComponent<RBPlayerController>();
+                playerController.SpeedBoost(3.0f);
                 break;
             }
         }

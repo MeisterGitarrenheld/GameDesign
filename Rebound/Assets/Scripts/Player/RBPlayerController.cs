@@ -83,4 +83,9 @@ public class RBPlayerController : MonoBehaviour
     {
         RBPlayerMovement.Instance.Jump();
     }
+
+    public void SpeedBoost(float multiplier)
+    {
+        RBPlayerMovement.Instance.SpeedMultiplier = multiplier;   
+    }
 }

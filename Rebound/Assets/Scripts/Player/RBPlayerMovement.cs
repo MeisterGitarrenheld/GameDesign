@@ -19,6 +19,8 @@ public class RBPlayerMovement : MonoBehaviour
     public float Gravity = 35.0f;
     public float TerminalVelocity = 35.0f;
 
+    public float SpeedMultiplier = 1.0f;
+
     /// <summary>
     /// Vector for the durection of the movement
     /// </summary>
@@ -133,6 +135,6 @@ public class RBPlayerMovement : MonoBehaviour
                 break;
         }
 
-        return moveSpeed;
+        return moveSpeed * SpeedMultiplier;
     }
 }
