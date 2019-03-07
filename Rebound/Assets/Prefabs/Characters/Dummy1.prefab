@@ -23,10 +23,8 @@ GameObject:
   - component: {fileID: 114059854989813304}
   - component: {fileID: 114955716738280642}
   - component: {fileID: 114881630961486610}
-  - component: {fileID: 143614895615308042}
-  - component: {fileID: 114351643873245518}
-  - component: {fileID: 114435327525218538}
-  - component: {fileID: 114441080456762598}
+  - component: {fileID: 114506672040857432}
+  - component: {fileID: 114953742935971660}
   m_Layer: 0
   m_Name: Dummy1
   m_TagString: Player
@@ -295,23 +293,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad03579af8f10784db7eba4c3fe06435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114441080456762598
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1041470822929520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77a61b17c5d16c140a9b6b459683b3dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ForwardSpeed: 20
-  BackwardSpeed: 15
-  StrafingSpeed: 20
-  JumpSpeed: 20
-  Gravity: 35
-  TerminalVelocity: 35
+  MaxMoveSpeed: 25
+  RotationSpeed: 1
+  ShieldMoveSpeed: 0.1
+  RotationPivot: {x: 0, y: 1, z: 0}
+  MaxShieldHeight: 6
+  MinShieldHeight: 0
+  ShieldRotationRate: 10
 --- !u!114 &114881630961486610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -323,6 +311,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d85f2b5669e76c46b6bab198edd2a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114953742935971660
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1041470822929520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e79d175d8ec7634881ff0e7d39732c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PowerupPrefabs:
+  - {fileID: 114814888089546100, guid: e7fd72648ce5ad84bb7eb230d96ce4c1, type: 2}
+  - {fileID: 114178839486569196, guid: e29675c405e3dcf4b9fb6a362e742727, type: 2}
+  - {fileID: 114705617947874346, guid: a432b6dd0227dcb48ab366c44d80cbbd, type: 2}
+  _powerupKeyBindings:
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 3201000071000000
+    _keys: 3201000071000000
+    _values:
+    - PowerupId: 0
+      Rarity: 0
+      HandlerPrefab: {fileID: 0}
+    - PowerupId: 0
+      Rarity: 0
+      HandlerPrefab: {fileID: 0}
 --- !u!114 &114955716738280642
 MonoBehaviour:
   m_ObjectHideFlags: 1
