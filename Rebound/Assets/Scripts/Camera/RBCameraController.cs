@@ -69,12 +69,12 @@ public class RBCameraController : MonoBehaviour
         HandlePlayerInput();
 
         int count = 0;
+        
         do
         {
             CalculateDesiredPosition();
             count++;
         } while (CheckIfOccluded(count));
-
 
         UpdatePosition();
     }
@@ -154,7 +154,7 @@ public class RBCameraController : MonoBehaviour
             }
             else
             {
-                //Distance = nearestDistance - Camera.main.nearClipPlane;
+                Distance = nearestDistance - Camera.main.nearClipPlane;
             }
 
             desiredDistance = Distance;
@@ -211,6 +211,11 @@ public class RBCameraController : MonoBehaviour
         {
             Vector3 pos = CalculatePosition(mouseY, mouseX, preOccludedDistance);
             float nearestDistance = CheckCameraPoints(TargetLookAt.position, pos);
+
+            if(nearestDistance < preOccludedDistance)
+            {
+                desiredDistance = nearestDistance - OcclusionDistanceStep;
+            }
             if (nearestDistance == -1 || nearestDistance > preOccludedDistance)
             {
                 desiredDistance = preOccludedDistance;
