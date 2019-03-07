@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class RBPlayerMovement : NetworkBehaviour
+public class RBPlayerMovement_old : NetworkBehaviour
 {
     public float MaxMoveSpeed;
     public float RotationSpeed;

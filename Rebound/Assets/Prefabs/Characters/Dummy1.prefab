@@ -23,7 +23,10 @@ GameObject:
   - component: {fileID: 114059854989813304}
   - component: {fileID: 114955716738280642}
   - component: {fileID: 114881630961486610}
-  - component: {fileID: 114506672040857432}
+  - component: {fileID: 143614895615308042}
+  - component: {fileID: 114351643873245518}
+  - component: {fileID: 114435327525218538}
+  - component: {fileID: 114441080456762598}
   m_Layer: 0
   m_Name: Dummy1
   m_TagString: Player
@@ -257,6 +260,17 @@ MonoBehaviour:
     i15: 253
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114351643873245518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1041470822929520}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 048af11d9c8eb394fb7f69b9a648e664, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114398516274222284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,7 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   Name: MickyMouse
---- !u!114 &114506672040857432
+--- !u!114 &114435327525218538
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,16 +292,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1041470822929520}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 758a82004b54b6a42a6e9f3bc08764fd, type: 3}
+  m_Script: {fileID: 11500000, guid: ad03579af8f10784db7eba4c3fe06435, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxMoveSpeed: 10
-  RotationSpeed: 1
-  ShieldMoveSpeed: 0.1
-  RotationPivot: {x: 0, y: 1, z: 0}
-  MaxShieldHeight: 6
-  MinShieldHeight: 0
-  ShieldRotationRate: 10
+--- !u!114 &114441080456762598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1041470822929520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77a61b17c5d16c140a9b6b459683b3dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ForwardSpeed: 20
+  BackwardSpeed: 15
+  StrafingSpeed: 20
+  JumpSpeed: 20
+  Gravity: 35
+  TerminalVelocity: 35
 --- !u!114 &114881630961486610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -356,6 +380,23 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!143 &143614895615308042
+CharacterController:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1041470822929520}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!224 &224129098346495808
 RectTransform:

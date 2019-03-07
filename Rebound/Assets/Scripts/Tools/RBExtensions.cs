@@ -44,4 +44,16 @@ public static class RBExtensions
             child.gameObject.SetLayerRecursively(layer);
         }
     }
+
+    public static void SetTagRecursively(this GameObject obj, string tag)
+    {
+        if (obj == null) return;
+        obj.tag = tag;
+
+        foreach(Transform child in obj.transform)
+        {
+            if (child == null) continue;
+            child.gameObject.SetTagRecursively(tag);
+        }
+    }
 }
