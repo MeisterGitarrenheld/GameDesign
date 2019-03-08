@@ -9,7 +9,7 @@ public class RBPowerupObject : NetworkBehaviour
     /// Detects when something hits the powerup.
     /// </summary>
     /// <param name="collision"></param>
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
         var hitTag = collision.gameObject.tag;
 

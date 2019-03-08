@@ -178,6 +178,7 @@ MonoBehaviour:
   JumpSpeed: 25
   Gravity: 35
   TerminalVelocity: 35
+  SpeedMultiplier: 1
 --- !u!114 &114524295761609958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -319,10 +320,10 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 6.5
+  m_Radius: 2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 2.3, z: 0}

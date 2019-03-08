@@ -64,7 +64,6 @@ GameObject:
   - component: {fileID: 224391829686625484}
   - component: {fileID: 33461745835066126}
   - component: {fileID: 23866089314253442}
-  - component: {fileID: 136923365525949440}
   m_Layer: 5
   m_Name: Dummy1
   m_TagString: Untagged
@@ -305,6 +304,7 @@ MonoBehaviour:
   JumpSpeed: 25
   Gravity: 35
   TerminalVelocity: 35
+  SpeedMultiplier: 1
 --- !u!114 &114398516274222284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -428,19 +428,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &136923365525949440
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1417680965025142}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &143165310025992168
 CharacterController:
   m_ObjectHideFlags: 1
@@ -451,13 +438,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 8.2
+  m_Radius: 2.6
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!224 &224129098346495808
 RectTransform:
   m_ObjectHideFlags: 1
