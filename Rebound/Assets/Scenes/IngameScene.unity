@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -837,7 +837,7 @@ MonoBehaviour:
   PowerupPrefabs:
   - {fileID: 114814888089546100, guid: e7fd72648ce5ad84bb7eb230d96ce4c1, type: 2}
   - {fileID: 114178839486569196, guid: e29675c405e3dcf4b9fb6a362e742727, type: 2}
-  - {fileID: 114705617947874346, guid: a432b6dd0227dcb48ab366c44d80cbbd, type: 2}
+  - {fileID: 114902170397634248, guid: a432b6dd0227dcb48ab366c44d80cbbd, type: 2}
 --- !u!4 &782141112
 Transform:
   m_ObjectHideFlags: 0
