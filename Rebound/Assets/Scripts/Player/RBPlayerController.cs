@@ -11,7 +11,7 @@ public class RBPlayerController : MonoBehaviour
 
     public enum CharacterState
     {
-        None, Idle, Running, WalingBackwards, Jumping, Falling, ActionLocked
+        None, Idle, Running, WalkingBackwards, Jumping, Falling, ActionLocked
     }
 
     /// <summary>
@@ -24,9 +24,7 @@ public class RBPlayerController : MonoBehaviour
     public Direction MoveDirection { get; set; }
     public CharacterState State { get; set; }
 
-    public 
-
-    void Awake()
+    public void Awake()
     {
         CharController = GetComponent<CharacterController>();
         Instance = this;

@@ -95,7 +95,7 @@ public class RBPlayerAnimator : MonoBehaviour {
                 case RBPlayerController.Direction.Backward:
                 case RBPlayerController.Direction.LeftBackward:
                 case RBPlayerController.Direction.RightBackward:
-                    RBPlayerController.Instance.State = RBPlayerController.CharacterState.WalingBackwards;
+                    RBPlayerController.Instance.State = RBPlayerController.CharacterState.WalkingBackwards;
                     break;
             }
         }

@@ -15,7 +15,7 @@ public class RBPowerupObject : NetworkBehaviour
 
         if (hitTag == "Player")
         { // The player walked through the powerup.
-            var playerInfo = collision.gameObject.GetComponent<RBCharacter>().PlayerInfo;
+            var playerInfo = collision.gameObject.GetComponentInParent<RBCharacter>().PlayerInfo;
 
             if (playerInfo.IsLocalUser)
             {

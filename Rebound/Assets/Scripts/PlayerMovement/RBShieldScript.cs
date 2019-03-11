@@ -13,7 +13,7 @@ public class RBShieldScript : MonoBehaviour {
         print("Hit!");
         RBPlayerPhysicsMessage msg = new RBPlayerPhysicsMessage()
         {
-            objectHitDirection = transform.forward * GetComponentInParent<Rigidbody>().velocity.magnitude
+            objectHitDirection = transform.forward * RBPlayerController.CharController.velocity.magnitude
         };
         NetworkManager.singleton.client.Send((short)RBCustomMsgTypes.RBPlayerPhysicsMessage, msg);
     }
