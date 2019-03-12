@@ -11,6 +11,7 @@ public class ARBArenaSetup : NetworkBehaviour
 
     public Transform BallStartPosition;
     public Transform[] PlayerStartPositions;
+    public RBGoal[] Goals;
 
     public GameObject BallPrefab;
 
@@ -79,6 +80,7 @@ public class ARBArenaSetup : NetworkBehaviour
             }
 
             // place the character at the correct spawn position
+            Goals[spawnIndex].OwningTeamID = player.GetComponent<RBCharacter>().PlayerInfo.Team;
             var targetPosition = PlayerStartPositions[spawnIndex++];
             player.transform.position = targetPosition.position;
         }
