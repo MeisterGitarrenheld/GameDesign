@@ -21,14 +21,11 @@ GameObject:
   - component: {fileID: 4565516435933886}
   - component: {fileID: 114398516274222284}
   - component: {fileID: 114059854989813304}
-  - component: {fileID: 114955716738280642}
   - component: {fileID: 114881630961486610}
   - component: {fileID: 114953742935971660}
-  - component: {fileID: 114525164425913166}
-  - component: {fileID: 114011816620845120}
-  - component: {fileID: 114192427805328840}
   - component: {fileID: 143165310025992168}
   - component: {fileID: 54146007376908508}
+  - component: {fileID: 114141146690095084}
   m_Layer: 0
   m_Name: Dummy1
   m_TagString: Player
@@ -331,17 +328,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114011816620845120
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1041470822929520}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 048af11d9c8eb394fb7f69b9a648e664, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114059854989813304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -374,24 +360,32 @@ MonoBehaviour:
     i15: 253
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
---- !u!114 &114192427805328840
+--- !u!114 &114141146690095084
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1041470822929520}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77a61b17c5d16c140a9b6b459683b3dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 199356c7d3205c842a3d5c95c50ec427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForwardSpeed: 20
-  BackwardSpeed: 15
-  StrafingSpeed: 20
-  JumpSpeed: 25
-  Gravity: 35
-  TerminalVelocity: 35
-  SpeedMultiplier: 1
+  objectName: 
+  playerID: 
+  canSendNetworkMovement: 0
+  speed: 0
+  networkSendRate: 5
+  timeBetweenMovementStart: 0
+  timeBetweenMovementEnd: 0
+  isLerpingPosition: 0
+  isLerpingRotation: 0
+  realPosition: {x: 0, y: 0, z: 0}
+  realRotation: {x: 0, y: 0, z: 0, w: 0}
+  lastRealPosition: {x: 0, y: 0, z: 0}
+  lastRealRotation: {x: 0, y: 0, z: 0, w: 0}
+  timeStartedLerping: 0
+  timeToLerp: 0
 --- !u!114 &114398516274222284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -405,17 +399,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   Name: MickyMouse
---- !u!114 &114525164425913166
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1041470822929520}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad03579af8f10784db7eba4c3fe06435, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114881630961486610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -481,27 +464,6 @@ MonoBehaviour:
     - PowerupId: 0
       Rarity: 0
       HandlerPrefab: {fileID: 0}
---- !u!114 &114955716738280642
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1041470822929520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 1
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!135 &135350325276297664
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class RBGameManager : MonoBehaviour {
     public int NumberConnectedPlayers { get; private set; }
     public string PlayerID { get; private set; }
 
-    private void Start()
+    private void Awake()
     {
         if (Instance != null)
         {
@@ -21,8 +22,19 @@ public class RBGameManager : MonoBehaviour {
         NumberConnectedPlayers = 0;
 
         Instance = this;
+
     }
 
+    private void Start()
+    {
+        Array.ForEach(GameObject.FindGameObjectsWithTag("Player"),
+            obj =>
+            {
+                var objMovement = obj.GetComponent<RBNetworkMovementSync>();
+                if (objMovement != null)
+                    objMovement.enabled = true;
+            });
+    }
 
     public void AddPlayerToConnectedPlayers(string _playerID, GameObject _playerObject)
     {

@@ -72,9 +72,9 @@ public class ARBArenaSetup : NetworkBehaviour
                 LocalPlayer = player;
                 //rigidBody.useGravity = false;
                 
-                LocalPlayer.GetComponent<RBPlayerController>().enabled = true;
-                LocalPlayer.GetComponent<RBPlayerAnimator>().enabled = true;
-                LocalPlayer.GetComponent<RBPlayerMovement>().enabled = true;
+                LocalPlayer.AddComponent<RBPlayerController>();
+                LocalPlayer.AddComponent<RBPlayerAnimator>();
+                LocalPlayer.AddComponent<RBPlayerMovement>();
                 LocalPlayer.SetTagRecursively("Player");
             }
 

@@ -29,5 +29,10 @@ public class RBIGOfflineBall : MonoBehaviour {
                     (rb.velocity.magnitude + other.GetComponentInParent<Rigidbody>().velocity.magnitude);
             }
         }
+        else if(other.tag == "PlasmaShot")
+        {
+            rb.AddForce(other.GetComponent<Rigidbody>().velocity * 1500 * Time.deltaTime);
+            Destroy(other.gameObject);
+        }
     }
 }

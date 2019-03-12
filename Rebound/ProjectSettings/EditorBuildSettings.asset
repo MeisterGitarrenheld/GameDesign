@@ -11,13 +11,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/VerticalPrototypeArena.unity
     guid: b72bf63d0e7ca3c4cb6b0c7f40fe9a0b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/IngameMovementTestScene.unity
     guid: b57900e06e667554580bb696300d50a8
   - enabled: 0
     path: Assets/Scenes/TenPagerScreenshotScene.unity
     guid: 076fe20eebdcc214bb786c228db1125f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/IngameGamePlayTestScene.unity
     guid: 44b96932c52451248bb407d1196a73fd
   - enabled: 1
