@@ -179,22 +179,22 @@ public class RBCameraController : MonoBehaviour
 
         RBCameraHelper.ClipPlanePoints clipPlanePoints = RBCameraHelper.ClipPlaneAtNear(to);
 
-        if (Physics.Linecast(from, clipPlanePoints.UpperLeft, out hitInfo) && hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(from, clipPlanePoints.UpperLeft, out hitInfo) && hitInfo.collider.tag != "Player" && hitInfo.collider.tag != "IgnoredByCamera")
             nearestDistance = hitInfo.distance;
 
-        if (Physics.Linecast(from, clipPlanePoints.LowerLeft, out hitInfo) && hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(from, clipPlanePoints.LowerLeft, out hitInfo) && hitInfo.collider.tag != "Player" && hitInfo.collider.tag != "IgnoredByCamera")
             if (hitInfo.distance < nearestDistance || nearestDistance == -1)
                 nearestDistance = hitInfo.distance;
 
-        if (Physics.Linecast(from, clipPlanePoints.UpperRight, out hitInfo) && hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(from, clipPlanePoints.UpperRight, out hitInfo) && hitInfo.collider.tag != "Player" && hitInfo.collider.tag != "IgnoredByCamera")
             if (hitInfo.distance < nearestDistance || nearestDistance == -1)
                 nearestDistance = hitInfo.distance;
 
-        if (Physics.Linecast(from, clipPlanePoints.LowerRight, out hitInfo) && hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(from, clipPlanePoints.LowerRight, out hitInfo) && hitInfo.collider.tag != "Player" && hitInfo.collider.tag != "IgnoredByCamera")
             if (hitInfo.distance < nearestDistance || nearestDistance == -1)
                 nearestDistance = hitInfo.distance;
 
-        if (Physics.Linecast(from, to + transform.forward * -(GetComponent<Camera>()).nearClipPlane, out hitInfo) && hitInfo.collider.tag != "Player")
+        if (Physics.Linecast(from, to + transform.forward * -(GetComponent<Camera>()).nearClipPlane, out hitInfo) && hitInfo.collider.tag != "Player" && hitInfo.collider.tag != "IgnoredByCamera")
             if (hitInfo.distance < nearestDistance || nearestDistance == -1)
                 nearestDistance = hitInfo.distance;
 
