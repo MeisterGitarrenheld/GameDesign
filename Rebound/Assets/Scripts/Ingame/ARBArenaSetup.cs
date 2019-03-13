@@ -14,11 +14,12 @@ public class ARBArenaSetup : NetworkBehaviour
     public RBGoal[] Goals;
 
     public GameObject BallPrefab;
+    public GameObject ShieldPrefab;
 
     protected virtual void Awake()
     {
         SetupPlayers();
-        SetupCamera();
+        //SetupCamera();
     }
 
     protected virtual void Start()
@@ -65,18 +66,19 @@ public class ARBArenaSetup : NetworkBehaviour
         var spawnIndex = 0;
         foreach (var player in players)
         {
-            // add or enable components
-            //var rigidBody = player.AddComponent<Rigidbody>();
-
             if (player.GetComponent<NetworkBehaviour>().isLocalPlayer)
             {
                 LocalPlayer = player;
-                //rigidBody.useGravity = false;
+
+                SetupCamera();
                 
                 LocalPlayer.AddComponent<RBPlayerController>();
                 LocalPlayer.AddComponent<RBPlayerAnimator>();
                 LocalPlayer.AddComponent<RBPlayerMovement>();
                 LocalPlayer.SetTagRecursively("Player");
+
+                var shield = Instantiate(ShieldPrefab, LocalPlayer.transform);
+                shield.transform.localPosition = GameObject.Find("Camera Focus").transform.position + new Vector3(0,0,5);
             }
 
             // place the character at the correct spawn position
@@ -94,14 +96,5 @@ public class ARBArenaSetup : NetworkBehaviour
         targetLookAt.transform.localPosition = new Vector3(0, 5, 0);
 
         RBCameraController.SetupCamera(targetLookAt);
-        
-        /*
-        var cam = Camera.main;
-
-        cam.transform.parent = LocalPlayer.transform;
-        cam.transform.localPosition = new Vector3(0, 5, -10);
-        cam.transform.LookAt(LocalPlayer.transform);
-        cam.transform.localPosition = new Vector3(0, 9, -10);
-        */
     }
 }

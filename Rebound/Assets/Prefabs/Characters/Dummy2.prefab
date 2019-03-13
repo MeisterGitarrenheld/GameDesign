@@ -42,11 +42,9 @@ GameObject:
   - component: {fileID: 114065756794708558}
   - component: {fileID: 65173405592336550}
   - component: {fileID: 114949130961280012}
-  - component: {fileID: 114963926991174384}
-  - component: {fileID: 114524295761609958}
-  - component: {fileID: 114523778857524846}
   - component: {fileID: 143277627644702498}
   - component: {fileID: 54842480872000552}
+  - component: {fileID: 114607737534684214}
   m_Layer: 0
   m_Name: Dummy2
   m_TagString: Player
@@ -161,25 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d85f2b5669e76c46b6bab198edd2a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114523778857524846
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1077263026462484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77a61b17c5d16c140a9b6b459683b3dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ForwardSpeed: 20
-  BackwardSpeed: 15
-  StrafingSpeed: 20
-  JumpSpeed: 25
-  Gravity: 35
-  TerminalVelocity: 35
-  SpeedMultiplier: 1
---- !u!114 &114524295761609958
+--- !u!114 &114607737534684214
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,9 +167,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1077263026462484}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 048af11d9c8eb394fb7f69b9a648e664, type: 3}
+  m_Script: {fileID: 11500000, guid: 199356c7d3205c842a3d5c95c50ec427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectName: 
+  playerID: 
+  canSendNetworkMovement: 0
+  speed: 0
+  networkSendRate: 5
+  timeBetweenMovementStart: 0
+  timeBetweenMovementEnd: 0
+  isLerpingPosition: 0
+  isLerpingRotation: 0
+  realPosition: {x: 0, y: 0, z: 0}
+  realRotation: {x: 0, y: 0, z: 0, w: 0}
+  lastRealPosition: {x: 0, y: 0, z: 0}
+  lastRealRotation: {x: 0, y: 0, z: 0, w: 0}
+  timeStartedLerping: 0
+  timeToLerp: 0
 --- !u!114 &114913940901308618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -286,17 +281,6 @@ MonoBehaviour:
     - PowerupId: 0
       Rarity: 0
       HandlerPrefab: {fileID: 0}
---- !u!114 &114963926991174384
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1077263026462484}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad03579af8f10784db7eba4c3fe06435, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114969291077364122
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -2595,6 +2595,8 @@ MonoBehaviour:
   - {fileID: 1528452590}
   - {fileID: 851121730}
   BallPrefab: {fileID: 1808554212533340, guid: 03ca90fa6d2d89a4baa3702c078f5bcd, type: 2}
+  ShieldPrefab: {fileID: 1654897210472152, guid: 9b80734c9a7081540b764c95c12c6ce0,
+    type: 2}
 --- !u!114 &1651196877
 MonoBehaviour:
   m_ObjectHideFlags: 0

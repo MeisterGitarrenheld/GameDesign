@@ -8,8 +8,6 @@ public class RBPowerupSpeedupHandler : ARBPowerupActionHandler
     public ParticleSystem SpeedEffect;
     public float SpeedDuration;
 
-    private Coroutine _coroutine;
-
     /// <summary>
     /// Increases the player speed for the player that triggered the powerup.
     /// </summary>
@@ -25,7 +23,7 @@ public class RBPowerupSpeedupHandler : ARBPowerupActionHandler
             var character = player.GetComponent<RBCharacter>();
             var rbPlayer = character.PlayerInfo;
 
-            if (rbPlayer.Username == playerName && _coroutine == null)
+            if (rbPlayer.Username == playerName)
             {
                 // Instantiate the Speed effect
                 var psEffect = Instantiate(SpeedEffect, player.gameObject.transform);
