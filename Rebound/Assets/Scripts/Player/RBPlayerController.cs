@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -82,8 +82,27 @@ public class RBPlayerController : MonoBehaviour
         RBPlayerMovement.Instance.Jump();
     }
 
-    public void SpeedBoost(float multiplier)
+    private Coroutine _speedBoost;
+    public void SpeedBoost(float multiplier, float duration)
     {
-        RBPlayerMovement.Instance.SpeedMultiplier = multiplier;   
+        if (RBPlayerMovement.Instance.SpeedMultiplier > multiplier) return;
+
+        RBPlayerMovement.Instance.SpeedMultiplier = multiplier;
+
+        if (_speedBoost != null)
+        {
+            StopCoroutine(_speedBoost);
+        }
+        _speedBoost = StartCoroutine(SpeedBoostWaitForEnd(duration));
+    }
+
+    private IEnumerator SpeedBoostWaitForEnd(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        foreach(var ps in gameObject.GetComponentsInChildren<ParticleSystem>())
+            Destroy(ps);
+
+        RBPlayerMovement.Instance.SpeedMultiplier = 1;
     }
 }

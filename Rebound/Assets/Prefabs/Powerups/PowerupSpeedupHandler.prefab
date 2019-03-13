@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd24133940c66a949b99f344111e6ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpeedEffect: {fileID: 198664411231989518, guid: eeeaeced4a26e5041beb85287bcd45af,
+    type: 2}
+  SpeedDuration: 3
 --- !u!114 &114749321010156128
 MonoBehaviour:
   m_ObjectHideFlags: 1
