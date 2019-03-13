@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class RBNetworkGameManager : NetworkBehaviour {
@@ -13,6 +14,12 @@ public class RBNetworkGameManager : NetworkBehaviour {
     private ARBArenaSetup ArenaSetup;
     private Coroutine coroutine;
 
+    public GameObject IngameUI;
+
+    private Text TimeUI;
+
+    private float timer;
+
     private void Start()
     {
         Instance = this;
@@ -24,12 +31,24 @@ public class RBNetworkGameManager : NetworkBehaviour {
         Score = new Dictionary<int, int>();
         ArenaSetup = GameObject.Find("GameStateController").GetComponent<ARBArenaSetup>();
         RespawnBall();
+
+        TimeUI = GameObject.Find("Panel - Timer").GetComponentInChildren<Text>();
+        timer = 15 * 60;
     }
 
     private void Update()
     {
         if (!isServer)
             return;
+
+        timer -= Time.deltaTime;
+        string minutes = ((int)(timer / 60f)).ToString();
+        string seconds = ((int)(timer % 60)).ToString();
+        if (seconds.Length == 1)
+            seconds = "0" + seconds;
+        TimeUI.text = minutes + ":" + seconds;
+
+
     }
 
     /// <summary>

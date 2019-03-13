@@ -26,9 +26,6 @@ public class RBNetworkMovementSync : NetworkBehaviour {
     private void OnEnable()
     {
         playerID = objectName + GetComponent<NetworkIdentity>().netId.ToString();
-        transform.name = playerID;
-        print(RBGameManager.Instance);
-        print(RBGameManager.Instance.ConnectedPlayers);
         RBGameManager.Instance.AddPlayerToConnectedPlayers(playerID, gameObject);
 
         if (isLocalPlayer)

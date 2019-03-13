@@ -13,9 +13,10 @@ public class RBShieldScript : MonoBehaviour
         if (!transform.parent.GetComponent<NetworkIdentity>().isLocalPlayer || other.tag != "Ball")
             return;
         print("Hit!");
+        float curSpeed = RBPlayerController.CharController.velocity.magnitude;
         RBPlayerPhysicsMessage msg = new RBPlayerPhysicsMessage()
         {
-            objectHitDirection = transform.forward * RBPlayerController.CharController.velocity.magnitude
+            objectHitDirection = transform.forward * (curSpeed > 1f ? curSpeed : 1f)
         };
         NetworkManager.singleton.client.Send((short)RBCustomMsgTypes.RBPlayerPhysicsMessage, msg);
     }

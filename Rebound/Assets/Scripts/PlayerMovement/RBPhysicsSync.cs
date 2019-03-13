@@ -32,10 +32,12 @@ public class RBPhysicsSync : NetworkBehaviour {
             if (Vector3.Angle(rb.velocity, _msg.objectHitDirection) < 90)
             {
                 rb.velocity = rb.velocity + _msg.objectHitDirection;
+                print("Angle");
             }
             else
             {
-                rb.velocity = Vector3.Reflect(rb.velocity, -_msg.objectHitDirection);
+                rb.velocity = Vector3.Reflect(rb.velocity, _msg.objectHitDirection).normalized *
+                    (rb.velocity.magnitude + _msg.objectHitDirection.magnitude);
             }
         }
     }
