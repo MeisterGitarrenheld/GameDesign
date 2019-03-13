@@ -77,8 +77,7 @@ public class ARBArenaSetup : NetworkBehaviour
                 LocalPlayer.AddComponent<RBPlayerMovement>();
                 LocalPlayer.SetTagRecursively("Player");
 
-                var shield = Instantiate(ShieldPrefab, LocalPlayer.transform);
-                shield.transform.localPosition = GameObject.Find("Camera Focus").transform.position + new Vector3(0,0,5);
+                LocalPlayer.GetComponent<RBNetworkPlayer>().EnableShield();
             }
 
             // place the character at the correct spawn position
