@@ -9,6 +9,8 @@ TagManager:
   - PlasmaShot
   - IgnoredByCamera
   - Goal
+  - ThrowAnchor
+  - Mine
   layers:
   - Default
   - TransparentFX

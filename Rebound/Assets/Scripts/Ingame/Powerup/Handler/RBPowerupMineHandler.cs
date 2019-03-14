@@ -8,9 +8,9 @@ using UnityEngine.Networking;
 public class RBPowerupMineHandler : ARBPowerupActionHandler
 {
     public GameObject MineCanvasPrefab;
-    
-    public KeyCode ThrowKey = KeyCode.LeftShift;
-    
+
+    public KeyCode ActionKey = KeyCode.LeftShift;
+
     private GameObject _mineCanvas = null;
 
     private RBPowerupMineHandlerServer _serverHandler;
@@ -21,7 +21,7 @@ public class RBPowerupMineHandler : ARBPowerupActionHandler
         // create the crosshair and let the player select the target
         _mineCanvas = Instantiate(MineCanvasPrefab);
     }
-        
+
     void Start()
     {
         var playerObject = gameObject.FindPlayerByName(RBMatch.Instance.GetLocalUser().Username);
@@ -29,13 +29,13 @@ public class RBPowerupMineHandler : ARBPowerupActionHandler
 
         //gameObject.GetComponent<NetworkIdentity>().AssignClientAuthority(playerObject.GetComponent<NetworkIdentity>().connectionToClient);
     }
-    
+
     void Update()
     {
         if (_mineCanvas != null)
         {
             // the player is aiming
-            if (Input.GetKeyDown(ThrowKey))
+            if (Input.GetKeyDown(ActionKey))
             {
                 var targetRay = GetTargetRay();
 
@@ -46,17 +46,24 @@ public class RBPowerupMineHandler : ARBPowerupActionHandler
                     Destroy(_mineCanvas.gameObject);
 
                     // throw the mine
-                    //ThrowMine();
+                    var throwAnchor = GetMineSpawnPosition();
+                    _serverHandler.ThrowMine(throwAnchor.position);
                 }
             }
         }
-        /*
-        else if (!_targetReached)
+        else if (_serverHandler.TargetReached)
         {
-            UpdateMineFlightDirection();
-            UpdateMineMovement();
+            if (_serverHandler.MineDestroyed)
+            {
+                Debug.Log("Complete");
+                _serverHandler.Reset();
+                TriggerOnComplete();
+            }
+            else if (Input.GetKeyDown(ActionKey))
+            {
+                _serverHandler.ExplodeMine();
+            }
         }
-        */
     }
 
     Ray GetTargetRay()
@@ -76,67 +83,6 @@ public class RBPowerupMineHandler : ARBPowerupActionHandler
         return Camera.main.ScreenPointToRay(new Vector3(xScreen, yScreen, 0));
     }
 
-
-    /*
-    void ThrowMine()
-    {
-        Debug.Log("ThrowMine");
-        var throwAnchor = GetMineSpawnPosition();
-
-        CmdThrowMine(throwAnchor.position);
-    }
-
-    [Command]
-    void CmdThrowMine(Vector3 spawnPosition)
-    {
-        Debug.Log("CmdThrowMine");
-        // spawn the mine
-        _mine = Instantiate(MinePrefab, spawnPosition, MinePrefab.transform.rotation);
-
-        _targetTransformStartPos = _aimTarget.transform.position;
-        _targetPosition = _aimTarget.point;
-
-        RBColliderListener colliderListener = new RBColliderListener();
-        colliderListener.For(_mine);
-        colliderListener.OnCollisionEnterAction = OnCollisionEnter;
-
-        RpcThrowMine(spawnPosition);
-    }
-
-    [ClientRpc]
-    void RpcThrowMine(Vector3 spawnPosition)
-    {
-        Debug.Log("RpcThrowMine");
-        // spawn the mine
-        _mine = Instantiate(MinePrefab, spawnPosition, MinePrefab.transform.rotation);
-    }
-    
-    void UpdateMineFlightDirection()
-    {
-        // if the target has not been destroyed
-        if (_aimTarget.transform != null)
-        {
-            // if we have a moving target, we have to adjust the flight direction to ensure the hit
-            if (_targetTransformStartPos != _aimTarget.transform.position)
-            {
-                _targetPosition = _aimTarget.transform.position;
-            }
-        }
-
-        Debug.DrawLine(GetMineSpawnPosition().position, _targetPosition, Color.blue, .1f);
-    }
-
-    void UpdateMineMovement()
-    {
-        var flightDirection = (_targetPosition - _mine.transform.position).normalized;
-
-        if (flightDirection.magnitude > 0)
-        {
-            var rb = _mine.GetComponent<Rigidbody>();
-            rb.velocity = flightDirection * MineFlightSpeed;
-        }
-    }
-
     Transform GetMineSpawnPosition()
     {
         var localPlayerName = RBMatch.Instance.GetLocalUser().Username;
@@ -144,22 +90,4 @@ public class RBPowerupMineHandler : ARBPowerupActionHandler
         var throwAnchor = localPlayerObject.transform.Find("ThrowAnchor");
         return throwAnchor.transform;
     }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Hit " + collision.gameObject.name);
-
-        if (collision.gameObject.name == "Shield") return;
-
-        _targetReached = true;
-
-        var tmpMine = Instantiate(MineAttachedPrefab, collision.contacts[0].point, MineAttachedPrefab.transform.rotation);
-
-        tmpMine.transform.parent = collision.transform;
-
-        Destroy(_mine);
-
-        _mine = tmpMine;
-    }
-    */
 }

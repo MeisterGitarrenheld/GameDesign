@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4521859115776940}
   - component: {fileID: 114869787331748380}
   - component: {fileID: 114076833269010924}
+  - component: {fileID: 114400497532653988}
   m_Layer: 0
   m_Name: MineAttached
   m_TagString: Untagged
@@ -195,6 +196,19 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114400497532653988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1149633348291710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab913bd65fcf4d4e85e6d72b7f95d45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParticleSystemPrefab: {fileID: 1465358751898718, guid: 05786b79052eb3c438ee5bf9db70f7b9,
+    type: 2}
 --- !u!114 &114869787331748380
 MonoBehaviour:
   m_ObjectHideFlags: 1

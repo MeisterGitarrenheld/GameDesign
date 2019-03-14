@@ -11,20 +11,35 @@ using UnityEngine.Networking;
 /// </summary>
 public class RBPowerupActivityControl : NetworkBehaviour
 {
+    public enum SlotState { Empty, ReadyForActivation, Active }
+
+    [Serializable]
+    public struct PowerupSlot
+    {
+        public SlotState State;
+        public RBPowerupBaseStats BaseStats;
+
+        public PowerupSlot(SlotState state, RBPowerupBaseStats baseStats)
+        {
+            State = state;
+            BaseStats = baseStats;
+        }
+    }
+
     public static RBPowerupActivityControl Instance;
 
 
     [Serializable]
-    public class RBPowerupKeyBinding : SerializableDictionaryBase<KeyCode, RBPowerupBaseStats> { }
+    public class RBPowerupKeyBinding : SerializableDictionaryBase<KeyCode, PowerupSlot> { }
 
     [SerializeField]
     private RBPowerupKeyBinding _powerupKeyBindings = new RBPowerupKeyBinding
     {
-        { KeyCode.LeftControl, null },
-        { KeyCode.Q, null }
+        { KeyCode.LeftControl, new PowerupSlot(SlotState.Empty, null) }
+        //{ KeyCode.Q, null }
     };
 
-    private RBPowerupBaseStats _defaultBinding = new RBPowerupBaseStats();
+    private PowerupSlot _defaultBinding = new PowerupSlot(SlotState.Empty, null);
 
     void Awake()
     {
@@ -45,36 +60,50 @@ public class RBPowerupActivityControl : NetworkBehaviour
     /// </summary>
     private void CheckForActivatedPowerups()
     {
-        var activatedPowerups = new List<KeyCode>();
-
-        foreach (var powerupKeyBinding in _powerupKeyBindings)
+        foreach (var powerupKey in _powerupKeyBindings.Keys.ToArray())
         {
-            if (powerupKeyBinding.Value.Rarity != RBPowerupRarity.None)
+            var powerupKeyBinding = _powerupKeyBindings[powerupKey];
+
+            if (powerupKeyBinding.State == SlotState.ReadyForActivation)
             {
-                if (Input.GetKeyUp(powerupKeyBinding.Key))
+                if (Input.GetKeyUp(powerupKey))
                 { // Found a powerup that has to be activated.
-                    ActivatePowerup(powerupKeyBinding.Value);
-                    activatedPowerups.Add(powerupKeyBinding.Key);
+                    ActivatePowerup(powerupKey, powerupKeyBinding);
                 }
             }
         }
-
-        activatedPowerups.ForEach(x => _powerupKeyBindings[x] = _defaultBinding);
     }
 
     /// <summary>
     /// Activates the powerup that corresponds to the given base stats.
     /// </summary>
     /// <param name="baseStats"></param>
-    private void ActivatePowerup(RBPowerupBaseStats baseStats)
+    private void ActivatePowerup(KeyCode activationKey, PowerupSlot slot)
     {
-        Debug.Log("Activating a powerup with rarity " + baseStats.Rarity + ".");
-        if (baseStats.HandlerPrefab != null)
+        // Debug.Log("Activating a powerup with rarity " + baseStats.Rarity + ".");
+        if (slot.BaseStats.HandlerPrefab != null)
         {
-            var handlerObject = Instantiate(RBPowerupGlobalObjects.Instance.GetPowerupHandlerPrefabById(baseStats.PowerupId));
+            _powerupKeyBindings[activationKey] = new PowerupSlot(SlotState.Active, slot.BaseStats);
+
+            var handlerObject = Instantiate(RBPowerupGlobalObjects.Instance.GetPowerupHandlerPrefabById(slot.BaseStats.PowerupId));
             var handlerScript = handlerObject.GetComponent<ARBPowerupActionHandler>();
+            handlerScript.OnComplete += () => HandlerScript_OnComplete(activationKey, handlerObject);
             handlerScript.DoAction(RBMatch.Instance.GetLocalUser().Username);
         }
+        else _powerupKeyBindings[activationKey] = _defaultBinding;
+    }
+
+    /// <summary>
+    /// Called when a powerup action has completed.
+    /// Destroys the handler object and frees the powerup slot.
+    /// </summary>
+    /// <param name="activationKey"></param>
+    /// <param name="handlerObject"></param>
+    private void HandlerScript_OnComplete(KeyCode activationKey, GameObject handlerObject)
+    {
+        Debug.Log("HandlerScript_OnComplete");
+        Destroy(handlerObject);
+        _powerupKeyBindings[activationKey] = _defaultBinding;
     }
 
     /// <summary>
@@ -86,10 +115,11 @@ public class RBPowerupActivityControl : NetworkBehaviour
     {
         foreach (var binding in _powerupKeyBindings)
         {
-            if (binding.Value.Rarity == RBPowerupRarity.None)
+            Debug.Log(binding.Key + "; " + binding.Value.State);
+            if (binding.Value.State == SlotState.Empty)
             {
                 Debug.Log("Collected a powerup with rarity " + baseStats.Rarity + ".");
-                _powerupKeyBindings[binding.Key] = baseStats;
+                _powerupKeyBindings[binding.Key] = new PowerupSlot(SlotState.ReadyForActivation, baseStats);
                 break;
             }
         }

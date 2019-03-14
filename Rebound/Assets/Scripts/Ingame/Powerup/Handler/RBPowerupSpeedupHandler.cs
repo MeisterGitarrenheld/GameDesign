@@ -34,6 +34,6 @@ public class RBPowerupSpeedupHandler : ARBPowerupActionHandler
             }
         }
 
-        Destroy(gameObject);
+        TriggerOnComplete();
     }
 }
