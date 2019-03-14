@@ -14,8 +14,6 @@ public class RBPowerupSpeedupHandler : ARBPowerupActionHandler
     /// <param name="playerName"></param>
     public override void DoAction(string playerName)
     {
-        Debug.Log("Doing the action for " + playerName);
-
         var players = GameObject.FindGameObjectsWithTag("Player");
 
         foreach (var player in players)

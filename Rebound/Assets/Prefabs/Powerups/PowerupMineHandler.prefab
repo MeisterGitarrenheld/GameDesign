@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1263543632565614}
+  m_IsPrefabAsset: 1
+--- !u!1 &1263543632565614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4602010631623472}
+  - component: {fileID: 114458513828330078}
+  - component: {fileID: 114106036451452198}
+  m_Layer: 0
+  m_Name: PowerupMineHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4602010631623472
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263543632565614}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -62.191185, y: -2.9538405, z: -19.619287}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114106036451452198
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263543632565614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813855dfa5d8fd948b6e5aa03156f114, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MineCanvasPrefab: {fileID: 1643058874318020, guid: 449c643933b52194b900a139def4b6f4,
+    type: 2}
+  MinePrefab: {fileID: 1972050669850078, guid: 174cd7d91e4684d4cbf114e58e7d938a, type: 2}
+  MineAttachedPrefab: {fileID: 1149633348291710, guid: 23fab2e42ffbfa343bd04b1c2d228b98,
+    type: 2}
+  ThrowKey: 304
+  MineFlightSpeed: 50
+--- !u!114 &114458513828330078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263543632565614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 44
+    i1: 203
+    i2: 251
+    i3: 131
+    i4: 210
+    i5: 230
+    i6: 232
+    i7: 36
+    i8: 136
+    i9: 230
+    i10: 203
+    i11: 225
+    i12: 106
+    i13: 25
+    i14: 184
+    i15: 79
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
