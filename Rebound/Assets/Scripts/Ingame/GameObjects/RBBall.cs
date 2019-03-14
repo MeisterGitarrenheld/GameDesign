@@ -13,6 +13,13 @@ public class RBBall : NetworkBehaviour {
         if(other.tag == "Goal")
         {
             RBNetworkGameManager.Instance.Goal(gameObject, other.GetComponent<RBGoal>().OwningTeamID);
+
+            RBGameEventMessage msg = new RBGameEventMessage()
+            {
+                TriggeredEventType = GameEvent.Goal
+            };
+            NetworkManager.singleton.client.Send((short)RBCustomMsgTypes.RBGameEventMessage, msg);
+
         }
     }
 

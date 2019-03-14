@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using System;
 
 public class RBNetworkGameManager : NetworkBehaviour {
 
@@ -95,6 +96,14 @@ public class RBNetworkGameManager : NetworkBehaviour {
     {
         NetworkServer.RegisterHandler((short)RBCustomMsgTypes.RBPlayerMovementMessage, OnReceivePlayerMovementMessage);
         NetworkServer.RegisterHandler((short)RBCustomMsgTypes.RBPlayerPhysicsMessage, OnRecievePlayerPhysicsMessage);
+        NetworkServer.RegisterHandler((short)RBCustomMsgTypes.RBGameEventMessage, OnRecieveGameEventMessage);
+
+    }
+
+    private void OnRecieveGameEventMessage(NetworkMessage _message)
+    {
+        RBGameEventMessage _msg = _message.ReadMessage<RBGameEventMessage>();
+        print(_msg.TriggeredEventType);
     }
 
     private void OnReceivePlayerMovementMessage(NetworkMessage _message)
