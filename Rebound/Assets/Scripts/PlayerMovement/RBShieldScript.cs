@@ -14,9 +14,13 @@ public class RBShieldScript : MonoBehaviour
             return;
         print("Hit!");
         float curSpeed = RBPlayerController.CharController.velocity.magnitude;
+        RBCharacter character = GetComponentInParent<RBCharacter>();
         RBPlayerPhysicsMessage msg = new RBPlayerPhysicsMessage()
         {
-            objectHitDirection = transform.forward * (curSpeed > 1f ? curSpeed : 1f)
+            objectHitDirection = transform.forward * (curSpeed > 1f ? curSpeed : 1f),
+            PlayerHitName = transform.name,
+            PlayerHitID = character.PlayerInfo.CharacterId,
+            PlayerTeamID = character.PlayerInfo.Team
         };
         NetworkManager.singleton.client.Send((short)RBCustomMsgTypes.RBPlayerPhysicsMessage, msg);
     }

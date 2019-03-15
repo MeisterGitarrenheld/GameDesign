@@ -29,7 +29,24 @@ public class RBPowerupObject : NetworkBehaviour
         }
         else if (hitTag == "Ball")
         { // Someone has shot the ball on the powerup.
-            // TODO determine who was the last player that hit the ball.
+          // TODO determine who was the last player that hit the ball.
+
+            RBBall ball = collision.gameObject.GetComponent<RBBall>();
+
+            RBGameEventMessage msg = new RBGameEventMessage()
+            {
+                TriggeredEventType = GameEvent.PowerUpCollected,
+                TriggeredPlayerID = ball.Player_LastHitID,
+                TriggeredTeamID = ball.Team_LastHit,
+                GameEventInfo = transform.name
+            };
+            NetworkManager.singleton.client.Send((short)RBCustomMsgTypes.RBGameEventMessage, msg);
+
+            if (isServer)
+            {
+                NetworkServer.Destroy(gameObject);
+            }
+
         }
     }
 }

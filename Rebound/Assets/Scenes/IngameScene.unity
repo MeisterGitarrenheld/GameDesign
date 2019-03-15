@@ -316,27 +316,27 @@ Prefab:
     - target: {fileID: 224425537928118044, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224425537928118044, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224425537928118044, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 18.202206
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224425537928118044, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -17.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224425537928118044, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224172410038414598, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
@@ -357,7 +357,7 @@ Prefab:
     - target: {fileID: 224425537928118044, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 14.404411
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224172410038414598, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
@@ -541,7 +541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c9e468c83226454eb096dd6594896bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IngameUI: {fileID: 0}
 --- !u!114 &334836303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1905,32 +1904,32 @@ Prefab:
     - target: {fileID: 224425537928118044, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224425537928118044, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224425537928118044, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 42.209557
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224425537928118044, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -17.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224425537928118044, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 62.419113
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224425537928118044, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224172410038414598, guid: 7d275a1c4735643439bf1f18c8049806,
         type: 2}
@@ -3054,6 +3053,7 @@ GameObject:
   - component: {fileID: 1651196878}
   - component: {fileID: 1651196877}
   - component: {fileID: 1651196876}
+  - component: {fileID: 1651196879}
   m_Layer: 0
   m_Name: GameStateController
   m_TagString: Untagged
@@ -3132,6 +3132,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1651196879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1651196875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1c8ff1376255d14cb81ee64257e6484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IngameUI: {fileID: 872140550}
+  TimeUI: {fileID: 1105784123}
+  TeamScorePanels:
+  - {fileID: 1556500270}
+  - {fileID: 294044004}
+  - {fileID: 1463953268}
+  - {fileID: 1757992987}
 --- !u!1 &1653982849
 GameObject:
   m_ObjectHideFlags: 0

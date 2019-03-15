@@ -18,4 +18,9 @@ public class RBGameEventMessage : MessageBase
     public GameEvent TriggeredEventType;
     public int TriggeredPlayerID;
     public int TriggeredTeamID;
+
+    /// <summary>
+    /// For additional Info on events which is specific for each event
+    /// </summary>
+    public string GameEventInfo;
 }

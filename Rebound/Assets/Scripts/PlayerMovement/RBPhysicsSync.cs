@@ -22,7 +22,8 @@ public class RBPhysicsSync : NetworkBehaviour {
     private void OnReceivePhysicsMessage(NetworkMessage _message)
     {
         RBPlayerPhysicsMessage _msg = _message.ReadMessage<RBPlayerPhysicsMessage>();
-        
+        GetComponent<RBBall>().Player_LastHitID = _msg.PlayerHitID;
+        GetComponent<RBBall>().Team_LastHit = _msg.PlayerTeamID;
         if (rb.velocity.magnitude < 0.1f)
             rb.velocity = _msg.objectHitDirection.normalized * 10;
         else
@@ -32,7 +33,6 @@ public class RBPhysicsSync : NetworkBehaviour {
             if (Vector3.Angle(rb.velocity, _msg.objectHitDirection) < 90)
             {
                 rb.velocity = rb.velocity + _msg.objectHitDirection;
-                print("Angle");
             }
             else
             {
@@ -40,6 +40,7 @@ public class RBPhysicsSync : NetworkBehaviour {
                     (rb.velocity.magnitude + _msg.objectHitDirection.magnitude);
             }
         }
+
     }
 
 }

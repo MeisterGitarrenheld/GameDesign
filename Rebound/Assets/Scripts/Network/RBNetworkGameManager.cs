@@ -15,12 +15,6 @@ public class RBNetworkGameManager : NetworkBehaviour {
     private ARBArenaSetup ArenaSetup;
     private Coroutine coroutine;
 
-    public GameObject IngameUI;
-
-    private Text TimeUI;
-
-    private float timer;
-
     private void Start()
     {
         Instance = this;
@@ -33,8 +27,7 @@ public class RBNetworkGameManager : NetworkBehaviour {
         ArenaSetup = GameObject.Find("GameStateController").GetComponent<ARBArenaSetup>();
         RespawnBall();
 
-        TimeUI = GameObject.Find("Panel - Timer").GetComponentInChildren<Text>();
-        timer = 15 * 60;
+
     }
 
     private void Update()
@@ -42,12 +35,7 @@ public class RBNetworkGameManager : NetworkBehaviour {
         if (!isServer)
             return;
 
-        timer -= Time.deltaTime;
-        string minutes = ((int)(timer / 60f)).ToString();
-        string seconds = ((int)(timer % 60)).ToString();
-        if (seconds.Length == 1)
-            seconds = "0" + seconds;
-        TimeUI.text = minutes + ":" + seconds;
+
 
 
     }
@@ -103,7 +91,18 @@ public class RBNetworkGameManager : NetworkBehaviour {
     private void OnRecieveGameEventMessage(NetworkMessage _message)
     {
         RBGameEventMessage _msg = _message.ReadMessage<RBGameEventMessage>();
-        print(_msg.TriggeredEventType);
+        switch(_msg.TriggeredEventType)
+        {
+            case GameEvent.GameOver: break;
+            case GameEvent.Goal:
+                print("Goal by: " + _msg.TriggeredPlayerID + "\nIn Goal of Team: " + _msg.TriggeredTeamID);
+                NetworkServer.SendToAll((short)RBCustomMsgTypes.RBGameEventMessage, _msg);
+                break;
+            case GameEvent.PowerUpCollected:
+                print("Ball Collected Powerup " + _msg.GameEventInfo + " for Player: " + _msg.TriggeredPlayerID + "\nIn Team: " + _msg.TriggeredTeamID);
+                break;
+            default: break;
+        }
     }
 
     private void OnReceivePlayerMovementMessage(NetworkMessage _message)

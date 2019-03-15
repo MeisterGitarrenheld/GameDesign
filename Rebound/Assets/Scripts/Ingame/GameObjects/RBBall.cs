@@ -7,6 +7,7 @@ public class RBBall : NetworkBehaviour {
 
 
     public int Player_LastHitID;
+    public int Team_LastHit;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,10 +17,11 @@ public class RBBall : NetworkBehaviour {
 
             RBGameEventMessage msg = new RBGameEventMessage()
             {
-                TriggeredEventType = GameEvent.Goal
+                TriggeredEventType = GameEvent.Goal,
+                TriggeredPlayerID = Player_LastHitID,
+                TriggeredTeamID = other.GetComponent<RBGoal>().OwningTeamID
             };
             NetworkManager.singleton.client.Send((short)RBCustomMsgTypes.RBGameEventMessage, msg);
-
         }
     }
 
