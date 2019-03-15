@@ -582,12 +582,14 @@ MonoBehaviour:
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
     isExpanded: 1
-    _keyValues: 32010000
-    _keys: 32010000
+    _keyValues: 65000000
+    _keys: 65000000
     _values:
-    - PowerupId: 0
-      Rarity: 0
-      HandlerPrefab: {fileID: 0}
+    - State: 0
+      BaseStats:
+        PowerupId: 0
+        Rarity: 0
+        HandlerPrefab: {fileID: 0}
 --- !u!135 &135350325276297664
 SphereCollider:
   m_ObjectHideFlags: 1

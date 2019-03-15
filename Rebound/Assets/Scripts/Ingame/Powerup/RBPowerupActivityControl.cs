@@ -11,6 +11,8 @@ using UnityEngine.Networking;
 /// </summary>
 public class RBPowerupActivityControl : NetworkBehaviour
 {
+    public static Action<KeyCode, PowerupSlot> UpdateUISlotsEvent;
+
     public enum SlotState { Empty, ReadyForActivation, Active }
 
     [Serializable]
@@ -54,6 +56,11 @@ public class RBPowerupActivityControl : NetworkBehaviour
         CheckForActivatedPowerups();
     }
 
+    public RBPowerupKeyBinding GetPowerupKeyBindings()
+    {
+        return _powerupKeyBindings;
+    }
+
     /// <summary>
     /// Checks if a key for a powerup was pressed and activates the
     /// corresponding powerup if so.
@@ -91,6 +98,8 @@ public class RBPowerupActivityControl : NetworkBehaviour
             handlerScript.DoAction(RBMatch.Instance.GetLocalUser().Username);
         }
         else _powerupKeyBindings[activationKey] = _defaultBinding;
+
+        UpdateUISlots();
     }
 
     /// <summary>
@@ -104,6 +113,8 @@ public class RBPowerupActivityControl : NetworkBehaviour
         Debug.Log("HandlerScript_OnComplete");
         Destroy(handlerObject);
         _powerupKeyBindings[activationKey] = _defaultBinding;
+
+        UpdateUISlots();
     }
 
     /// <summary>
@@ -122,6 +133,16 @@ public class RBPowerupActivityControl : NetworkBehaviour
                 _powerupKeyBindings[binding.Key] = new PowerupSlot(SlotState.ReadyForActivation, baseStats);
                 break;
             }
+        }
+
+        UpdateUISlots();
+    }
+
+    private void UpdateUISlots()
+    {
+        foreach( var binding in _powerupKeyBindings)
+        {
+            UpdateUISlotsEvent?.Invoke(binding.Key, binding.Value);
         }
     }
 }
