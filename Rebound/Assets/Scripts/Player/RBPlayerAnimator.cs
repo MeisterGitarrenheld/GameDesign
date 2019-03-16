@@ -6,9 +6,12 @@ public class RBPlayerAnimator : MonoBehaviour {
 
     public static RBPlayerAnimator Instance;
 
+    private Animator _animator; 
+
     void Awake()
     {
         Instance = this;
+        _animator = GetComponentInChildren<Animator>();
     }
 	
 	// Update is called once per frame
@@ -98,6 +101,43 @@ public class RBPlayerAnimator : MonoBehaviour {
                     RBPlayerController.Instance.State = RBPlayerController.CharacterState.WalkingBackwards;
                     break;
             }
+        }
+    }
+
+    private RBPlayerController.Direction _lastDir = RBPlayerController.Direction.Stationary;
+    public void UpdateAnimation(RBPlayerController.Direction moveDir)
+    {
+        if (moveDir == _lastDir) return;
+
+        switch(_lastDir = moveDir)
+        {
+            case RBPlayerController.Direction.Stationary:
+                _animator.SetTrigger("Idle");
+                break;
+            case RBPlayerController.Direction.Forward:
+                _animator.SetTrigger("Forward");
+                break;
+            case RBPlayerController.Direction.LeftForward:
+                _animator.SetTrigger("Forward");
+                break;
+            case RBPlayerController.Direction.RightForward:
+                _animator.SetTrigger("Forward");
+                break;
+            case RBPlayerController.Direction.Left:
+                _animator.SetTrigger("Left");
+                break;
+            case RBPlayerController.Direction.Right:
+                _animator.SetTrigger("Right");
+                break;
+            case RBPlayerController.Direction.Backward:
+                _animator.SetTrigger("Backward");
+                break;
+            case RBPlayerController.Direction.LeftBackward:
+                _animator.SetTrigger("Backward");
+                break;
+            case RBPlayerController.Direction.RightBackward:
+                _animator.SetTrigger("Backward");
+                break;
         }
     }
 }

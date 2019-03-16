@@ -77,6 +77,7 @@ public class RBCharacterPreview : RBMonoBehaviourSingleton<RBCharacterPreview>
         var @char = Instantiate(character.gameObject, gameObject.transform);
         _displayedCharacter = @char;
         @char.transform.position = position;
+        @char.transform.localRotation = new Quaternion(0, 180, 0, 0);
         @char.transform.localScale *= 1.5f;
         @char.gameObject.SetLayerRecursively(LayerMask.NameToLayer("CharacterPreview"));
     }
@@ -127,6 +128,7 @@ public class RBCharacterPreview : RBMonoBehaviourSingleton<RBCharacterPreview>
 
         var @char = Instantiate(character.gameObject, gameObject.transform);
         @char.transform.position = prevPos.Position.transform.position;
+        @char.transform.localRotation = new Quaternion(0, 180, 0, 0);
         @char.gameObject.SetLayerRecursively(LayerMask.NameToLayer("CharacterPreview"));
         prevPos.CharacterObj = @char;
 

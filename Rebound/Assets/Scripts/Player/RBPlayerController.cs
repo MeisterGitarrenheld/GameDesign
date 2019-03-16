@@ -67,6 +67,7 @@ public class RBPlayerController : MonoBehaviour
         }
 
         RBPlayerAnimator.Instance.DetermineCurrentMoveDirection();
+        RBPlayerAnimator.Instance.UpdateAnimation(MoveDirection);
     }
 
     private void HandleActionInput()
