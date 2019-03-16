@@ -10,7 +10,7 @@ public class RBPhysicsSync : NetworkBehaviour {
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        if (isServer)
+        //if (isServer)
             RegisterNetworkMessages();
     }
 
@@ -21,6 +21,8 @@ public class RBPhysicsSync : NetworkBehaviour {
 
     private void OnReceivePhysicsMessage(NetworkMessage _message)
     {
+        if (!isServer)
+            return;
         RBPlayerPhysicsMessage _msg = _message.ReadMessage<RBPlayerPhysicsMessage>();
         GetComponent<RBBall>().Player_LastHitID = _msg.PlayerHitID;
         GetComponent<RBBall>().Team_LastHit = _msg.PlayerTeamID;

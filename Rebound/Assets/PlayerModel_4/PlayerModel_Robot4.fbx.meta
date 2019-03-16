@@ -1,0 +1,473 @@
+fileFormatVersion: 2
+guid: 60d4384ea153fe544a8cadee1399c791
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Antenna
+    100002: Arm.l
+    100004: Arm.l 1
+    100006: Arm.r
+    100008: Arm.r 1
+    100010: Battery Pack
+    100012: Batteryclamp
+    100014: BatterySpring
+    100016: BatterySpring.001
+    100018: Body 1
+    100020: Body.002
+    100022: Body.003
+    100024: Body.004
+    100026: Body.004_end
+    100028: Body.005
+    100030: Body.005_end
+    100032: Body.006
+    100034: Body.007
+    100036: Body.007_end
+    100038: Body.008
+    100040: Body.009
+    100042: Body.009_end
+    100044: Cable
+    100046: Cable.001
+    100048: Cable.002
+    100050: Cable.003
+    100052: Can
+    100054: Can_bottom
+    100056: Circle
+    100058: Clamp.1.l
+    100060: Clamp.1.r
+    100062: Clamp.l
+    100064: Clamp.r
+    100066: Clampholder.l
+    100068: ClampHolder.r
+    100070: Claw.L
+    100072: Claw.L.0
+    100074: Claw.L.002
+    100076: Claw.L.002_end
+    100078: Claw.L.0_end
+    100080: Claw.L_end
+    100082: Claw.r
+    100084: Claw.r_end
+    100086: Cube
+    100088: Cylinder
+    100090: Cylinder.001
+    100092: Cylinder.002
+    100094: Cylinder.003
+    100096: Cylinder.004
+    100098: Cylinder.009
+    100100: Cylinder.010
+    100102: Elbow.1.l
+    100104: Elbow.1.r
+    100106: Elbow.l
+    100108: Elbow.r
+    100110: Exhaust
+    100112: Eye.L
+    100114: Eye.l
+    100116: Eye.L.001
+    100118: Eye.L.001_end
+    100120: Eye.l.002
+    100122: Eye.L_end
+    100124: Eye.r
+    100126: Eyes
+    100128: Forearm.l
+    100130: Forearm.r
+    100132: FroreArm.l
+    100134: FroreArm.L.002
+    100136: FroreArm.L.003
+    100138: FroreArm.r
+    100140: Head
+    100142: Head 1
+    100144: Lid
+    100146: Lid 1
+    100148: Lid_end
+    100150: Neck
+    100152: //RootNode
+    100154: rotating bolt
+    100156: rotating bolt.001
+    100158: rotating bolt.002
+    100160: rotating bolt.003
+    100162: ShouldeFlap.001
+    100164: ShouldeFlap.002
+    100166: ShouldeFlap.003
+    100168: ShouldeFlap.004
+    100170: ShouldeFlap.l
+    100172: ShouldeFlap.r
+    100174: Shoulder.L
+    100176: Shoulder.L.001
+    100178: Shoulder.L.001_end
+    100180: Shoulder.L_end
+    100182: Wheel.L
+    100184: Wheel.l
+    100186: Wheel.L.001
+    100188: Wheel.L.001_end
+    100190: Wheel.L_end
+    100192: Wheel.r
+    100194: WheelOrientation
+    400000: Antenna
+    400002: Arm.l
+    400004: Arm.l 1
+    400006: Arm.r
+    400008: Arm.r 1
+    400010: Battery Pack
+    400012: Batteryclamp
+    400014: BatterySpring
+    400016: BatterySpring.001
+    400018: Body 1
+    400020: Body.002
+    400022: Body.003
+    400024: Body.004
+    400026: Body.004_end
+    400028: Body.005
+    400030: Body.005_end
+    400032: Body.006
+    400034: Body.007
+    400036: Body.007_end
+    400038: Body.008
+    400040: Body.009
+    400042: Body.009_end
+    400044: Cable
+    400046: Cable.001
+    400048: Cable.002
+    400050: Cable.003
+    400052: Can
+    400054: Can_bottom
+    400056: Circle
+    400058: Clamp.1.l
+    400060: Clamp.1.r
+    400062: Clamp.l
+    400064: Clamp.r
+    400066: Clampholder.l
+    400068: ClampHolder.r
+    400070: Claw.L
+    400072: Claw.L.0
+    400074: Claw.L.002
+    400076: Claw.L.002_end
+    400078: Claw.L.0_end
+    400080: Claw.L_end
+    400082: Claw.r
+    400084: Claw.r_end
+    400086: Cube
+    400088: Cylinder
+    400090: Cylinder.001
+    400092: Cylinder.002
+    400094: Cylinder.003
+    400096: Cylinder.004
+    400098: Cylinder.009
+    400100: Cylinder.010
+    400102: Elbow.1.l
+    400104: Elbow.1.r
+    400106: Elbow.l
+    400108: Elbow.r
+    400110: Exhaust
+    400112: Eye.L
+    400114: Eye.l
+    400116: Eye.L.001
+    400118: Eye.L.001_end
+    400120: Eye.l.002
+    400122: Eye.L_end
+    400124: Eye.r
+    400126: Eyes
+    400128: Forearm.l
+    400130: Forearm.r
+    400132: FroreArm.l
+    400134: FroreArm.L.002
+    400136: FroreArm.L.003
+    400138: FroreArm.r
+    400140: Head
+    400142: Head 1
+    400144: Lid
+    400146: Lid 1
+    400148: Lid_end
+    400150: Neck
+    400152: //RootNode
+    400154: rotating bolt
+    400156: rotating bolt.001
+    400158: rotating bolt.002
+    400160: rotating bolt.003
+    400162: ShouldeFlap.001
+    400164: ShouldeFlap.002
+    400166: ShouldeFlap.003
+    400168: ShouldeFlap.004
+    400170: ShouldeFlap.l
+    400172: ShouldeFlap.r
+    400174: Shoulder.L
+    400176: Shoulder.L.001
+    400178: Shoulder.L.001_end
+    400180: Shoulder.L_end
+    400182: Wheel.L
+    400184: Wheel.l
+    400186: Wheel.L.001
+    400188: Wheel.L.001_end
+    400190: Wheel.L_end
+    400192: Wheel.r
+    400194: WheelOrientation
+    2100000: Can
+    2100002: Black
+    2100004: Arm
+    2100006: No Name
+    2100008: Material
+    2100010: Flaps
+    2100012: Bolts
+    2100014: hinge
+    2100016: Wheel
+    2100018: Crome
+    2100020: Wire Black
+    2100022: RubberBlack
+    2100024: Wire Red
+    2100026: Battery leads
+    2100028: Battery Pack
+    2100030: Material.001
+    2100032: Eyes
+    2100034: Yellow
+    2100036: Antenna
+    2100038: Eye black
+    2300000: Antenna
+    2300002: Arm.l 1
+    2300004: Arm.r 1
+    2300006: Battery Pack
+    2300008: Batteryclamp
+    2300010: BatterySpring
+    2300012: BatterySpring.001
+    2300014: Cable
+    2300016: Cable.001
+    2300018: Cable.002
+    2300020: Cable.003
+    2300022: Can
+    2300024: Can_bottom
+    2300026: Circle
+    2300028: Clamp.1.l
+    2300030: Clamp.1.r
+    2300032: Clamp.l
+    2300034: Clamp.r
+    2300036: Clampholder.l
+    2300038: ClampHolder.r
+    2300040: Cube
+    2300042: Cylinder
+    2300044: Cylinder.001
+    2300046: Cylinder.002
+    2300048: Cylinder.003
+    2300050: Cylinder.004
+    2300052: Cylinder.009
+    2300054: Cylinder.010
+    2300056: Elbow.1.l
+    2300058: Elbow.1.r
+    2300060: Elbow.l
+    2300062: Elbow.r
+    2300064: Exhaust
+    2300066: Eye.l
+    2300068: Eye.l.002
+    2300070: Eye.r
+    2300072: Eyes
+    2300074: Forearm.l
+    2300076: Forearm.r
+    2300078: Head 1
+    2300080: Lid 1
+    2300082: rotating bolt
+    2300084: rotating bolt.001
+    2300086: rotating bolt.002
+    2300088: rotating bolt.003
+    2300090: ShouldeFlap.001
+    2300092: ShouldeFlap.002
+    2300094: ShouldeFlap.003
+    2300096: ShouldeFlap.004
+    2300098: ShouldeFlap.l
+    2300100: ShouldeFlap.r
+    2300102: Wheel.l
+    2300104: Wheel.r
+    3300000: Antenna
+    3300002: Arm.l 1
+    3300004: Arm.r 1
+    3300006: Battery Pack
+    3300008: Batteryclamp
+    3300010: BatterySpring
+    3300012: BatterySpring.001
+    3300014: Cable
+    3300016: Cable.001
+    3300018: Cable.002
+    3300020: Cable.003
+    3300022: Can
+    3300024: Can_bottom
+    3300026: Circle
+    3300028: Clamp.1.l
+    3300030: Clamp.1.r
+    3300032: Clamp.l
+    3300034: Clamp.r
+    3300036: Clampholder.l
+    3300038: ClampHolder.r
+    3300040: Cube
+    3300042: Cylinder
+    3300044: Cylinder.001
+    3300046: Cylinder.002
+    3300048: Cylinder.003
+    3300050: Cylinder.004
+    3300052: Cylinder.009
+    3300054: Cylinder.010
+    3300056: Elbow.1.l
+    3300058: Elbow.1.r
+    3300060: Elbow.l
+    3300062: Elbow.r
+    3300064: Exhaust
+    3300066: Eye.l
+    3300068: Eye.l.002
+    3300070: Eye.r
+    3300072: Eyes
+    3300074: Forearm.l
+    3300076: Forearm.r
+    3300078: Head 1
+    3300080: Lid 1
+    3300082: rotating bolt
+    3300084: rotating bolt.001
+    3300086: rotating bolt.002
+    3300088: rotating bolt.003
+    3300090: ShouldeFlap.001
+    3300092: ShouldeFlap.002
+    3300094: ShouldeFlap.003
+    3300096: ShouldeFlap.004
+    3300098: ShouldeFlap.l
+    3300100: ShouldeFlap.r
+    3300102: Wheel.l
+    3300104: Wheel.r
+    4300000: Can
+    4300002: Exhaust
+    4300004: Arm.l
+    4300006: Elbow.1.l
+    4300008: Forearm.l
+    4300010: Elbow.l
+    4300012: Clampholder.l
+    4300014: Clamp.l
+    4300016: Clamp.1.l
+    4300018: ShouldeFlap.l
+    4300020: Can_bottom
+    4300022: Wheel.l
+    4300024: Wheel.r
+    4300026: Arm.r
+    4300028: Elbow.1.r
+    4300030: Elbow.r
+    4300032: Forearm.r
+    4300034: ClampHolder.r
+    4300036: Clamp.r
+    4300038: Clamp.1.r
+    4300040: ShouldeFlap.r
+    4300042: rotating bolt.003
+    4300044: Cylinder.002
+    4300046: Cube
+    4300048: rotating bolt.001
+    4300050: Cylinder.004
+    4300052: rotating bolt.002
+    4300054: rotating bolt
+    4300056: Cable.002
+    4300058: Circle
+    4300060: Cable.001
+    4300062: Cable.003
+    4300064: Cable
+    4300066: ShouldeFlap.004
+    4300068: ShouldeFlap.003
+    4300070: ShouldeFlap.002
+    4300072: Batteryclamp
+    4300074: BatterySpring
+    4300076: BatterySpring.001
+    4300078: Battery Pack
+    4300080: Eye.l.002
+    4300082: Cylinder.001
+    4300084: Cylinder
+    4300086: ShouldeFlap.001
+    4300088: Eyes
+    4300090: Head
+    4300092: Antenna
+    4300094: Cylinder.003
+    4300096: Eye.l
+    4300098: Eye.r
+    4300100: Cylinder.009
+    4300102: Cylinder.010
+    4300104: Lid
+    7400000: Body|Crouch
+    7400002: Body|Idle
+    7400004: Body|Jump
+    7400006: Body|Move_Backwards
+    7400008: Body|Move_Forward
+    7400010: Body|Move_Left
+    7400012: Body|Move_Right
+    7400014: Body|Move_Standing
+    7400016: Cylinder.010|Crouch
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

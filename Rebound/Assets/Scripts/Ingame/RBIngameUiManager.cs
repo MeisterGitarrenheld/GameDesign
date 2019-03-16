@@ -32,7 +32,6 @@ public class RBIngameUiManager : MonoBehaviour {
         RBGameEventMessage _msg = _message.ReadMessage<RBGameEventMessage>();
         switch (_msg.TriggeredEventType)
         {
-            case GameEvent.GameOver: break;
             case GameEvent.Goal:
                 if (_msg.TriggeredTeamID > 0)
                 {

@@ -9,9 +9,11 @@ public class RBBall : NetworkBehaviour {
     public int Player_LastHitID;
     public int Team_LastHit;
 
+    private bool inGoal;
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Goal")
+        if(other.tag == "Goal" && !inGoal)
         {
             RBNetworkGameManager.Instance.Goal(gameObject, other.GetComponent<RBGoal>().OwningTeamID);
 
@@ -19,9 +21,11 @@ public class RBBall : NetworkBehaviour {
             {
                 TriggeredEventType = GameEvent.Goal,
                 TriggeredPlayerID = Player_LastHitID,
-                TriggeredTeamID = other.GetComponent<RBGoal>().OwningTeamID
+                TriggeredTeamID = Team_LastHit,
+                GameEventInfo = other.GetComponent<RBGoal>().OwningTeamID.ToString()
             };
             NetworkManager.singleton.client.Send((short)RBCustomMsgTypes.RBGameEventMessage, msg);
+            inGoal = true;
         }
     }
 

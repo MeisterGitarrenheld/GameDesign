@@ -15,6 +15,8 @@ public class RBNetworkGameManager : NetworkBehaviour {
     private ARBArenaSetup ArenaSetup;
     private Coroutine coroutine;
 
+    RBAudience[] audience;
+
     private void Start()
     {
         Instance = this;
@@ -27,6 +29,7 @@ public class RBNetworkGameManager : NetworkBehaviour {
         ArenaSetup = GameObject.Find("GameStateController").GetComponent<ARBArenaSetup>();
         RespawnBall();
 
+        audience = FindObjectsOfType<RBAudience>();
 
     }
 
@@ -95,11 +98,12 @@ public class RBNetworkGameManager : NetworkBehaviour {
         {
             case GameEvent.GameOver: break;
             case GameEvent.Goal:
-                print("Goal by: " + _msg.TriggeredPlayerID + "\nIn Goal of Team: " + _msg.TriggeredTeamID);
+                print("Goal by: " + _msg.TriggeredPlayerID + " for Team: " + _msg.TriggeredTeamID  + " in Goal of Team: " + _msg.GameEventInfo);
                 NetworkServer.SendToAll((short)RBCustomMsgTypes.RBGameEventMessage, _msg);
+                Array.ForEach(audience, aud => { aud.Jump = true; aud.MinJumpTime = 0.1f; });
                 break;
             case GameEvent.PowerUpCollected:
-                print("Ball Collected Powerup " + _msg.GameEventInfo + " for Player: " + _msg.TriggeredPlayerID + "\nIn Team: " + _msg.TriggeredTeamID);
+                print("Ball Collected Powerup " + _msg.GameEventInfo + " for Player: " + _msg.TriggeredPlayerID + " in Team: " + _msg.TriggeredTeamID);
                 break;
             default: break;
         }

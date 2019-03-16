@@ -158,6 +158,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c9329a33e59144eabeeee13a28bdfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player_LastHitID: 0
+  Team_LastHit: 0
 --- !u!114 &114761283473260658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,13 +172,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 3
-  m_SendInterval: 0.1
+  m_SendInterval: 0.11111111
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
   m_MovementTheshold: 0.001
   m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
+  m_SnapThreshold: 20
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
 --- !u!135 &135026967193311816
