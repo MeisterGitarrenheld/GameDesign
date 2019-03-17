@@ -107,7 +107,7 @@ public class RBPlayerAnimator : MonoBehaviour {
     private RBPlayerController.Direction _lastDir = RBPlayerController.Direction.Stationary;
     public void UpdateAnimation(RBPlayerController.Direction moveDir)
     {
-        if (moveDir == _lastDir) return;
+        if (moveDir == _lastDir || _animator == null) return;
 
         switch(_lastDir = moveDir)
         {
@@ -118,10 +118,10 @@ public class RBPlayerAnimator : MonoBehaviour {
                 _animator.SetTrigger("Forward");
                 break;
             case RBPlayerController.Direction.LeftForward:
-                _animator.SetTrigger("Forward");
+                _animator.SetTrigger("LeftForward");
                 break;
             case RBPlayerController.Direction.RightForward:
-                _animator.SetTrigger("Forward");
+                _animator.SetTrigger("RightForward");
                 break;
             case RBPlayerController.Direction.Left:
                 _animator.SetTrigger("Left");
@@ -133,10 +133,10 @@ public class RBPlayerAnimator : MonoBehaviour {
                 _animator.SetTrigger("Backward");
                 break;
             case RBPlayerController.Direction.LeftBackward:
-                _animator.SetTrigger("Backward");
+                _animator.SetTrigger("LeftBackward");
                 break;
             case RBPlayerController.Direction.RightBackward:
-                _animator.SetTrigger("Backward");
+                _animator.SetTrigger("RightBackward");
                 break;
         }
     }

@@ -27488,7 +27488,7 @@ MonoBehaviour:
   - {fileID: 776473987}
   - {fileID: 1528452590}
   - {fileID: 851121730}
-  BallPrefab: {fileID: 1282390138436466, guid: a1fc7c6f2140b204f8204145b3a08343, type: 2}
+  BallPrefab: {fileID: 1604070570435740, guid: bb2d86f24c851ca4285e9a80f1c29f64, type: 2}
   ShieldPrefab: {fileID: 1654897210472152, guid: 9b80734c9a7081540b764c95c12c6ce0,
     type: 2}
 --- !u!114 &1651196877
