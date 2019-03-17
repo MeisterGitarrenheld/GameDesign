@@ -24,7 +24,7 @@ public class RBAudience : MonoBehaviour {
         InitRotation = transform.rotation;
         rb = GetComponent<Rigidbody>();
         GetComponent<SpriteRenderer>().sprite = AudienceSprite[Random.Range(0, AudienceSprite.Length)];
-        transform.localScale = new Vector3((Random.Range(0, 2) * 2) - 1, 1, 1) * transform.localScale.x;
+        transform.localScale = new Vector3(Mathf.Max(0, (Random.Range(0, 2) * 2) - 1), 1, 1) * transform.localScale.x;
         MinJumpTime = 5f;
         randomTimer = Random.Range(MinJumpTime, MinJumpTime + 10f);
     }

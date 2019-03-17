@@ -2310,7 +2310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4854346349339436}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4518772166509498
 Transform:
@@ -2337,7 +2337,7 @@ Transform:
   m_Children:
   - {fileID: 4681363441275984}
   m_Father: {fileID: 4854346349339436}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4536024206981036
 Transform:
@@ -2673,12 +2673,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1763535806477618}
-  m_LocalRotation: {x: -0.7291966, y: -0.6521451, z: 0.034876376, w: -0.2043597}
-  m_LocalPosition: {x: 0.804, y: -1.544, z: -1.953}
+  m_LocalRotation: {x: -0.7291966, y: -0.6521451, z: 0.034876406, w: -0.20435971}
+  m_LocalPosition: {x: 0.8039999, y: -1.5440001, z: -1.9530029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4854346349339436}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -200.092, y: 101.57, z: -85.97699}
 --- !u!4 &4729601938069978
 Transform:
@@ -2889,10 +2889,10 @@ Transform:
   m_LocalPosition: {x: -13.9750595, y: 4.2893624, z: -73.280716}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4868269145319302}
   - {fileID: 4722309495932204}
-  - {fileID: 4510854705379588}
   - {fileID: 4533844317735302}
+  - {fileID: 4868269145319302}
+  - {fileID: 4510854705379588}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2923,7 +2923,7 @@ Transform:
   m_LocalScale: {x: 8, y: 4, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4854346349339436}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4876103870370756
 Transform:
@@ -5460,7 +5460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShieldEnabled: 0
-  Shield: {fileID: 1654897210472152, guid: 9b80734c9a7081540b764c95c12c6ce0, type: 2}
+  Shield: {fileID: 1771954616635482}
 --- !u!114 &114250932076291386
 MonoBehaviour:
   m_ObjectHideFlags: 1
