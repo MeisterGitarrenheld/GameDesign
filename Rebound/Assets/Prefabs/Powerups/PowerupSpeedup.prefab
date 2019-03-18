@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a16d50a5bd547541a58f0adb0f8262d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotateionSpeed: 50
+  RotationSpeed: 50
 --- !u!114 &114258468093250340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseStats:
     PowerupId: 2
-    Rarity: 1
+    Rarity: 2
     HandlerPrefab: {fileID: 1027889821993178, guid: 51305755bd89af34ea82f06e5c4a1385,
       type: 2}
 --- !u!136 &136776734905631284

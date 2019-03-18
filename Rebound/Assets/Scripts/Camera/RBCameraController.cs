@@ -22,8 +22,8 @@ public class RBCameraController : MonoBehaviour
     public float MouseWheelSensitivity = 50f;
     public float X_Smooth = 0.05f;
     public float Y_Smooth = 0.1f;
-    public float Y_MinLimit = -20f;
-    public float Y_MaxLimit = 80f;
+    public float Y_MinLimit = -40f;
+    public float Y_MaxLimit = 55f;
     public float OcclusionDistanceStep = 0.5f;
     public int MaxOcclusionChecks = 10;
 

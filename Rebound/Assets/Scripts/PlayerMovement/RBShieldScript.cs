@@ -41,6 +41,8 @@ public class RBShieldScript : MonoBehaviour
         var nwIdentity = playerObject.GetComponent<NetworkIdentity>();
         if (!nwIdentity.isLocalPlayer) return;
 
+        var rotationOffsetDegree = 20.0f;
+
         // the distance between player and shield
         var shieldDistance = 7f;
 
@@ -52,10 +54,12 @@ public class RBShieldScript : MonoBehaviour
         var shieldMoveVector = shieldMoveDirection * shieldDistance;
 
         // move the shield position from the player in his look direction by the fixed distance
-        transform.position = _rotationPivotPoint.transform.position + shieldMoveVector;
+        var newShieldPos = _rotationPivotPoint.transform.position + shieldMoveVector;
+
+        transform.position = new Vector3(newShieldPos.x, newShieldPos.y + 2, newShieldPos.z);
 
         // rotate the shield in the look position of the player
-        transform.rotation = Quaternion.Euler(Camera.main.transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
+        transform.rotation = Quaternion.Euler(Camera.main.transform.eulerAngles.x - rotationOffsetDegree, transform.eulerAngles.y, transform.eulerAngles.z);
         
     }
 }
