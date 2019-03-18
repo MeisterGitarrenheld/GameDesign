@@ -34,21 +34,19 @@ public class RBPowerupMineHandler : ARBPowerupActionHandler
     {
         if (_mineCanvas != null)
         {
+            if(_serverHandler.AimTargetFound)
+            {
+                // remove the crosshair
+                Destroy(_mineCanvas.gameObject);
+            }
             // the player is aiming
-            if (Input.GetKeyDown(ActionKey))
+            else if (Input.GetKeyDown(ActionKey))
             {
                 var targetRay = GetTargetRay();
 
-                // aiming complete
-                if (_serverHandler.TryGetAimTarget(targetRay))
-                {
-                    // remove the crosshair
-                    Destroy(_mineCanvas.gameObject);
-
-                    // throw the mine
-                    var throwAnchor = GetMineSpawnPosition();
-                    _serverHandler.ThrowMine(throwAnchor.position);
-                }
+                // aiming complete try to throw
+                var throwAnchor = GetMineSpawnPosition();
+                _serverHandler.TryThrowMine(targetRay, throwAnchor.position);
             }
         }
         else if (_serverHandler.TargetReached)

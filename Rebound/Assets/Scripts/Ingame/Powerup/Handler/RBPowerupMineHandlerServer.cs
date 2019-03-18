@@ -43,14 +43,13 @@ public class RBPowerupMineHandlerServer : NetworkBehaviour
         }
     }
 
-    public bool TryGetAimTarget(Ray targetRay)
+    public void TryThrowMine(Ray targetRay, Vector3 spawnPosition)
     {
-        CmdTryGetAimTarget(targetRay.origin, targetRay.direction);
-        return AimTargetFound;
+        CmdTryThrowMine(targetRay.origin, targetRay.direction, spawnPosition);
     }
 
     [Command]
-    void CmdTryGetAimTarget(Vector3 aimOrigin, Vector3 aimDirection)
+    void CmdTryThrowMine(Vector3 aimOrigin, Vector3 aimDirection, Vector3 spawnPosition)
     {
         // try to hit something with a raycast
         RaycastHit hitInfo;
@@ -58,28 +57,19 @@ public class RBPowerupMineHandlerServer : NetworkBehaviour
         {
             _aimTarget = hitInfo;
             AimTargetFound = true;
+
+            Debug.Log("CmdThrowMine");
+            // spawn the mine
+            _mine = Instantiate(MinePrefab, spawnPosition, MinePrefab.transform.rotation);
+            NetworkServer.Spawn(_mine);
+
+            _targetTransformStartPos = _aimTarget.transform.position;
+            TargetPosition = _aimTarget.point;
+
+            RBColliderListener colliderListener = new RBColliderListener();
+            colliderListener.For(_mine);
+            colliderListener.OnCollisionEnterAction = OnMineCollisionEnter;
         }
-    }
-
-    public void ThrowMine(Vector3 spawnPosition)
-    {
-        CmdThrowMine(spawnPosition);
-    }
-
-    [Command]
-    void CmdThrowMine(Vector3 spawnPosition)
-    {
-        Debug.Log("CmdThrowMine");
-        // spawn the mine
-        _mine = Instantiate(MinePrefab, spawnPosition, MinePrefab.transform.rotation);
-        NetworkServer.Spawn(_mine);
-
-        _targetTransformStartPos = _aimTarget.transform.position;
-        TargetPosition = _aimTarget.point;
-
-        RBColliderListener colliderListener = new RBColliderListener();
-        colliderListener.For(_mine);
-        colliderListener.OnCollisionEnterAction = OnMineCollisionEnter;
     }
 
     void OnMineCollisionEnter(Collision collision)
@@ -143,18 +133,16 @@ public class RBPowerupMineHandlerServer : NetworkBehaviour
 
     public void ExplodeMine(bool stopCoroutine = true)
     {
-        if (_mine == null)
-        {
-            MineDestroyed = true;
-            return;
-        }
-        MineDestroyed = true;
         CmdExplodeMine(stopCoroutine);
     }
 
     [Command]
     void CmdExplodeMine(bool stopCoroutine)
     {
+        MineDestroyed = true;
+        if (_mine == null)
+            return;
+
         NetworkServer.Destroy(_mine);
         TriggerBlastWave();
 
@@ -167,9 +155,53 @@ public class RBPowerupMineHandlerServer : NetworkBehaviour
     void TriggerBlastWave()
     {
         Debug.Log("Trigger blast wave");
+
+        var explosionForce = 40.0f;
+        var explosionRadius = 15.0f;
+        var objectsInHitRange = Physics.OverlapSphere(_mine.transform.position, explosionRadius);
+
+        foreach (var obj in objectsInHitRange)
+        {
+            switch (obj.tag)
+            {
+                case "Ball":
+                    obj.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, _mine.transform.position, explosionRadius, 1.0f, ForceMode.Impulse);
+                    break;
+                case "Player":
+                    if (obj.gameObject.name == "Shield")
+                        break;
+
+                    var connVtr = obj.transform.position - _mine.transform.position;
+                    var distance = connVtr.magnitude;
+                    var distFactor = (explosionRadius - Mathf.Min(connVtr.magnitude, explosionRadius)) / explosionRadius;
+                    var dir = connVtr.normalized;
+                    var forceVtr = dir * distFactor * explosionForce;
+
+                    var playerObject = obj.gameObject;
+                    while (playerObject.transform.parent != null)
+                        playerObject = playerObject.transform.parent.gameObject;
+
+                    var nwIdentity = playerObject.GetComponent<NetworkIdentity>();
+
+                    TargetApplyPlayerExplosionForce(nwIdentity.connectionToClient, forceVtr * 3);
+                    break;
+            }
+        }
+    }
+
+    [TargetRpc]
+    void TargetApplyPlayerExplosionForce(NetworkConnection conn, Vector3 forceVtr)
+    {
+        RBPlayerMovement.Instance.ApplyExternalForce(forceVtr, .3f);
     }
 
     public void Reset()
+    {
+        CmdReset();
+    }
+
+    [Command]
+    void CmdReset()
     {
         _mine = null;
         _targetTransformStartPos = Vector3.zero;
@@ -177,5 +209,9 @@ public class RBPowerupMineHandlerServer : NetworkBehaviour
         TargetReached = false;
         MineDestroyed = false;
         AimTargetFound = false;
+
+        if (_explosionTimer != null)
+            StopCoroutine(_explosionTimer);
+        _explosionTimer = null;
     }
 }

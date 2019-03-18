@@ -28,8 +28,15 @@ public class RBPlayerMovement : MonoBehaviour
 
     public float VerticalVelocity { get; set; }
 
-    private bool isJumping;
-    private Vector3 prevMoveVector;
+    private bool _isJumping;
+    private Vector3 _prevMoveVector;
+
+
+    private bool _extForceActive = false;
+    private float _extForceTotalDuration = 0.0f;
+    private float _extForcePassedDuration = 0.0f;
+    private Vector3 _extForceVtr = Vector3.zero;
+
 
     void Awake()
     {
@@ -52,7 +59,7 @@ public class RBPlayerMovement : MonoBehaviour
     {
         // checks if the player has finished jumping
         if (RBPlayerController.CharController.isGrounded)
-            isJumping = false;
+            _isJumping = false;
 
         // transform move vector to world space
         MoveVector = transform.TransformDirection(MoveVector);
@@ -67,17 +74,20 @@ public class RBPlayerMovement : MonoBehaviour
         // reapply vertical velocity (y direction) to move vectory
         MoveVector = new Vector3(MoveVector.x, VerticalVelocity, MoveVector.z);
 
+        // apply external force
+        ApplyExternalForce();
+
         // apply gravity
         ApplyGravity();
 
         // move character in world space
-        RBPlayerController.CharController.Move((isJumping ? new Vector3(prevMoveVector.x, MoveVector.y, prevMoveVector.z) : MoveVector) * Time.deltaTime);
+        RBPlayerController.CharController.Move((_isJumping ? new Vector3(_prevMoveVector.x, MoveVector.y, _prevMoveVector.z) : MoveVector) * Time.deltaTime);
 
         // checks if the player starts jumping and stores the inital move vector
-        if (!RBPlayerController.CharController.isGrounded && !isJumping)
+        if (!RBPlayerController.CharController.isGrounded && !_isJumping)
         {
-            prevMoveVector = MoveVector;
-            isJumping = true;
+            _prevMoveVector = MoveVector;
+            _isJumping = true;
         }
     }
 
@@ -136,5 +146,32 @@ public class RBPlayerMovement : MonoBehaviour
         }
 
         return moveSpeed * SpeedMultiplier;
+    }
+
+    /// <summary>
+    /// Used for internal calculations.
+    /// </summary>
+    private void ApplyExternalForce()
+    {
+        if (!_extForceActive) return;
+
+        _extForcePassedDuration += Time.deltaTime;
+        _extForcePassedDuration = Mathf.Min(_extForcePassedDuration, _extForceTotalDuration);
+
+        var moveVtrWeight = _extForcePassedDuration / _extForceTotalDuration;
+        var forceVtrWeight = 1 - moveVtrWeight;
+
+        MoveVector = (MoveVector * moveVtrWeight) + (_extForceVtr * forceVtrWeight);
+
+        if (_extForcePassedDuration == _extForceTotalDuration)
+            _extForceActive = false;
+    }
+
+    public void ApplyExternalForce(Vector3 force, float duration)
+    {
+        _extForceActive = true;
+        _extForceTotalDuration = duration;
+        _extForcePassedDuration = 0.0f;
+        _extForceVtr = force;
     }
 }

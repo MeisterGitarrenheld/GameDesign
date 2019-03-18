@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4917717872746258}
   - component: {fileID: 33159555898154998}
   - component: {fileID: 23841164911481978}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PowerupEnlargeShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4065622019262686}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PS_PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4220391317982124}
   - component: {fileID: 198640115939141830}
   - component: {fileID: 199288737331170518}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Rings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 114020143787253908}
   - component: {fileID: 114613089998509082}
   - component: {fileID: 136418816612097804}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PowerupEnlargeShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4610581656612782}
   - component: {fileID: 198237003829998496}
   - component: {fileID: 199595365048122962}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}

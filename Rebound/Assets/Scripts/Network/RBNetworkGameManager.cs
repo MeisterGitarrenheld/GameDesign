@@ -5,15 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using System;
 
-public class RBNetworkGameManager : NetworkBehaviour {
-
-
+public class RBNetworkGameManager : NetworkBehaviour
+{
     public static RBNetworkGameManager Instance;
 
-    private Dictionary<int, int> Score;
+    private Dictionary<int, int> _score;
 
-    private ARBArenaSetup ArenaSetup;
-    private Coroutine coroutine;
+    private ARBArenaSetup _arenaSetup;
+    private Coroutine _coroutine;
 
     RBAudience[] audience;
 
@@ -23,10 +22,11 @@ public class RBNetworkGameManager : NetworkBehaviour {
 
         if (isServer)
         {
-            RegisterNetworkMessages();
+            RegisterHostNetworkMessages();
         }
-        Score = new Dictionary<int, int>();
-        ArenaSetup = GameObject.Find("GameStateController").GetComponent<ARBArenaSetup>();
+
+        _score = new Dictionary<int, int>();
+        _arenaSetup = GameObject.Find("GameStateController").GetComponent<ARBArenaSetup>();
         RespawnBall();
 
         audience = FindObjectsOfType<RBAudience>();
@@ -37,10 +37,6 @@ public class RBNetworkGameManager : NetworkBehaviour {
     {
         if (!isServer)
             return;
-
-
-
-
     }
 
     /// <summary>
@@ -53,9 +49,9 @@ public class RBNetworkGameManager : NetworkBehaviour {
         // Amount of goals recieved
         // Score[goalID] += 1;
 
-        
-        if (coroutine == null)
-            coroutine = StartCoroutine(GoalWorker(Ball));
+
+        if (_coroutine == null)
+            _coroutine = StartCoroutine(GoalWorker(Ball));
     }
 
     IEnumerator GoalWorker(GameObject Ball)
@@ -66,14 +62,14 @@ public class RBNetworkGameManager : NetworkBehaviour {
         RespawnBall();
 
         yield return null;
-        coroutine = null;
+        _coroutine = null;
     }
 
     private void RespawnBall()
     {
         if (isServer)
         {
-            var BallObject = Instantiate(ArenaSetup.BallPrefab, ArenaSetup.BallStartPosition.position, ArenaSetup.BallStartPosition.rotation);
+            var BallObject = Instantiate(_arenaSetup.BallPrefab, _arenaSetup.BallStartPosition.position, _arenaSetup.BallStartPosition.rotation);
             BallObject.GetComponent<Rigidbody>().velocity =
                 new Vector3(
                     UnityEngine.Random.Range(-25, 25),
@@ -83,22 +79,22 @@ public class RBNetworkGameManager : NetworkBehaviour {
         }
     }
 
-    private void RegisterNetworkMessages()
+    private void RegisterHostNetworkMessages()
     {
         NetworkServer.RegisterHandler((short)RBCustomMsgTypes.RBPlayerMovementMessage, OnReceivePlayerMovementMessage);
         NetworkServer.RegisterHandler((short)RBCustomMsgTypes.RBPlayerPhysicsMessage, OnRecievePlayerPhysicsMessage);
-        NetworkServer.RegisterHandler((short)RBCustomMsgTypes.RBGameEventMessage, OnRecieveGameEventMessage);
+        NetworkServer.RegisterHandler((short)RBCustomMsgTypes.RBGameEventMessage, OnHostRecieveGameEventMessage);
 
     }
 
-    private void OnRecieveGameEventMessage(NetworkMessage _message)
+    private void OnHostRecieveGameEventMessage(NetworkMessage _message)
     {
         RBGameEventMessage _msg = _message.ReadMessage<RBGameEventMessage>();
-        switch(_msg.TriggeredEventType)
+        switch (_msg.TriggeredEventType)
         {
             case GameEvent.GameOver: break;
             case GameEvent.Goal:
-                print("Goal by: " + _msg.TriggeredPlayerID + " for Team: " + _msg.TriggeredTeamID  + " in Goal of Team: " + _msg.GameEventInfo);
+                print("Goal by: " + _msg.TriggeredPlayerID + " for Team: " + _msg.TriggeredTeamID + " in Goal of Team: " + _msg.GameEventInfo);
                 NetworkServer.SendToAll((short)RBCustomMsgTypes.RBGameEventMessage, _msg);
                 Array.ForEach(audience, aud => { aud.Jump = true; aud.MinJumpTime = 0.1f; });
                 break;

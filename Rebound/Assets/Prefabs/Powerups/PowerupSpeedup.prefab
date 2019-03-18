@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4995068141904202}
   - component: {fileID: 198180713937076864}
   - component: {fileID: 199652925069166872}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4518587496394130}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PS_PowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   - component: {fileID: 4736034542258460}
   - component: {fileID: 198368187446733806}
   - component: {fileID: 199229580342782044}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Rings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 114902170397634248}
   - component: {fileID: 114258468093250340}
   - component: {fileID: 136776734905631284}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PowerupSpeedup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 33279630014375294}
   - component: {fileID: 23598115748185908}
   - component: {fileID: 114250075631495062}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PowerupSpeedup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
