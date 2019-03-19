@@ -39,6 +39,7 @@ public class RBCameraController : MonoBehaviour
     private float desiredDistance = 0f;
     private float distanceSmooth = 0f;
     private float preOccludedDistance = 0f;
+    private float cameraYOffset = .05f;
 
     /// <summary>
     /// Used to Initialize
@@ -231,7 +232,7 @@ public class RBCameraController : MonoBehaviour
         var posX = Mathf.SmoothDamp(position.x, desiredPosition.x, ref velX, X_Smooth);
         var posY = Mathf.SmoothDamp(position.y, desiredPosition.y, ref velY, Y_Smooth);
         var posZ = Mathf.SmoothDamp(position.z, desiredPosition.z, ref velZ, X_Smooth);
-        position = new Vector3(posX, posY, posZ);
+        position = new Vector3(posX, posY + cameraYOffset, posZ);
 
         transform.position = position;
 
