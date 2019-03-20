@@ -27660,6 +27660,7 @@ GameObject:
   - component: {fileID: 1651196877}
   - component: {fileID: 1651196876}
   - component: {fileID: 1651196879}
+  - component: {fileID: 1651196880}
   m_Layer: 0
   m_Name: GameStateController
   m_TagString: Untagged
@@ -27756,6 +27757,18 @@ MonoBehaviour:
   - {fileID: 294044004}
   - {fileID: 1463953268}
   - {fileID: 1757992987}
+--- !u!114 &1651196880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1651196875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc7f6757411db2d49b714464b45a5670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LockCursor: 1
 --- !u!1 &1653982849
 GameObject:
   m_ObjectHideFlags: 0

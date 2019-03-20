@@ -67,6 +67,9 @@ public class RBCameraController : MonoBehaviour
         if (TargetLookAt == null)
             return;
 
+        if (!RBHideLockCursor.LockCursor)
+            return;
+
         HandlePlayerInput();
 
         int count = 0;

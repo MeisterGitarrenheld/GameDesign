@@ -37,9 +37,12 @@ public class RBPlayerController : MonoBehaviour
         if (Camera.main == null)
             return;
 
+        if (!RBHideLockCursor.LockCursor)
+            return;
+
         GetUserInput();
         HandleActionInput();
-
+                
         RBPlayerMovement.Instance.UpdateMovement();
 	}
 
