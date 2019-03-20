@@ -7,6 +7,8 @@ using System;
 
 public class ARBArenaSetup : NetworkBehaviour
 {
+    public static ARBArenaSetup Instance;
+
     public GameObject LocalPlayer = null;
 
     public Transform BallStartPosition;
@@ -16,8 +18,12 @@ public class ARBArenaSetup : NetworkBehaviour
     public GameObject BallPrefab;
     public GameObject ShieldPrefab;
 
+    [SyncVar]
+    public bool GamePaused = true;
+
     protected virtual void Awake()
     {
+        Instance = this;
         SetupPlayers();
         //SetupCamera();
     }
@@ -100,5 +106,23 @@ public class ARBArenaSetup : NetworkBehaviour
         targetLookAt.transform.localPosition = new Vector3(0, 5, 0);
 
         RBCameraController.SetupCamera(targetLookAt);
+    }
+
+    void StartGame()
+    {
+        if (!isServer)
+            return;
+
+        // TODO enter logic ;)
+        print("Game starting...");
+        RBNetworkGameManager.Instance.RespawnBall();
+        GamePaused = false;
+    }
+
+    public void PrepareForGameStart()
+    {
+        // do something
+
+        StartGame();
     }
 }

@@ -27,7 +27,7 @@ public class RBNetworkGameManager : NetworkBehaviour
 
         _score = new Dictionary<int, int>();
         _arenaSetup = GameObject.Find("GameStateController").GetComponent<ARBArenaSetup>();
-        RespawnBall();
+        //RespawnBall();
 
         audience = FindObjectsOfType<RBAudience>();
 
@@ -65,7 +65,7 @@ public class RBNetworkGameManager : NetworkBehaviour
         _coroutine = null;
     }
 
-    private void RespawnBall()
+    public void RespawnBall()
     {
         if (isServer)
         {

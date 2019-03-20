@@ -17,14 +17,18 @@ public class RBIngameUiManager : NetworkBehaviour
     [SyncVar]
     private float _timer;
 
+    private ARBArenaSetup _arenaSetup;
+
     void Start()
     {
 
         NetworkManager.singleton.client.RegisterHandler((short)RBCustomMsgTypes.RBGameEventMessage, OnRecieveGameEventMessage);
         _teamScore = new int[4];
 
-        if(isServer)
+        if (isServer)
             _timer = 10 * 60;
+
+        _arenaSetup = gameObject.GetComponent<ARBArenaSetup>();
 
         Array.ForEach(TeamScorePanels, tsp => tsp.text = "0");
     }
@@ -46,7 +50,7 @@ public class RBIngameUiManager : NetworkBehaviour
 
     void Update()
     {
-        if(isServer)
+        if (isServer && !_arenaSetup.GamePaused)
             _timer -= Time.deltaTime;
 
         string minutes = ((int)(_timer / 60f)).ToString();

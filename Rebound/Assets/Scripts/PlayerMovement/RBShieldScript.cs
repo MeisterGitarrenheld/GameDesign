@@ -59,6 +59,5 @@ public class RBShieldScript : MonoBehaviour
 
         // rotate the shield in the look position of the player
         transform.rotation = Quaternion.Euler(Camera.main.transform.eulerAngles.x - rotationOffsetDegree, transform.eulerAngles.y, transform.eulerAngles.z);
-        
     }
 }

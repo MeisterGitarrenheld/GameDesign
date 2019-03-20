@@ -61,8 +61,11 @@ public class RBPowerupSpawner : NetworkBehaviour
     {
         if (!isServer) return;
 
-        TrySpawnPowerup();
-        RemoveOutdatedPowerups();
+        if (!ARBArenaSetup.Instance.GamePaused)
+        {
+            TrySpawnPowerup();
+            RemoveOutdatedPowerups();
+        }
     }
 
     /// <summary>
