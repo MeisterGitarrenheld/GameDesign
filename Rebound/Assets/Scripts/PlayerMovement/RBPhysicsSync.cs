@@ -24,7 +24,7 @@ public class RBPhysicsSync : NetworkBehaviour {
         if (!isServer)
             return;
         RBPlayerPhysicsMessage _msg = _message.ReadMessage<RBPlayerPhysicsMessage>();
-        GetComponent<RBBall>().Player_LastHitID = _msg.PlayerHitID;
+        GetComponent<RBBall>().LastHitPlayerName = _msg.PlayerHitName;
         GetComponent<RBBall>().Team_LastHit = _msg.PlayerTeamID;
         if (rb.velocity.magnitude < 0.1f)
             rb.velocity = _msg.objectHitDirection.normalized * 10;

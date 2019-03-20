@@ -12,6 +12,5 @@ public class RBPlayerPhysicsMessage : MessageBase
     /// </summary>
     public Vector3 objectHitDirection;
     public string PlayerHitName;
-    public int PlayerHitID;
     public int PlayerTeamID;
 }

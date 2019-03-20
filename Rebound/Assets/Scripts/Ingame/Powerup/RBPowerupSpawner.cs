@@ -146,8 +146,8 @@ public class RBPowerupSpawner : NetworkBehaviour
         var spawnAreaRect = spawnArea.rect;
 
         var x = spawnAreaPosition.x + _random.Next(0, (int)spawnAreaRect.width + 1);
-        var y = spawnAreaPosition.y;
         var z = spawnAreaPosition.z + _random.Next(0, (int)spawnAreaRect.height + 1);
+        var y = Terrain.activeTerrain.SampleHeight(new Vector3(x, 0, z));
 
         return new Vector3(x, y, z);
     }

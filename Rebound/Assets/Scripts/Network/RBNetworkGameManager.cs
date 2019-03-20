@@ -94,12 +94,12 @@ public class RBNetworkGameManager : NetworkBehaviour
         {
             case GameEvent.GameOver: break;
             case GameEvent.Goal:
-                print("Goal by: " + _msg.TriggeredPlayerID + " for Team: " + _msg.TriggeredTeamID + " in Goal of Team: " + _msg.GameEventInfo);
+                print("Goal by: " + _msg.TriggeredPlayerName + " for Team: " + _msg.TriggeredTeamID + " in Goal of Team: " + _msg.GameEventInfo);
                 NetworkServer.SendToAll((short)RBCustomMsgTypes.RBGameEventMessage, _msg);
                 Array.ForEach(audience, aud => { aud.Jump = true; aud.MinJumpTime = 0.1f; });
                 break;
             case GameEvent.PowerUpCollected:
-                print("Ball Collected Powerup " + _msg.GameEventInfo + " for Player: " + _msg.TriggeredPlayerID + " in Team: " + _msg.TriggeredTeamID);
+                print("Ball Collected Powerup " + _msg.GameEventInfo + " for Player: " + _msg.TriggeredPlayerName + " in Team: " + _msg.TriggeredTeamID);
                 break;
             default: break;
         }

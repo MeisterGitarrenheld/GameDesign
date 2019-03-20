@@ -829,10 +829,6 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Team 2
       m_Image: {fileID: 0}
-    - m_Text: Team 3
-      m_Image: {fileID: 0}
-    - m_Text: Team 4
-      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

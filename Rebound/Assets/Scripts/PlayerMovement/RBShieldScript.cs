@@ -18,8 +18,7 @@ public class RBShieldScript : MonoBehaviour
         RBPlayerPhysicsMessage msg = new RBPlayerPhysicsMessage()
         {
             objectHitDirection = transform.forward * (curSpeed > 1f ? curSpeed : 1f),
-            PlayerHitName = transform.name,
-            PlayerHitID = character.PlayerInfo.CharacterId,
+            PlayerHitName = character.PlayerInfo.Username,
             PlayerTeamID = character.PlayerInfo.Team
         };
         NetworkManager.singleton.client.Send((short)RBCustomMsgTypes.RBPlayerPhysicsMessage, msg);

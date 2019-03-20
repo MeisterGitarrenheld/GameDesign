@@ -63,7 +63,8 @@ public class ARBArenaSetup : NetworkBehaviour
 
 
         // setup the players
-        var spawnIndex = 0;
+        var team1SpawnIndex = 0;
+        var team2SpawnIndex = 2;
         foreach (var player in players)
         {
             if (player.GetComponent<NetworkBehaviour>().isLocalPlayer)
@@ -81,8 +82,12 @@ public class ARBArenaSetup : NetworkBehaviour
             }
 
             // place the character at the correct spawn position
-            Goals[spawnIndex].OwningTeamID = player.GetComponent<RBCharacter>().PlayerInfo.Team;
-            var targetPosition = PlayerStartPositions[spawnIndex++];
+            var playerTeam = player.GetComponent<RBCharacter>().PlayerInfo.Team;
+            var spawnIndex = playerTeam == 1 ? team1SpawnIndex++ : team2SpawnIndex++;
+
+            Goals[spawnIndex].OwningTeamID = playerTeam;
+
+            var targetPosition = PlayerStartPositions[spawnIndex];
             player.transform.position = targetPosition.position;
         }
     }

@@ -14,7 +14,7 @@ public class RBMatch
     private List<RBPlayer> _players = new List<RBPlayer>();
     public ReadOnlyCollection<RBPlayer> Players { get { return _players.AsReadOnly(); } }
 
-    public int TeamCount { get; private set; } = 4;
+    public int TeamCount { get; private set; } = 2;
 
     public int MaxPlayerCount { get; private set; } = 4;
 

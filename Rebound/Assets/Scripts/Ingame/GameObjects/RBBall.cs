@@ -3,30 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class RBBall : NetworkBehaviour {
-
-
-    public int Player_LastHitID;
+public class RBBall : NetworkBehaviour
+{
+    public string LastHitPlayerName = null;
     public int Team_LastHit;
 
-    private bool inGoal;
+    [SyncVar]
+    private bool _inGoal;
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Goal" && !inGoal)
+        if (!isServer)
+            return;
+
+        if (other.tag == "Goal" && !_inGoal)
         {
             RBNetworkGameManager.Instance.Goal(gameObject, other.GetComponent<RBGoal>().OwningTeamID);
 
             RBGameEventMessage msg = new RBGameEventMessage()
             {
                 TriggeredEventType = GameEvent.Goal,
-                TriggeredPlayerID = Player_LastHitID,
+                TriggeredPlayerName = LastHitPlayerName,
                 TriggeredTeamID = Team_LastHit,
                 GameEventInfo = other.GetComponent<RBGoal>().OwningTeamID.ToString()
             };
             NetworkManager.singleton.client.Send((short)RBCustomMsgTypes.RBGameEventMessage, msg);
-            inGoal = true;
+            _inGoal = true;
         }
     }
-
 }

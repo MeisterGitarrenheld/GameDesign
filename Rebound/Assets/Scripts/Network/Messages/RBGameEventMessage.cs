@@ -16,7 +16,7 @@ public class RBGameEventMessage : MessageBase
 {
     public const short game_event_message = (short)RBCustomMsgTypes.RBGameEventMessage;
     public GameEvent TriggeredEventType;
-    public int TriggeredPlayerID;
+    public string TriggeredPlayerName;
     public int TriggeredTeamID;
 
     /// <summary>
