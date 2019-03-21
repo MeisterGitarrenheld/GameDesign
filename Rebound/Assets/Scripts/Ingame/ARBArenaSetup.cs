@@ -21,6 +21,9 @@ public class ARBArenaSetup : NetworkBehaviour
     [SyncVar]
     public bool GamePaused = true;
 
+    [SyncVar]
+    public bool PlayerMovementLocked = true;
+
     protected virtual void Awake()
     {
         Instance = this;
@@ -122,11 +125,30 @@ public class ARBArenaSetup : NetworkBehaviour
     public void PrepareForGameStart()
     {
         // enable movement
+        if (isServer)
+            PlayerMovementLocked = false;
 
         // enable UI
-        print("tried to show ingame ui with instance " + RBIngameCanvas.Instance.ToString());
         RBIngameCanvas.Instance.GetComponent<RBCanvasNavigation>().Show();
+
+        StartCoroutine(GameCountdown());
+    }
+
+    IEnumerator GameCountdown()
+    {
+        int i = 5;
+        while(i >= 0)
+        {
+            yield return new WaitForSeconds(1);
+            RpcSetCountdown(i--);
+        }
 
         StartGame();
     }
+
+     [ClientRpc]
+     private void RpcSetCountdown(int number)
+     {
+        print("Game Starts in " + number);
+     }
 }

@@ -40,7 +40,7 @@ public class RBPlayerController : MonoBehaviour
         if (!RBHideLockCursor.LockCursor)
             return;
 
-        if (ARBArenaSetup.Instance != null && ARBArenaSetup.Instance.GamePaused)
+        if (ARBArenaSetup.Instance != null && ARBArenaSetup.Instance.PlayerMovementLocked)
             return;
 
         GetUserInput();

@@ -17,6 +17,7 @@ public class RBNetworkManager : NetworkManager
     public event Action OnClientStarted;
     public event Action OnPlayerAdded;
     public event Action OnPlayerRemoved;
+    public int LoadingScreenDelay = 3;
 
     private Dictionary<string, NetworkConnection> _connMapping = new Dictionary<string, NetworkConnection>(); // <username, connection>
 
@@ -128,26 +129,28 @@ public class RBNetworkManager : NetworkManager
 
     private void LoadSceneAsync(string sceneName)
     {
-        _loadingSceneAsync = SceneManager.LoadSceneAsync(sceneName);
-        StartCoroutine(LoadSceneAsyncCR());
+        StartCoroutine(LoadSceneAsyncCR(sceneName));
     }
 
-    IEnumerator LoadSceneAsyncCR()
+    IEnumerator LoadSceneAsyncCR(string sceneName)
     {
+        _loadingSceneAsync = SceneManager.LoadSceneAsync(sceneName);
+
         if (_loadingSceneAsync == null)
             yield return null;
 
-        if (!_loadingSceneAsync.isDone)
+        _loadingSceneAsync.allowSceneActivation = true;
+        while (!_loadingSceneAsync.isDone)
             yield return null;
 
-        _loadingSceneAsync.allowSceneActivation = true;
+        
         _loadingSceneAsync = null;
-
+        
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-
+        
         FinishSceneLoad();
     }
 
@@ -166,12 +169,12 @@ public class RBNetworkManager : NetworkManager
     public override void OnServerSceneChanged(string sceneName)
     {
         base.OnServerSceneChanged(sceneName);
-        StartCoroutine(WaitSeconds(10));
+        StartCoroutine(WaitLoadingScreenDelay());
     }
 
-    IEnumerator WaitSeconds(int seconds)
+    IEnumerator WaitLoadingScreenDelay()
     {
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(LoadingScreenDelay);
 
         NetworkServer.SendToAll(RBShowLoadscreenMessage.MSG_TYPE, new RBShowLoadscreenMessage { Show = false, SceneName = "" });
     }
