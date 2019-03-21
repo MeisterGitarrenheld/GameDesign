@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
-public enum RBCustomMsgTypes { RBInitPlayerMessage = 1000, RBLobbyMatchUpdateMessage, RBPlayerMovementMessage, RBPlayerPhysicsMessage, RBGameEventMessage }
+public enum RBCustomMsgTypes { RBInitPlayerMessage = 1000, RBLobbyMatchUpdateMessage, RBPlayerMovementMessage, RBPlayerPhysicsMessage, RBGameEventMessage, RBShowLoadscreenMessage }
 
 public class RBNetworkManager : NetworkManager
 {
@@ -91,8 +92,88 @@ public class RBNetworkManager : NetworkManager
             RBMatch.Instance.AddPlayer(host);
         }
         client.RegisterHandler(RBLobbyMatchUpdateMessage.MSG_TYPE, OnLobbyMatchUpdateMessageReceived);
+        client.RegisterHandler(RBShowLoadscreenMessage.MSG_TYPE, OnShowLoadscreenMessageReceived);
 
         OnClientStarted?.Invoke();
+    }
+
+    private AsyncOperation _loadingSceneAsync;
+
+    public override void ServerChangeScene(string newSceneName)
+    {
+        //base.ServerChangeScene(newSceneName);
+        NetworkServer.SetAllClientsNotReady();
+        NetworkServer.SendToAll(RBShowLoadscreenMessage.MSG_TYPE, new RBShowLoadscreenMessage() { SceneName = newSceneName, Show = true });
+    }
+
+    private void OnShowLoadscreenMessageReceived(NetworkMessage netMsg)
+    {
+        var gameMsg = netMsg.ReadMessage<RBShowLoadscreenMessage>();
+
+        if(gameMsg.Show)
+        {
+            networkSceneName = gameMsg.SceneName;
+
+            if (SceneManager.GetActiveScene().name != gameMsg.SceneName && gameMsg.SceneName != "")
+            {
+                RBLoadingScreen.Instance.ShowLoadingScreen();
+                LoadSceneAsync(gameMsg.SceneName);
+            }
+        }
+        else
+        {
+            RBLoadingScreen.Instance.HideLoadingScreen();
+        }
+    }
+
+    private void LoadSceneAsync(string sceneName)
+    {
+        _loadingSceneAsync = SceneManager.LoadSceneAsync(sceneName);
+        StartCoroutine(LoadSceneAsyncCR());
+    }
+
+    IEnumerator LoadSceneAsyncCR()
+    {
+        if (_loadingSceneAsync == null)
+            yield return null;
+
+        if (!_loadingSceneAsync.isDone)
+            yield return null;
+
+        _loadingSceneAsync.allowSceneActivation = true;
+        _loadingSceneAsync = null;
+
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+
+        FinishSceneLoad();
+    }
+
+    private void FinishSceneLoad()
+    {
+        if (IsClientConnected() && client != null)
+            OnClientSceneChanged(client.connection);
+
+        if(NetworkServer.active)
+        {
+            NetworkServer.SpawnObjects();
+            OnServerSceneChanged(networkSceneName);
+        }
+    }
+
+    public override void OnServerSceneChanged(string sceneName)
+    {
+        base.OnServerSceneChanged(sceneName);
+        StartCoroutine(WaitSeconds(10));
+    }
+
+    IEnumerator WaitSeconds(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        NetworkServer.SendToAll(RBShowLoadscreenMessage.MSG_TYPE, new RBShowLoadscreenMessage { Show = false, SceneName = "" });
     }
 
     /// <summary>
