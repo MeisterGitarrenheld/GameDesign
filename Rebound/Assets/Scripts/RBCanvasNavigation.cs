@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class RBCanvasNavigation : MonoBehaviour
 {
     public event Action<RBCanvasNavigation> OnFadeInStarted;

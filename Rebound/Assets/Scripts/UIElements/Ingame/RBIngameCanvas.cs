@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RBIngameCanvas : MonoBehaviour {
 
-    public static RBIngameCanvas instance;
+    public static RBIngameCanvas Instance;
 
     public GameObject ItemBar;
     public GameObject SkillBar;
@@ -16,7 +16,7 @@ public class RBIngameCanvas : MonoBehaviour {
 
     void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     void Start()

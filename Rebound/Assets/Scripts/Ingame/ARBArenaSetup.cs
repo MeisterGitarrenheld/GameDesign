@@ -121,7 +121,11 @@ public class ARBArenaSetup : NetworkBehaviour
 
     public void PrepareForGameStart()
     {
-        // do something
+        // enable movement
+
+        // enable UI
+        print("tried to show ingame ui with instance " + RBIngameCanvas.Instance.ToString());
+        RBIngameCanvas.Instance.GetComponent<RBCanvasNavigation>().Show();
 
         StartGame();
     }
