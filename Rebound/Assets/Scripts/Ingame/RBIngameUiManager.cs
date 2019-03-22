@@ -52,7 +52,7 @@ public class RBIngameUiManager : NetworkBehaviour
     {
         if (isServer)
         {
-            if (!_arenaSetup.GameDone)
+            if (!_arenaSetup.GameDone && !_arenaSetup.GamePaused)
             {
                 _timer -= Time.deltaTime;
                 if (_timer <= 0.0f || _teamScore[0] == ARBArenaSetup.MaxGoalCount || _teamScore[1] == ARBArenaSetup.MaxGoalCount)

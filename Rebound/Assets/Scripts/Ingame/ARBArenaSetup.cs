@@ -36,9 +36,9 @@ public class ARBArenaSetup : NetworkBehaviour
     [SyncVar]
     public int WinnerTeam = 0;
 
-    public const float MaxMatchDurationSeconds = 30.0f;
+    public const float MaxMatchDurationSeconds = 10 * 60;
 
-    public const int MaxGoalCount = 2;
+    public const int MaxGoalCount = 11;
 
     [SyncVar]
     public bool PlayerMovementLocked = true;

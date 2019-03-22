@@ -5,18 +5,25 @@ using UnityEngine.Networking;
 
 public class RBBall : NetworkBehaviour
 {
+    public static Transform BallTransformInstance;
+
     public string LastHitPlayerName = null;
     public int Team_LastHit;
 
     [SyncVar]
-    private bool _inGoal;
+    public bool InGoal;
+
+    void Awake()
+    {
+        BallTransformInstance = transform;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!isServer)
             return;
 
-        if (other.tag == "Goal" && !_inGoal)
+        if (other.tag == "Goal" && !InGoal)
         {
             RBNetworkGameManager.Instance.Goal(gameObject, other.GetComponent<RBGoal>().OwningTeamID);
 
@@ -28,7 +35,7 @@ public class RBBall : NetworkBehaviour
                 GameEventInfo = other.GetComponent<RBGoal>().OwningTeamID.ToString()
             };
             NetworkManager.singleton.client.Send((short)RBCustomMsgTypes.RBGameEventMessage, msg);
-            _inGoal = true;
+            InGoal = true;
         }
     }
 }

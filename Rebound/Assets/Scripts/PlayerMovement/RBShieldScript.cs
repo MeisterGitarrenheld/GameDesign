@@ -4,36 +4,74 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 
+[RequireComponent(typeof(BoxCollider))]
 public class RBShieldScript : MonoBehaviour
 {
     private GameObject _rotationPivotPoint;
+    private BoxCollider _collider;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!transform.parent.GetComponent<NetworkIdentity>().isLocalPlayer || other.tag != "Ball")
-            return;
-        print("Hit!");
-        float curSpeed = RBPlayerController.CharController.velocity.magnitude;
-        RBCharacter character = GetComponentInParent<RBCharacter>();
-        RBPlayerPhysicsMessage msg = new RBPlayerPhysicsMessage()
-        {
-            objectHitDirection = transform.forward * (curSpeed > 1f ? curSpeed : 1f),
-            PlayerHitName = character.PlayerInfo.Username,
-            PlayerTeamID = character.PlayerInfo.Team
-        };
-        NetworkManager.singleton.client.Send((short)RBCustomMsgTypes.RBPlayerPhysicsMessage, msg);
-    }
+    private RBCharacter _character;
+    private float _maxBallShieldDistance = 2;
 
-    void Update()
-    {
-        RotateShieldWithCamera();
-    }
+    [SerializeField]
+    private float _maxSpeedBoostMultiplier = 5.0f;
+
+    private float _minSpeedBoostFactor = 0.3f;
+    private float _maxSpeedBoostCooldown = 0.5f;
+    private float _speedBoostCooldown = 0.0f;
 
     void OnEnable()
     {
         _rotationPivotPoint = GameObject.Find("Camera Focus");
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        _collider = GetComponent<BoxCollider>();
+        _character = GetComponentInParent<RBCharacter>();
     }
 
+    void Update()
+    {
+        CheckForBallSpeedBoost();
+
+        RotateShieldWithCamera();
+    }
+
+    void CheckForBallSpeedBoost()
+    {
+        _speedBoostCooldown = Mathf.Max(_speedBoostCooldown - Time.deltaTime, 0.0f);
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (_speedBoostCooldown == 0.0f)
+            {
+                _speedBoostCooldown = _maxSpeedBoostCooldown;
+
+                var ballTransform = RBBall.BallTransformInstance;
+                if (ballTransform != null)
+                {
+                    var ballPosition = ballTransform.position;
+                    var hitPoint = _collider.ClosestPointOnBounds(ballPosition);
+                    var distance = (hitPoint - ballPosition).magnitude;
+
+                    if (distance < _maxBallShieldDistance)
+                    {
+                        var speedBoostFactor = Mathf.Max(1 - (distance / _maxBallShieldDistance), _minSpeedBoostFactor);
+                        SendPhysicsUpdate(_maxSpeedBoostMultiplier * speedBoostFactor);
+                    }
+                }
+            }
+        }
+    }
+
+    void SendPhysicsUpdate(float speedMultiplier)
+    {
+        float curSpeed = RBPlayerController.CharController.velocity.magnitude;
+        RBPlayerPhysicsMessage msg = new RBPlayerPhysicsMessage()
+        {
+            objectHitDirection = (transform.forward * (curSpeed > 1f ? curSpeed : 1f)) * speedMultiplier,
+            PlayerHitName = _character.PlayerInfo.Username,
+            PlayerTeamID = _character.PlayerInfo.Team
+        };
+        NetworkManager.singleton.client.Send((short)RBCustomMsgTypes.RBPlayerPhysicsMessage, msg);
+    }
     private void RotateShieldWithCamera()
     {
         var playerObject = gameObject.FindTagInParentsRecursively("Player");
@@ -59,5 +97,13 @@ public class RBShieldScript : MonoBehaviour
 
         // rotate the shield in the look position of the player
         transform.rotation = Quaternion.Euler(Camera.main.transform.eulerAngles.x - rotationOffsetDegree, transform.eulerAngles.y, transform.eulerAngles.z);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!transform.parent.GetComponent<NetworkIdentity>().isLocalPlayer || other.tag != "Ball")
+            return;
+        
+        SendPhysicsUpdate(1);
     }
 }

@@ -12,11 +12,11 @@ public class RBPlayerMovement : MonoBehaviour
     /// <summary>
     /// Public Variables
     /// </summary>
-    public float ForwardSpeed = 40.0f;
-    public float BackwardSpeed = 15.0f;
-    public float StrafingSpeed = 20.0f;
-    public float JumpSpeed = 25.0f;
-    public float Gravity = 35.0f;
+    public float ForwardSpeed = 30.0f;
+    public float BackwardSpeed = 25.0f;
+    public float StrafingSpeed = 30.0f;
+    public float JumpSpeed = 30.0f;
+    public float Gravity = 50.0f;
     public float TerminalVelocity = 35.0f;
 
     public float SpeedMultiplier = 1.0f;
