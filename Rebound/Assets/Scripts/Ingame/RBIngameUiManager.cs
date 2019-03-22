@@ -26,7 +26,7 @@ public class RBIngameUiManager : NetworkBehaviour
         _teamScore = new int[4];
 
         if (isServer)
-            _timer = 10 * 60;
+            _timer = ARBArenaSetup.MaxMatchDurationSeconds;
 
         _arenaSetup = gameObject.GetComponent<ARBArenaSetup>();
 
@@ -50,8 +50,20 @@ public class RBIngameUiManager : NetworkBehaviour
 
     void Update()
     {
-        if (isServer && !_arenaSetup.GamePaused)
-            _timer -= Time.deltaTime;
+        if (isServer)
+        {
+            if (!_arenaSetup.GameDone)
+            {
+                _timer -= Time.deltaTime;
+                if (_timer <= 0.0f || _teamScore[0] == ARBArenaSetup.MaxGoalCount || _teamScore[1] == ARBArenaSetup.MaxGoalCount)
+                {
+                    if (_timer <= 0.0f)
+                        _timer = 0.0f;
+
+                    _arenaSetup.EndGame(_timer, _teamScore[0], _teamScore[1]);
+                }
+            }
+        }
 
         string minutes = ((int)(_timer / 60f)).ToString();
         string seconds = ((int)(_timer % 60)).ToString();
@@ -59,4 +71,5 @@ public class RBIngameUiManager : NetworkBehaviour
             seconds = "0" + seconds;
         TimeUI.text = minutes + ":" + seconds;
     }
+
 }

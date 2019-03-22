@@ -37,7 +37,7 @@ public class RBPlayerController : MonoBehaviour
         if (Camera.main == null)
             return;
 
-        if (!RBHideLockCursor.LockCursor)
+        if (!RBHideLockCursor.CursorLocked)
             return;
 
         if (ARBArenaSetup.Instance != null && ARBArenaSetup.Instance.PlayerMovementLocked)

@@ -22,10 +22,30 @@ public class ARBArenaSetup : NetworkBehaviour
     public bool GamePaused = true;
 
     [SyncVar]
+    public bool GameDone = false;
+
+    [SyncVar]
+    public float RemainingTime = 0.0f;
+
+    [SyncVar]
+    public int Team1Points = 0;
+
+    [SyncVar]
+    public int Team2Points = 0;
+
+    [SyncVar]
+    public int WinnerTeam = 0;
+
+    public const float MaxMatchDurationSeconds = 30.0f;
+
+    public const int MaxGoalCount = 2;
+
+    [SyncVar]
     public bool PlayerMovementLocked = true;
 
     protected virtual void Awake()
     {
+        GameDone = false;
         Instance = this;
         SetupPlayers();
         //SetupCamera();
@@ -81,7 +101,7 @@ public class ARBArenaSetup : NetworkBehaviour
                 LocalPlayer = player;
 
                 SetupCamera();
-                
+
                 LocalPlayer.AddComponent<RBPlayerController>();
                 LocalPlayer.AddComponent<RBPlayerAnimator>();
                 LocalPlayer.AddComponent<RBPlayerMovement>();
@@ -137,7 +157,7 @@ public class ARBArenaSetup : NetworkBehaviour
     IEnumerator GameCountdown()
     {
         int i = 5;
-        while(i >= 0)
+        while (i >= 0)
         {
             yield return new WaitForSeconds(1);
             RpcSetCountdown(i--);
@@ -146,9 +166,36 @@ public class ARBArenaSetup : NetworkBehaviour
         StartGame();
     }
 
-     [ClientRpc]
-     private void RpcSetCountdown(int number)
-     {
+    [ClientRpc]
+    private void RpcSetCountdown(int number)
+    {
         print("Game Starts in " + number);
-     }
+    }
+
+    public void EndGame(float remainingTime, int team1Points, int team2Points)
+    {
+        if (!isServer)
+            return;
+
+        GamePaused = true;
+        GameDone = true;
+
+        RemainingTime = remainingTime;
+        Team1Points = team1Points;
+        Team2Points = team2Points;
+
+        if (Team1Points > Team2Points)
+            WinnerTeam = 1;
+        else if (Team2Points > Team1Points)
+            WinnerTeam = 2;
+        else WinnerTeam = 0;
+
+        StartCoroutine(ReturnToLoginScene());
+    }
+
+    IEnumerator ReturnToLoginScene()
+    {
+        yield return new WaitForSeconds(5);
+        RBNetworkManager.Instance.ServerChangeScene("LoginScene");
+    }
 }

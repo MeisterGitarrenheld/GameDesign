@@ -111,13 +111,13 @@ public class RBNetworkManager : NetworkManager
     {
         var gameMsg = netMsg.ReadMessage<RBShowLoadscreenMessage>();
 
-        if(gameMsg.Show)
+        if (gameMsg.Show)
         {
             networkSceneName = gameMsg.SceneName;
 
             if (SceneManager.GetActiveScene().name != gameMsg.SceneName && gameMsg.SceneName != "")
             {
-                RBLoadingScreen.Instance.ShowLoadingScreen();
+                RBLoadingScreen.Instance.ShowLoadingScreen(gameMsg.SceneName);
                 LoadSceneAsync(gameMsg.SceneName);
             }
         }
@@ -143,14 +143,14 @@ public class RBNetworkManager : NetworkManager
         while (!_loadingSceneAsync.isDone)
             yield return null;
 
-        
+
         _loadingSceneAsync = null;
-        
+
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-        
+
         FinishSceneLoad();
     }
 
@@ -159,7 +159,7 @@ public class RBNetworkManager : NetworkManager
         if (IsClientConnected() && client != null)
             OnClientSceneChanged(client.connection);
 
-        if(NetworkServer.active)
+        if (NetworkServer.active)
         {
             NetworkServer.SpawnObjects();
             OnServerSceneChanged(networkSceneName);

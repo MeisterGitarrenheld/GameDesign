@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RBHideLockCursor : MonoBehaviour
 {
-    public static bool LockCursor = true;
+    public static bool CursorLocked = true;
 
     void Update()
     {
@@ -12,10 +13,23 @@ public class RBHideLockCursor : MonoBehaviour
         // pressing esc toggles between hide/show
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            LockCursor = !LockCursor;
+            CursorLocked = !CursorLocked;
         }
 
-        Cursor.lockState = LockCursor ? CursorLockMode.Locked : CursorLockMode.None;
-        Cursor.visible = !LockCursor;
+        if (CursorLocked)
+            LockCursor();
+        else UnlockCursor();
+    }
+
+    public static void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public static void LockCursor()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
