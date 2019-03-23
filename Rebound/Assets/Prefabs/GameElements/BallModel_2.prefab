@@ -29,7 +29,7 @@ GameObject:
   - component: {fileID: 114342842801178158}
   - component: {fileID: 114729823228853874}
   - component: {fileID: 96286016723570950}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BallModel_2
   m_TagString: Ball
   m_Icon: {fileID: 0}
@@ -239,8 +239,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c9329a33e59144eabeeee13a28bdfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player_LastHitID: 0
+  LastHitPlayerName: 
   Team_LastHit: 0
+  GoalEffects:
+  - {fileID: 1786888497351596, guid: 8c25fcd8ad427f54fad7796acae071a5, type: 2}
+  - {fileID: 1908014297655390, guid: 0bb268e4143719c45b928e85740cf0f4, type: 2}
+  InGoal: 0
 --- !u!114 &114342842801178158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -295,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea269a043319dd444a3f26eefe32e2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumVelocity: 1
+  minimumVelocity: 0.5
 --- !u!135 &135317401219945062
 SphereCollider:
   m_ObjectHideFlags: 1

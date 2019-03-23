@@ -13,6 +13,7 @@ public class RBIngameCanvas : MonoBehaviour {
     public GameObject SkillPrefab;
 
     private List<RBItemSlot> _itemSlots = new List<RBItemSlot>();
+    private List<RBSkillSlot> _skillSlots = new List<RBSkillSlot>();
 
     void Awake()
     {
@@ -21,7 +22,19 @@ public class RBIngameCanvas : MonoBehaviour {
 
     void Start()
     {
+        //CreateSkillSlots();
         CreateItemSlots();
+    }
+
+    public void CreateSkillSlots()
+    {
+        foreach(var binding in RBAbilityActivityControl.Instance.GetAbilityBinding())
+        {
+            var slot = Instantiate(SkillPrefab, SkillBar.transform).GetComponent<RBSkillSlot>();
+            slot.SetHotkey(binding.Key);
+            _skillSlots.Add(slot);
+            slot.UpdateSlot(binding.Key, binding.Value);
+        }
     }
 
     public void CreateItemSlots()

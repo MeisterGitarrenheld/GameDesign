@@ -23,8 +23,8 @@ TagManager:
   - PostProcessing
   - CharacterPreview
   - IgnoredByCamera
-  - 
-  - 
+  - Ball
+  - Player
   - 
   - 
   - 

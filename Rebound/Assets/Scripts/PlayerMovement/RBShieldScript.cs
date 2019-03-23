@@ -23,7 +23,7 @@ public class RBShieldScript : MonoBehaviour
     void OnEnable()
     {
         _rotationPivotPoint = GameObject.Find("Camera Focus");
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        //transform.rotation = Quaternion.Euler(0, 0, 0);
         _collider = GetComponent<BoxCollider>();
         _character = GetComponentInParent<RBCharacter>();
     }

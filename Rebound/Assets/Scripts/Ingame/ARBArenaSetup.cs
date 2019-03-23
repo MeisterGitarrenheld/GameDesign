@@ -106,6 +106,7 @@ public class ARBArenaSetup : NetworkBehaviour
                 LocalPlayer.AddComponent<RBPlayerAnimator>();
                 LocalPlayer.AddComponent<RBPlayerMovement>();
                 LocalPlayer.SetTagRecursively("Player");
+                LocalPlayer.GetComponent<RBAbilityActivityControl>().enabled = true;
 
                 LocalPlayer.GetComponent<RBNetworkPlayer>().EnableShield();
             }
@@ -150,6 +151,7 @@ public class ARBArenaSetup : NetworkBehaviour
 
         // enable UI
         RBIngameCanvas.Instance.GetComponent<RBCanvasNavigation>().Show();
+        LocalPlayer.GetComponent<RBNetworkPlayer>().Shield.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         StartCoroutine(GameCountdown());
     }
