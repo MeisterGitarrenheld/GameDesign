@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114869787331748380}
   - component: {fileID: 114076833269010924}
   - component: {fileID: 114400497532653988}
+  - component: {fileID: 114915887414453894}
   m_Layer: 0
   m_Name: MineAttached
   m_TagString: Untagged
@@ -181,7 +182,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1149633348291710}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
@@ -241,6 +242,21 @@ MonoBehaviour:
     i15: 152
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114915887414453894
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1149633348291710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203b48d080e8c924db127a66b4e2635f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lerpRate: 10
+  _posThreshold: 0.5
+  _rotThreshold: 5
+  _snapThreshold: 1
 --- !u!198 &198886620055949544
 ParticleSystem:
   m_ObjectHideFlags: 1

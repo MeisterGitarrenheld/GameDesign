@@ -259,6 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4253004263095960}
   - component: {fileID: 114477111858750542}
+  - component: {fileID: 114400846756828704}
   m_Layer: 10
   m_Name: WallObject
   m_TagString: IgnoredByCamera
@@ -1148,6 +1149,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114400846756828704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1858510795836702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ee010c0c020c4b40af8f33f637ecc85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ragdollPrefab: {fileID: 1236242358716258, guid: 821a1abaed111f04dbf4754fcb40f14e,
+    type: 2}
+  _ragdollLifeTime: 3
 --- !u!114 &114477111858750542
 MonoBehaviour:
   m_ObjectHideFlags: 1

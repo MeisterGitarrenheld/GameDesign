@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114342842801178158}
   - component: {fileID: 114729823228853874}
   - component: {fileID: 96286016723570950}
+  - component: {fileID: 114993736828930262}
   m_Layer: 11
   m_Name: BallModel_2
   m_TagString: Ball
@@ -213,7 +214,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1604070570435740}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
@@ -300,6 +301,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimumVelocity: 0.5
+--- !u!114 &114993736828930262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1604070570435740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203b48d080e8c924db127a66b4e2635f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lerpRate: 10
+  _posThreshold: 0.5
+  _rotThreshold: 5
+  _snapThreshold: 1000
 --- !u!135 &135317401219945062
 SphereCollider:
   m_ObjectHideFlags: 1

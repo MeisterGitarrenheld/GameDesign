@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 65099354019596230}
   - component: {fileID: 114374739430337452}
   - component: {fileID: 114497187258589270}
+  - component: {fileID: 114103524526430906}
   m_Layer: 0
   m_Name: Mine_2
   m_TagString: Untagged
@@ -1123,6 +1124,17 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114103524526430906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649535774451504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203b48d080e8c924db127a66b4e2635f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114374739430337452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1161,7 +1173,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1649535774451504}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
