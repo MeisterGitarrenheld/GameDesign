@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4809200283868842}
   - component: {fileID: 114027125531514966}
   m_Layer: 0
-  m_Name: RoboterArmy
+  m_Name: RobotArmyHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,4 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7fbd7ba9553f334c99cf67dbb3df75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CooldownTime: 20
+  AbilityIcon: {fileID: 21300000, guid: 043c9f2b5cf38824da7e5816ea98ad62, type: 3}
+  CooldownTime: 3

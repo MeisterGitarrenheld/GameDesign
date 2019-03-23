@@ -30,9 +30,9 @@ public class RBPlayerController : MonoBehaviour
         Instance = this;
         // todo setup camera
     }
-    	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         if (Camera.main == null)
             return;
@@ -45,9 +45,9 @@ public class RBPlayerController : MonoBehaviour
 
         GetUserInput();
         HandleActionInput();
-                
+
         RBPlayerMovement.Instance.UpdateMovement();
-	}
+    }
 
     private void GetUserInput()
     {
@@ -59,13 +59,13 @@ public class RBPlayerController : MonoBehaviour
         var vertInput = Input.GetAxis("Vertical");
         var horInput = Input.GetAxis("Horizontal");
 
-        if(CharController.isGrounded)
+        if (CharController.isGrounded)
 
-        // Adds the vertical movement to the vector
-        if (vertInput > deadZone || vertInput < -deadZone)
-        {
-            RBPlayerMovement.Instance.MoveVector += new Vector3(0, 0, vertInput);
-        }
+            // Adds the vertical movement to the vector
+            if (vertInput > deadZone || vertInput < -deadZone)
+            {
+                RBPlayerMovement.Instance.MoveVector += new Vector3(0, 0, vertInput);
+            }
         // Adds the horizontal movement to the vector
         if (horInput > deadZone || horInput < -deadZone)
         {
@@ -78,7 +78,7 @@ public class RBPlayerController : MonoBehaviour
 
     private void HandleActionInput()
     {
-        if(Input.GetButton("Jump"))
+        if (Input.GetButton("Jump"))
         {
             Jump();
         }
@@ -107,9 +107,16 @@ public class RBPlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
 
-        foreach(var ps in gameObject.GetComponentsInChildren<ParticleSystem>())
+        foreach (var ps in gameObject.GetComponentsInChildren<ParticleSystem>())
             Destroy(ps);
 
         RBPlayerMovement.Instance.SpeedMultiplier = 1;
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.name == "Terrain") return;
+        //Debug.Log("FORWARD Collision with " + hit.gameObject.name);
+        hit.transform.SendMessage("OnHitGameObject", gameObject, SendMessageOptions.DontRequireReceiver);
     }
 }

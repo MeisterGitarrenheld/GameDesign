@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class RBColliderBridge : MonoBehaviour
 {
-    private RBColliderListener _listener;
+    protected RBColliderListener listener;
 
     public void Initialize(RBColliderListener l)
     {
-        _listener = l;
+        listener = l;
     }
     void OnCollisionEnter(Collision collision)
     {
-        _listener.OnCollisionEnter(collision);
+        listener.OnCollisionEnter(collision);
     }
     void OnTriggerEnter(Collider other)
     {
-        _listener.OnTriggerEnter(other);
+        listener.OnTriggerEnter(other);
     }
 }

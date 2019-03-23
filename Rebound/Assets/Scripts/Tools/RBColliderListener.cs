@@ -8,12 +8,17 @@ public class RBColliderListener
     public Action<Collider> OnTriggerEnterAction;
     public Action<Collision> OnCollisionEnterAction;
 
-    public void For(GameObject gameObject)
+    public void For<T>(GameObject gameObject) where T : RBColliderBridge
     {
         Collider collider = gameObject.GetComponentInChildren<Collider>();
 
-        RBColliderBridge cb = collider.gameObject.AddComponent<RBColliderBridge>();
+        T cb = collider.gameObject.AddComponent<T>();
         cb.Initialize(this);
+    }
+
+    public void For(GameObject gameObject)
+    {
+        For<RBColliderBridge>(gameObject);
     }
 
     public void OnCollisionEnter(Collision collision)

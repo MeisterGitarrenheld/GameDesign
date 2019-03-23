@@ -760,6 +760,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1447602231708130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4766956244519280}
+  m_Layer: 12
+  m_Name: RobotArmySpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1460716216159240
 GameObject:
   m_ObjectHideFlags: 1
@@ -932,6 +947,7 @@ GameObject:
   - component: {fileID: 114803844857288786}
   - component: {fileID: 114720580794261648}
   - component: {fileID: 114494331808932932}
+  - component: {fileID: 114397086170545574}
   m_Layer: 12
   m_Name: Trashbot
   m_TagString: Player
@@ -2800,6 +2816,19 @@ Transform:
   m_Father: {fileID: 4374691839888636}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4766956244519280
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1447602231708130}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 6.64}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4854346349339436}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4771365394632936
 Transform:
   m_ObjectHideFlags: 1
@@ -3005,13 +3034,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1560550957580946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -68.07573, y: 5.725566, z: -45.353683}
+  m_LocalPosition: {x: -23.38, y: 14.87, z: -0.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4722309495932204}
   - {fileID: 4533844317735302}
   - {fileID: 4510854705379588}
   - {fileID: 4079522584507294}
+  - {fileID: 4766956244519280}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5761,6 +5791,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeedBoostMultiplier: 5
+--- !u!114 &114397086170545574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1560550957580946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c355d5d4c801b5846a46ef1604084d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _robotPrefab: {fileID: 1162299667868668, guid: 99331ece700f7a442a66826228cbf234,
+    type: 2}
 --- !u!114 &114463257216536492
 MonoBehaviour:
   m_ObjectHideFlags: 1
