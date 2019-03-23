@@ -55,4 +55,15 @@ public class RBNetworkPlayer : NetworkBehaviour
         // Enable it on all other clients
         EnableShieldByPlayerName(playerName);
     }
+
+    public void SetCountdown(int number)
+    {
+        RpcSetCountdown(number);
+    }
+
+    [ClientRpc]
+    private void RpcSetCountdown(int number)
+    {
+        print("Game Starts in " + number);
+    }
 }

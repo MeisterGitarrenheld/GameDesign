@@ -92,7 +92,7 @@ public class RBPlayerController : MonoBehaviour
     private Coroutine _speedBoost;
     public void SpeedBoost(float multiplier, float duration)
     {
-        if (RBPlayerMovement.Instance.SpeedMultiplier > multiplier) return;
+        //if (RBPlayerMovement.Instance.SpeedMultiplier > multiplier) return;
 
         RBPlayerMovement.Instance.SpeedMultiplier = multiplier;
 

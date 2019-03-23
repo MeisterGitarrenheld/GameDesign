@@ -10,24 +10,24 @@ public class RBAbilityRobotArmyServer : NetworkBehaviour
 
     public float RobotSpeed = 5.0f;
 
-    public void SpawnRobot(Vector3 position, Quaternion rotation, Vector3 forwardDirection)
+    public void SpawnRobot(Vector3 position, Quaternion rotation)
     {
-        CmdSpawnRobot(position, rotation, forwardDirection);
+        CmdSpawnRobot(position, rotation, RBMatch.Instance.GetLocalUser().Username);
     }
 
     [Command]
-    void CmdSpawnRobot(Vector3 position, Quaternion rotation, Vector3 forwardDirection)
+    void CmdSpawnRobot(Vector3 position, Quaternion rotation, string username)
     {
         var robot = Instantiate(_robotPrefab, position, rotation);
         NetworkServer.Spawn(robot);
 
         var colliderListener = new RBRobotColliderListener();
         colliderListener.For<RBRobotColliderBridge>(robot);
-        colliderListener.OnHitGameObjectAction = other => OnRobotHitSomething(other, robot);
-        colliderListener.OnCollisionEnterAction = collision => OnRobotHitSomething(collision.gameObject, robot);
+        colliderListener.OnHitGameObjectAction = other => OnRobotHitSomething(other, robot, username);
+        colliderListener.OnCollisionEnterAction = collision => OnRobotHitSomething(collision.gameObject, robot, username);
     }
 
-    void OnRobotHitSomething(GameObject other, GameObject robot)
+    void OnRobotHitSomething(GameObject other, GameObject robot, string localPlayerName)
     {
         if (!isServer) return;
         if (Terrain.activeTerrain.name == other.name) return;
@@ -40,6 +40,13 @@ public class RBAbilityRobotArmyServer : NetworkBehaviour
             while (playerObject.transform.parent != null)
                 playerObject = playerObject.transform.parent.gameObject;
 
+
+            if (localPlayerName == playerObject.GetComponent<RBCharacter>().PlayerInfo.Username)
+            {
+                print("hit local player");
+                return;
+            }
+
             var nwIdentity = playerObject.GetComponent<NetworkIdentity>();
 
             TargetSlowPlayer(nwIdentity.connectionToClient);
@@ -51,6 +58,6 @@ public class RBAbilityRobotArmyServer : NetworkBehaviour
     [TargetRpc]
     void TargetSlowPlayer(NetworkConnection conn)
     {
-
+        RBPlayerController.Instance.SpeedBoost(0.5f, 3);
     }
 }

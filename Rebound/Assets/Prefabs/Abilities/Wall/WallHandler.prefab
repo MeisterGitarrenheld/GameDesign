@@ -53,3 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AbilityIcon: {fileID: 21300000, guid: b1f57675643dd2847ab1194a36e4fd8d, type: 3}
   CooldownTime: 20
+  Duration: 8
+  _previewPrefab: {fileID: 1073120406193510, guid: 69a8a31130437ac4db005300e657a76d,
+    type: 2}

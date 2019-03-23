@@ -8,6 +8,8 @@ public abstract class ARBAbility : MonoBehaviour
     public Sprite AbilityIcon;
     public float CooldownTime;
 
+    protected bool PauseCooldown = false;
+
     public float CurrCooldownTime { get; private set; }
 
     public bool IsOnCooldown
@@ -17,7 +19,7 @@ public abstract class ARBAbility : MonoBehaviour
 
     protected void Update()
     {
-        if(CurrCooldownTime > 0)
+        if(CurrCooldownTime > 0 && !PauseCooldown)
             CurrCooldownTime = Mathf.Max(0, CurrCooldownTime -= Time.deltaTime);
 
         UpdateAbility();
@@ -27,7 +29,7 @@ public abstract class ARBAbility : MonoBehaviour
 
     public bool Trigger()
     {
-        if (IsOnCooldown) return false;
+        if (IsOnCooldown && !PauseCooldown) return false;
 
         CurrCooldownTime = CooldownTime;
         OnTrigger();

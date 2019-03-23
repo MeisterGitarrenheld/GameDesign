@@ -22,14 +22,16 @@ public class RBBall : NetworkBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Goal" && !InGoal)
-            SpawnGoalEffect(other);
+
+        //if (other.tag == "Goal" && !InGoal)
+            
 
         if (!isServer)
             return;
 
         if (other.tag == "Goal" && !InGoal)
         {
+            RpcSpawnGoalEffect(other.transform.position, other.GetComponent<RBGoal>().OwningTeamID);
             RBNetworkGameManager.Instance.Goal(gameObject, other.GetComponent<RBGoal>().OwningTeamID);
 
             RBGameEventMessage msg = new RBGameEventMessage()
@@ -44,19 +46,19 @@ public class RBBall : NetworkBehaviour
         }
     }
 
-    private void SpawnGoalEffect(Collider other)
+    [ClientRpc]
+    private void RpcSpawnGoalEffect(Vector3 goalPos, int owningTeamId)
     {
         Vector3 collPoint = Vector3.zero;
 
-        if (other.transform.position.z == 0)
-            collPoint = new Vector3(other.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
-        else if (other.transform.position.x == 0)
-            collPoint = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, other.transform.position.z);
+        if (goalPos.z == 0)
+            collPoint = new Vector3(goalPos.x, gameObject.transform.position.y, gameObject.transform.position.z);
+        else if (goalPos.x == 0)
+            collPoint = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, goalPos.z);
 
-        var teamId = other.GetComponent<RBGoal>().OwningTeamID;
         GameObject obj = null;
 
-        switch (teamId)
+        switch (owningTeamId)
         {
             case 1:
                 print("spawned effect 1");
@@ -69,6 +71,6 @@ public class RBBall : NetworkBehaviour
         }
 
         obj.transform.position = collPoint;
-        obj.transform.rotation = Quaternion.Euler(0, other.transform.position.x == 0 ? 0 : 90, 0);
+        obj.transform.rotation = Quaternion.Euler(0, goalPos.x == 0 ? 0 : 90, 0);
     }
 }

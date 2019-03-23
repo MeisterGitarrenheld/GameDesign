@@ -28,7 +28,7 @@ public class RBAbilityRobotArmy : ARBAbility
     {
         for (int i = 0; i < 5; i++)
         {
-            _serverHandler.SpawnRobot(_robotSpawnPosition.position, _playerTransform.rotation, _playerTransform.forward.normalized);
+            _serverHandler.SpawnRobot(_robotSpawnPosition.position, _playerTransform.rotation);
             yield return new WaitForSeconds(0.25f);
         }
     }

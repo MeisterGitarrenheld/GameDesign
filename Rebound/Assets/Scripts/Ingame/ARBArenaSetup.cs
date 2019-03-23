@@ -153,7 +153,8 @@ public class ARBArenaSetup : NetworkBehaviour
         RBIngameCanvas.Instance.GetComponent<RBCanvasNavigation>().Show();
         LocalPlayer.GetComponent<RBNetworkPlayer>().Shield.transform.rotation = Quaternion.Euler(0, 0, 0);
 
-        StartCoroutine(GameCountdown());
+        if(isServer)
+            StartCoroutine(GameCountdown());
     }
 
     IEnumerator GameCountdown()
@@ -162,7 +163,7 @@ public class ARBArenaSetup : NetworkBehaviour
         while (i >= 0)
         {
             yield return new WaitForSeconds(1);
-            RpcSetCountdown(i--);
+            LocalPlayer.GetComponent<RBNetworkPlayer>().SetCountdown(i--);
         }
 
         StartGame();

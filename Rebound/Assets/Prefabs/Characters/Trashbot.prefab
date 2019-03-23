@@ -948,6 +948,7 @@ GameObject:
   - component: {fileID: 114720580794261648}
   - component: {fileID: 114494331808932932}
   - component: {fileID: 114397086170545574}
+  - component: {fileID: 114146220898293628}
   m_Layer: 12
   m_Name: Trashbot
   m_TagString: Player
@@ -5727,6 +5728,19 @@ MonoBehaviour:
     - Prefab: {fileID: 114027125531514966, guid: ef555e8166c4d014a9280a045a295194,
         type: 2}
       Object: {fileID: 0}
+--- !u!114 &114146220898293628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1560550957580946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a83c347a465ef943b5ac9b843b7d1e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wallPrefab: {fileID: 1858510795836702, guid: 22eb8c52710d7ad40b1cc5b000bbccf1,
+    type: 2}
 --- !u!114 &114181332042327068
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5804,6 +5818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _robotPrefab: {fileID: 1162299667868668, guid: 99331ece700f7a442a66826228cbf234,
     type: 2}
+  RobotSpeed: 5
 --- !u!114 &114463257216536492
 MonoBehaviour:
   m_ObjectHideFlags: 1
