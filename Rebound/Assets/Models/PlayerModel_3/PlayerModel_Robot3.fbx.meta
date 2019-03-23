@@ -1,0 +1,388 @@
+fileFormatVersion: 2
+guid: fbc973924c92504408c79da8554f2e02
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: ArmHead.l
+    100002: ArmHead.l 1
+    100004: ArmHead.l.001
+    100006: ArmHead.r.001
+    100008: ArmTail.l
+    100010: ArmTail.l 1
+    100012: ArmTail.l.001
+    100014: ArmTail.r.001
+    100016: Bearing
+    100018: BendyArm.l
+    100020: BendyArm.l 1
+    100022: BendyArm.l.001
+    100024: BendyArm.l.001 1
+    100026: BendyArm.l.002
+    100028: BendyArm.l.003
+    100030: BendyArm.l.004
+    100032: BendyArm.l.005
+    100034: BendyArm.l.006
+    100036: BendyArm.l.007
+    100038: BendyArm.l.008
+    100040: BendyArm.l.009
+    100042: BendyArm.l.010
+    100044: BendyArm.l.011
+    100046: BendyArm.l.012
+    100048: BendyArm.l.013
+    100050: BendyArm.r.014
+    100052: BendyArm.r.015
+    100054: BendyArm.r.016
+    100056: BendyArm.r.017
+    100058: BendyArm.r.018
+    100060: BendyArm.r.019
+    100062: BendyArm.r.020
+    100064: BendyArm.r.021
+    100066: BendyArm.r.022
+    100068: BendyArm.r.023
+    100070: BendyArm.r.024
+    100072: BendyArm.r.025
+    100074: BendyArm.r.026
+    100076: BendyArm.r.027
+    100078: Body
+    100080: Body.001
+    100082: Body.001_end
+    100084: BodyBone
+    100086: Bolts
+    100088: Cube.001
+    100090: Cube.003
+    100092: Cylinder.000
+    100094: Cylinder.001
+    100096: Cylinder.002
+    100098: Cylinder.003
+    100100: Cylinder.004
+    100102: Cylinder.005
+    100104: Cylinder.006
+    100106: Cylinder.007
+    100108: Eye.L
+    100110: Eye.L_end
+    100112: EyeBack
+    100114: EyeLid
+    100116: EyeLid 1
+    100118: EyeLid_end
+    100120: Hand.l
+    100122: Hand.l.001
+    100124: Hand.l.001_end
+    100126: Hand.l_end
+    100128: Hand.r.002
+    100130: Hand.r.002_end
+    100132: Hand.r.003
+    100134: Hand.r.003_end
+    100136: Hand2.l
+    100138: Hand2.l_end
+    100140: Hand2.r.001
+    100142: Hand2.r.001_end
+    100144: Hand3.l
+    100146: Hand3.l_end
+    100148: Hand3.r.001
+    100150: Hand3.r.001_end
+    100152: HandLookAt
+    100154: HandLookAt.r
+    100156: HandLookAt.r_end
+    100158: HandLookAt_end
+    100160: Head
+    100162: Head 1
+    100164: Irirs
+    100166: Neck
+    100168: //RootNode
+    100170: Shoulderplate
+    100172: Shoulderplate.001
+    100174: Sphere.001
+    100176: Sphere.002
+    100178: Sphere.003
+    100180: Sphere.004
+    100182: VentBorder
+    100184: VentFin
+    100186: Wheelball
+    400000: ArmHead.l
+    400002: ArmHead.l 1
+    400004: ArmHead.l.001
+    400006: ArmHead.r.001
+    400008: ArmTail.l
+    400010: ArmTail.l 1
+    400012: ArmTail.l.001
+    400014: ArmTail.r.001
+    400016: Bearing
+    400018: BendyArm.l
+    400020: BendyArm.l 1
+    400022: BendyArm.l.001
+    400024: BendyArm.l.001 1
+    400026: BendyArm.l.002
+    400028: BendyArm.l.003
+    400030: BendyArm.l.004
+    400032: BendyArm.l.005
+    400034: BendyArm.l.006
+    400036: BendyArm.l.007
+    400038: BendyArm.l.008
+    400040: BendyArm.l.009
+    400042: BendyArm.l.010
+    400044: BendyArm.l.011
+    400046: BendyArm.l.012
+    400048: BendyArm.l.013
+    400050: BendyArm.r.014
+    400052: BendyArm.r.015
+    400054: BendyArm.r.016
+    400056: BendyArm.r.017
+    400058: BendyArm.r.018
+    400060: BendyArm.r.019
+    400062: BendyArm.r.020
+    400064: BendyArm.r.021
+    400066: BendyArm.r.022
+    400068: BendyArm.r.023
+    400070: BendyArm.r.024
+    400072: BendyArm.r.025
+    400074: BendyArm.r.026
+    400076: BendyArm.r.027
+    400078: Body
+    400080: Body.001
+    400082: Body.001_end
+    400084: BodyBone
+    400086: Bolts
+    400088: Cube.001
+    400090: Cube.003
+    400092: Cylinder.000
+    400094: Cylinder.001
+    400096: Cylinder.002
+    400098: Cylinder.003
+    400100: Cylinder.004
+    400102: Cylinder.005
+    400104: Cylinder.006
+    400106: Cylinder.007
+    400108: Eye.L
+    400110: Eye.L_end
+    400112: EyeBack
+    400114: EyeLid
+    400116: EyeLid 1
+    400118: EyeLid_end
+    400120: Hand.l
+    400122: Hand.l.001
+    400124: Hand.l.001_end
+    400126: Hand.l_end
+    400128: Hand.r.002
+    400130: Hand.r.002_end
+    400132: Hand.r.003
+    400134: Hand.r.003_end
+    400136: Hand2.l
+    400138: Hand2.l_end
+    400140: Hand2.r.001
+    400142: Hand2.r.001_end
+    400144: Hand3.l
+    400146: Hand3.l_end
+    400148: Hand3.r.001
+    400150: Hand3.r.001_end
+    400152: HandLookAt
+    400154: HandLookAt.r
+    400156: HandLookAt.r_end
+    400158: HandLookAt_end
+    400160: Head
+    400162: Head 1
+    400164: Irirs
+    400166: Neck
+    400168: //RootNode
+    400170: Shoulderplate
+    400172: Shoulderplate.001
+    400174: Sphere.001
+    400176: Sphere.002
+    400178: Sphere.003
+    400180: Sphere.004
+    400182: VentBorder
+    400184: VentFin
+    400186: Wheelball
+    2100000: No Name
+    2100002: Chrome
+    2300000: ArmHead.l
+    2300002: ArmHead.l.001
+    2300004: ArmTail.l 1
+    2300006: ArmTail.l.001
+    2300008: Bearing
+    2300010: Bolts
+    2300012: Cube.001
+    2300014: Cube.003
+    2300016: Cylinder.000
+    2300018: Cylinder.001
+    2300020: Cylinder.002
+    2300022: Cylinder.003
+    2300024: Cylinder.004
+    2300026: Cylinder.005
+    2300028: Cylinder.006
+    2300030: Cylinder.007
+    2300032: EyeBack
+    2300034: EyeLid 1
+    2300036: Head 1
+    2300038: Irirs
+    2300040: Shoulderplate
+    2300042: Shoulderplate.001
+    2300044: Sphere.001
+    2300046: Sphere.002
+    2300048: Sphere.003
+    2300050: Sphere.004
+    2300052: VentBorder
+    2300054: VentFin
+    2300056: Wheelball
+    3300000: ArmHead.l
+    3300002: ArmHead.l.001
+    3300004: ArmTail.l 1
+    3300006: ArmTail.l.001
+    3300008: Bearing
+    3300010: Bolts
+    3300012: Cube.001
+    3300014: Cube.003
+    3300016: Cylinder.000
+    3300018: Cylinder.001
+    3300020: Cylinder.002
+    3300022: Cylinder.003
+    3300024: Cylinder.004
+    3300026: Cylinder.005
+    3300028: Cylinder.006
+    3300030: Cylinder.007
+    3300032: EyeBack
+    3300034: EyeLid 1
+    3300036: Head 1
+    3300038: Irirs
+    3300040: Shoulderplate
+    3300042: Shoulderplate.001
+    3300044: Sphere.001
+    3300046: Sphere.002
+    3300048: Sphere.003
+    3300050: Sphere.004
+    3300052: VentBorder
+    3300054: VentFin
+    3300056: Wheelball
+    4300000: ArmHead.l.001
+    4300002: Cube.003
+    4300004: Cube.001
+    4300006: Sphere.003
+    4300008: Sphere.002
+    4300010: Shoulderplate.001
+    4300012: Shoulderplate
+    4300014: VentFin
+    4300016: VentBorder
+    4300018: Bearing
+    4300020: ArmHead.l
+    4300022: Bolts
+    4300024: EyeBack
+    4300026: Head
+    4300028: Sphere.004
+    4300030: Sphere.001
+    4300032: EyeLid
+    4300034: Irirs
+    4300036: ArmTail.l
+    4300038: Cylinder.000
+    4300040: Cylinder.003
+    4300042: Cylinder.004
+    4300044: Cylinder.002
+    4300046: Wheelball
+    4300048: ArmTail.l.001
+    4300050: Cylinder.001
+    4300052: Cylinder.006
+    4300054: Cylinder.005
+    4300056: Cylinder.007
+    4300058: BendyArm.l.001
+    4300060: BendyArm.l
+    7400000: BodyBone|Idle
+    7400002: BodyBone|Idle.002
+    7400004: BodyBone|Move_BackLeft
+    7400006: BodyBone|Move_BackRight
+    7400008: BodyBone|Move_Backwards
+    7400010: BodyBone|Move_Forward
+    7400012: BodyBone|Move_ForwardLeft
+    7400014: BodyBone|Move_ForwardRight
+    7400016: BodyBone|Move_Left
+    7400018: BodyBone|Move_Right
+    7400020: BodyBone|Select
+    7400022: BodyBone|Sphere.001Action
+    7400024: Sphere.001|Idle.002
+    7400026: Sphere.001|Sphere.001Action
+    7400028: Cylinder.003|Idle
+    7400030: Cylinder.003|Idle.002
+    7400032: Cylinder.003|Sphere.001Action
+    7400034: Shoulderplate|Idle.002
+    7400036: Shoulderplate|Sphere.001Action
+    9500000: //RootNode
+    13700000: BendyArm.l
+    13700002: BendyArm.l.001
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
