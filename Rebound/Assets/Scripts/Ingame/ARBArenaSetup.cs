@@ -198,7 +198,8 @@ public class ARBArenaSetup : NetworkBehaviour
 
     IEnumerator ReturnToLoginScene()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitUntil(RBGameCompleteScreen.Instance.WinScreenCompleted);
+        //yield return new WaitForSeconds(5);
         RBNetworkManager.Instance.ServerChangeScene("LoginScene");
     }
 }

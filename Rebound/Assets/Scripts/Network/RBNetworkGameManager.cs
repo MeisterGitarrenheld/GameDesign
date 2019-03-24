@@ -54,21 +54,23 @@ public class RBNetworkGameManager : NetworkBehaviour
             _coroutine = StartCoroutine(GoalWorker(Ball));
     }
 
-    IEnumerator GoalWorker(GameObject Ball)
+    IEnumerator GoalWorker(GameObject ball)
     {
         yield return new WaitForSeconds(3);
 
-        NetworkServer.Destroy(Ball);
-        RespawnBall();
+        RespawnBall(ball);
 
         yield return null;
         _coroutine = null;
     }
 
-    public void RespawnBall()
+    public void RespawnBall(GameObject ball = null)
     {
         if (isServer)
         {
+            if(ball != null)
+                NetworkServer.Destroy(ball);
+
             var BallObject = Instantiate(_arenaSetup.BallPrefab, _arenaSetup.BallStartPosition.position, _arenaSetup.BallStartPosition.rotation);
             BallObject.GetComponent<Rigidbody>().velocity =
                 new Vector3(

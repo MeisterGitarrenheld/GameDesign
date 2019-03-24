@@ -5765,7 +5765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce8e4337a6fde94fac0903bffa5416d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 2
+  ID: 0
   Name: Trashbot
 --- !u!114 &114352467389272346
 MonoBehaviour:
@@ -5805,6 +5805,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxSpeedBoostMultiplier: 5
+  _maxBallSpeed: 180
+  BashParticleSystem: {fileID: 1439418435314806, guid: bc777a778b5200843ab2101923c733b1,
+    type: 2}
+  PlasmaSpeedEffectActive: 0
 --- !u!114 &114397086170545574
 MonoBehaviour:
   m_ObjectHideFlags: 1

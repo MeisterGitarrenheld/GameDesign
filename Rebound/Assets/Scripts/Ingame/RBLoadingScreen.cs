@@ -32,6 +32,7 @@ public class RBLoadingScreen : RBMonoBehaviourSingleton<RBLoadingScreen>
         switch (_targetScene)
         {
             case "IngameScene":
+                print("start arena prep");
                 ARBArenaSetup.Instance?.PrepareForGameStart();
                 break;
             case "LoginScene":

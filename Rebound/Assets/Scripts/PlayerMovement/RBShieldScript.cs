@@ -11,19 +11,26 @@ public class RBShieldScript : MonoBehaviour
     private BoxCollider _collider;
 
     private RBCharacter _character;
-    private float _maxBallShieldDistance = 2;
+    private float _maxBallShieldDistance = 15;
 
     [SerializeField]
     private float _maxSpeedBoostMultiplier = 5.0f;
+
+    [SerializeField]
+    private float _maxBallSpeed = 150.0f;
+
+    [SerializeField]
+    private GameObject BashParticleSystem;
 
     private float _minSpeedBoostFactor = 0.3f;
     private float _maxSpeedBoostCooldown = 0.5f;
     private float _speedBoostCooldown = 0.0f;
 
+    public bool PlasmaSpeedEffectActive = false;
+
     void OnEnable()
     {
         _rotationPivotPoint = GameObject.Find("Camera Focus");
-        //transform.rotation = Quaternion.Euler(0, 0, 0);
         _collider = GetComponent<BoxCollider>();
         _character = GetComponentInParent<RBCharacter>();
     }
@@ -40,6 +47,9 @@ public class RBShieldScript : MonoBehaviour
         _speedBoostCooldown = Mathf.Max(_speedBoostCooldown - Time.deltaTime, 0.0f);
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            // spawn particle effect
+            SpawnShieldBashParticle();
+
             if (_speedBoostCooldown == 0.0f)
             {
                 _speedBoostCooldown = _maxSpeedBoostCooldown;
@@ -61,15 +71,31 @@ public class RBShieldScript : MonoBehaviour
         }
     }
 
+    private void SpawnShieldBashParticle()
+    {
+        var particleSystem = Instantiate(BashParticleSystem);
+        particleSystem.transform.parent = gameObject.transform;
+        particleSystem.transform.localPosition = Vector3.zero;
+        particleSystem.transform.localRotation = Quaternion.Euler(0, 0, 0);
+    }
+
     void SendPhysicsUpdate(float speedMultiplier)
     {
         float curSpeed = RBPlayerController.CharController.velocity.magnitude;
+        curSpeed = curSpeed > 1f ? curSpeed : 1f;
+
         RBPlayerPhysicsMessage msg = new RBPlayerPhysicsMessage()
         {
-            objectHitDirection = (transform.forward * (curSpeed > 1f ? curSpeed : 1f)) * speedMultiplier,
+            objectHitDirection = transform.forward * Mathf.Min(_maxBallSpeed, curSpeed * speedMultiplier),
             PlayerHitName = _character.PlayerInfo.Username,
             PlayerTeamID = _character.PlayerInfo.Team
         };
+
+        if (PlasmaSpeedEffectActive)
+        {
+            msg.objectHitDirection = transform.forward * (_maxBallSpeed + 20);
+        }
+
         NetworkManager.singleton.client.Send((short)RBCustomMsgTypes.RBPlayerPhysicsMessage, msg);
     }
     private void RotateShieldWithCamera()

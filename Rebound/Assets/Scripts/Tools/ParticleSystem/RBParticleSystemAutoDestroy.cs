@@ -18,7 +18,7 @@ public class RBParticleSystemAutoDestroy : MonoBehaviour
         if (ps != null)
         {
             foreach (var particleSystem in ps)
-                if (particleSystem.IsAlive()) return;
+                if (particleSystem != null && particleSystem.IsAlive()) return;
 
             Destroy(gameObject);
         }

@@ -313,6 +313,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a15bc3d923a0854ab39364f580d5bda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _maxSpeedBoostMultiplier: 5
+  _maxBallSpeed: 180
+  BashParticleSystem: {fileID: 1439418435314806, guid: bc777a778b5200843ab2101923c733b1,
+    type: 2}
+  PlasmaSpeedEffectActive: 0
 --- !u!114 &114275432538326422
 MonoBehaviour:
   m_ObjectHideFlags: 1

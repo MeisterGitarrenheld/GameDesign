@@ -20,6 +20,12 @@ public class RBBall : NetworkBehaviour
         BallTransformInstance = transform;
     }
 
+    void Update()
+    {
+        if (Vector3.Distance(gameObject.transform.position, Vector3.zero) > 300)
+            RBNetworkGameManager.Instance.RespawnBall(gameObject);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
 
@@ -61,11 +67,9 @@ public class RBBall : NetworkBehaviour
         switch (owningTeamId)
         {
             case 1:
-                print("spawned effect 1");
                 obj = Instantiate(GoalEffects[0]);
                 break;
             case 2:
-                print("spawned effect 2");
                 obj = Instantiate(GoalEffects[1]);
                 break;
         }
