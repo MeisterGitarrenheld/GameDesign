@@ -9,6 +9,8 @@ public class RBBall : NetworkBehaviour
 
     public string LastHitPlayerName = null;
     public int Team_LastHit;
+    public bool IceEffectActive = false;
+    public string IceEffectSourceUsername = null;
 
     public GameObject[] GoalEffects;
 

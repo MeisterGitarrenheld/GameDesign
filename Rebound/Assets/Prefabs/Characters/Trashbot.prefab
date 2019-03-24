@@ -949,6 +949,7 @@ GameObject:
   - component: {fileID: 114494331808932932}
   - component: {fileID: 114397086170545574}
   - component: {fileID: 114146220898293628}
+  - component: {fileID: 114972144003757236}
   m_Layer: 12
   m_Name: Trashbot
   m_TagString: Player
@@ -5809,6 +5810,8 @@ MonoBehaviour:
   BashParticleSystem: {fileID: 1439418435314806, guid: bc777a778b5200843ab2101923c733b1,
     type: 2}
   PlasmaSpeedEffectActive: 0
+  IceSlowEffectActive: 0
+  IceSlowAbility: {fileID: 0}
 --- !u!114 &114397086170545574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6004,6 +6007,21 @@ MonoBehaviour:
   m_MovementThreshold: 0.001
   m_InterpolateRotation: 0.5
   m_InterpolateMovement: 0.5
+--- !u!114 &114972144003757236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1560550957580946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ae9bb7bfe0f264b9780d30562a5e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shieldIceEffectPrefab: {fileID: 1439418435314806, guid: 7fd30e79a83896d45b2562624daca92e,
+    type: 2}
+  _ballIceEffectPrefab: {fileID: 1439418435314806, guid: 7fd30e79a83896d45b2562624daca92e,
+    type: 2}
 --- !u!143 &143454596966403614
 CharacterController:
   m_ObjectHideFlags: 1

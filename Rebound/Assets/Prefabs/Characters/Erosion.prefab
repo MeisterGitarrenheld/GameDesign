@@ -1114,6 +1114,7 @@ GameObject:
   - component: {fileID: 114967155850092224}
   - component: {fileID: 114889025612458882}
   - component: {fileID: 114386467213746850}
+  - component: {fileID: 114063735625232936}
   m_Layer: 12
   m_Name: Erosion
   m_TagString: Player
@@ -4502,6 +4503,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114063735625232936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1597331071708374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ae9bb7bfe0f264b9780d30562a5e07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shieldIceEffectPrefab: {fileID: 1439418435314806, guid: 7fd30e79a83896d45b2562624daca92e,
+    type: 2}
+  _ballIceEffectPrefab: {fileID: 1439418435314806, guid: 7fd30e79a83896d45b2562624daca92e,
+    type: 2}
 --- !u!114 &114149498304807174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4518,6 +4534,8 @@ MonoBehaviour:
   BashParticleSystem: {fileID: 1439418435314806, guid: bc777a778b5200843ab2101923c733b1,
     type: 2}
   PlasmaSpeedEffectActive: 0
+  IceSlowEffectActive: 0
+  IceSlowAbility: {fileID: 0}
 --- !u!114 &114213804514639222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4701,7 +4719,7 @@ MonoBehaviour:
   m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TransformSyncMode: 0
+  m_TransformSyncMode: 3
   m_SendInterval: 0.1
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
