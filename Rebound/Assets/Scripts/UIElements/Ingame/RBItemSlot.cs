@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class RBItemSlot : MonoBehaviour {
 
     public Text HotkeyText;
+    public Image ActiveImage;
 
     private KeyCode _hotkey;
 
@@ -27,13 +28,16 @@ public class RBItemSlot : MonoBehaviour {
         switch(slot.State)
         {
             case RBPowerupActivityControl.SlotState.Active:
-                GetComponent<Image>().color = Color.red;
+                ActiveImage.enabled = true;
                 break;
             case RBPowerupActivityControl.SlotState.Empty:
-                GetComponent<Image>().color = Color.green;
+                GetComponent<Image>().color = new Color(1, 1, 1, 0.3f);
+                ActiveImage.enabled = false;
+                // remove sprite
                 break;
             case RBPowerupActivityControl.SlotState.ReadyForActivation:
-                GetComponent<Image>().color = Color.yellow;
+                GetComponent<Image>().color = new Color(1, 1, 1, 0.75f);
+                // apply sprite
                 break;
         }
 	}

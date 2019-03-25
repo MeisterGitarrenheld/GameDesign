@@ -59,7 +59,7 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _EffectTime: -33482.926
+    - _EffectTime: -13880.823
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -78,5 +78,5 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0.43867922, g: 0.8026401, b: 1, a: 1}
     - _PointColor: {r: 1, g: 0, b: 0, a: 1}
-    - _Position: {r: -0.10007622, g: 0.039740592, b: 0.045551743, a: 0}
-    - _ShieldColor: {r: 0.7, g: 1, b: 1, a: 0.05}
+    - _Position: {r: 0.049192604, g: -0.10004685, b: 0.045960058, a: 0}
+    - _ShieldColor: {r: 0.7, g: 1, b: 1, a: 0}

@@ -4516,7 +4516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shieldIceEffectPrefab: {fileID: 1580039505079914, guid: fb6f660521b607948bf1c7acc3fe04c4,
     type: 2}
-  _ballIceEffectPrefab: {fileID: 1439418435314806, guid: 7fd30e79a83896d45b2562624daca92e,
+  _ballIceEffectPrefab: {fileID: 1319727711023130, guid: b32c151639259cf4a878f0ddb3e4b00c,
     type: 2}
 --- !u!114 &114149498304807174
 MonoBehaviour:

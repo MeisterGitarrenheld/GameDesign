@@ -163,16 +163,17 @@ public class ARBArenaSetup : NetworkBehaviour
         while (i >= 0)
         {
             yield return new WaitForSeconds(1);
-            LocalPlayer.GetComponent<RBNetworkPlayer>().SetCountdown(i--);
+            if (i == 0)
+                LocalPlayer.GetComponent<RBNetworkPlayer>().SetCountdown("Start");
+            else
+                LocalPlayer.GetComponent<RBNetworkPlayer>().SetCountdown(i.ToString());
+
+            i--;
         }
 
+        yield return new WaitForSeconds(1);
+        LocalPlayer.GetComponent<RBNetworkPlayer>().SetCountdown("");
         StartGame();
-    }
-
-    [ClientRpc]
-    private void RpcSetCountdown(int number)
-    {
-        print("Game Starts in " + number);
     }
 
     public void EndGame(float remainingTime, int team1Points, int team2Points)

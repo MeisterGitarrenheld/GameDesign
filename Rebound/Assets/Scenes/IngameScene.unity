@@ -24856,6 +24856,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d606aaf5b76cda24daff7d10d67dc588, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CountdownPrefab: {fileID: 1353818110126360, guid: 9dc4d55afbc5e8045bf9824373552ee6,
+    type: 2}
   ItemBar: {fileID: 812905475}
   SkillBar: {fileID: 1640295784}
   ItemPrefab: {fileID: 1769204536395634, guid: 0910a1ad23d7fa249946c030665f75cf, type: 2}
@@ -24882,9 +24884,9 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 872140550}
   m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &872528512
 GameObject:

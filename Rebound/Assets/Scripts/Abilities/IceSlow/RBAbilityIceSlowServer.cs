@@ -83,6 +83,7 @@ public class RBAbilityIceSlowServer : NetworkBehaviour
                 _ballIceEffectObject.transform.parent = ballObject.transform;
                 _ballIceEffectObject.transform.localPosition = Vector3.zero;
                 _ballIceEffectObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                _ballIceEffectObject.transform.localScale = new Vector3(1, 1, 1);
             }
         }
         else

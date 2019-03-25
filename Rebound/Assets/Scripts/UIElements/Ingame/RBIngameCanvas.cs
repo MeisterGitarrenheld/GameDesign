@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RBIngameCanvas : MonoBehaviour {
 
     public static RBIngameCanvas Instance;
+
+    public GameObject CountdownPrefab;
 
     public GameObject ItemBar;
     public GameObject SkillBar;
@@ -14,6 +17,8 @@ public class RBIngameCanvas : MonoBehaviour {
 
     private List<RBItemSlot> _itemSlots = new List<RBItemSlot>();
     private List<RBSkillSlot> _skillSlots = new List<RBSkillSlot>();
+
+    private GameObject _currentCountdown;
 
     void Awake()
     {
@@ -46,5 +51,23 @@ public class RBIngameCanvas : MonoBehaviour {
             _itemSlots.Add(slot);
             slot.UpdateSlot(binding.Key, binding.Value);
         }
+    }
+
+    public void SetCountdown(string text)
+    {
+        print("set countdown to " + text);
+        if(string.IsNullOrEmpty(text))
+        {
+            Destroy(_currentCountdown);
+            return;
+        }
+
+        if (_currentCountdown != null)
+            Destroy(_currentCountdown);
+
+        print("created prefab for " + text);
+        _currentCountdown = Instantiate(CountdownPrefab, gameObject.transform);
+        //_currentCountdown.transform.localPosition = new Vector3(0, -250, 0);
+        _currentCountdown.GetComponent<Text>().text = text;
     }
 }
