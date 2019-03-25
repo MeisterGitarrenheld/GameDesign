@@ -480,7 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseStats:
     PowerupId: 1
-    Rarity: 1
+    Rarity: 2
     HandlerPrefab: {fileID: 1980067422960454, guid: 3de6214ceaa45ae4997d51d05df5bd5c,
       type: 2}
 --- !u!136 &136418816612097804

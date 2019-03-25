@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -12,9 +13,11 @@ public class RBPowerupMineHandlerServer : NetworkBehaviour
     public float MineLifeTime = 5.0f;
 
     private GameObject _mine = null;
-    private RaycastHit _aimTarget;
+    private Transform _aimTarget;
 
     private Vector3 _targetTransformStartPos;
+
+    private Vector3 _lastFlightDirection = Vector3.forward;
 
     [SyncVar]
     public Vector3 TargetPosition;
@@ -43,32 +46,64 @@ public class RBPowerupMineHandlerServer : NetworkBehaviour
         }
     }
 
-    public void TryThrowMine(Ray targetRay, Vector3 spawnPosition)
+    public void TryThrowMine(Ray targetRay)
     {
-        CmdTryThrowMine(targetRay.origin, targetRay.direction, spawnPosition);
+        CmdTryThrowMine(targetRay.origin, targetRay.direction, RBMatch.Instance.GetLocalUser().Username);
     }
 
     [Command]
-    void CmdTryThrowMine(Vector3 aimOrigin, Vector3 aimDirection, Vector3 spawnPosition)
+    void CmdTryThrowMine(Vector3 aimOrigin, Vector3 aimDirection, string sourceUsername)
     {
         // try to hit something with a raycast
-        RaycastHit hitInfo;
-        if (Physics.Raycast(aimOrigin, aimDirection, out hitInfo))
+        RaycastHit[] hitInfos = Physics.RaycastAll(aimOrigin, aimDirection, 500.0f);
+        if (hitInfos.Length > 0)
         {
-            _aimTarget = hitInfo;
-            AimTargetFound = true;
+            var spawnPosition = aimOrigin;
+            var hitInfoList = hitInfos.ToList();
+            foreach (var hitInfo in hitInfos)
+            {
+                var targetObject = hitInfo.transform.gameObject;
+                /*
+                Debug.Log("Hit: " +
+                    targetObject.name + ", " +
+                    targetObject.tag + ", " +
+                    LayerMask.LayerToName(targetObject.layer));
+                */
+                if (targetObject.tag == "Player")
+                {
+                    var targetPlayer = targetObject.FindComponentInObjectOrParent<RBCharacter>().PlayerInfo;
 
-            Debug.Log("CmdThrowMine");
-            // spawn the mine
-            _mine = Instantiate(MinePrefab, spawnPosition, MinePrefab.transform.rotation);
-            NetworkServer.Spawn(_mine);
+                    if (sourceUsername == targetPlayer.Username)
+                    {
+                        hitInfoList.Remove(hitInfo);
 
-            _targetTransformStartPos = _aimTarget.transform.position;
-            TargetPosition = _aimTarget.point;
+                        if (hitInfo.collider.transform.name == "ThrowArea")
+                            spawnPosition = hitInfo.point;
+                    }
+                }
+            }
 
-            RBColliderListener colliderListener = new RBColliderListener();
-            colliderListener.For(_mine);
-            colliderListener.OnCollisionEnterAction = OnMineCollisionEnter;
+            if (hitInfoList.Count > 0)
+            {
+                var tmpTarget = hitInfoList.Last();
+
+                //Debug.Log("Mine target is: " + tmpTarget.transform.gameObject.name);
+
+                _aimTarget = tmpTarget.transform;
+                _lastFlightDirection = aimDirection;
+                AimTargetFound = true;
+
+                // spawn the mine
+                _mine = Instantiate(MinePrefab, spawnPosition, MinePrefab.transform.rotation);
+                NetworkServer.Spawn(_mine);
+
+                _targetTransformStartPos = tmpTarget.transform.position;
+                TargetPosition = tmpTarget.point;
+
+                RBColliderListener colliderListener = new RBColliderListener();
+                colliderListener.For(_mine);
+                colliderListener.OnCollisionEnterAction = OnMineCollisionEnter;
+            }
         }
     }
 
@@ -103,25 +138,38 @@ public class RBPowerupMineHandlerServer : NetworkBehaviour
     void UpdateMineFlightDirection()
     {
         // if the target has not been destroyed
-        if (_aimTarget.transform != null)
+        if (_aimTarget != null)
         {
             // if we have a moving target, we have to adjust the flight direction to ensure the hit
-            if (_targetTransformStartPos != _aimTarget.transform.position)
+            if (_targetTransformStartPos != _aimTarget.position)
             {
-                TargetPosition = _aimTarget.transform.position;
+                TargetPosition = _aimTarget.position;
             }
         }
     }
 
     void UpdateMineMovement()
     {
-        var flightDirection = (TargetPosition - _mine.transform.position).normalized;
+        Vector3 flightDirection;
 
-        if (flightDirection.magnitude > 0)
-        {
-            var rb = _mine.GetComponent<Rigidbody>();
-            rb.velocity = flightDirection * MineFlightSpeed;
+        if (_aimTarget == null)
+        {   // target destroyed, simply move in the last valid direction
+            flightDirection = _lastFlightDirection;
         }
+        else
+        {   // target still exists, move towards the target
+            flightDirection = (TargetPosition - _mine.transform.position).normalized;
+
+
+            if (flightDirection.magnitude == 0.0f)
+            {   // target reached, start moving in the last valid direction
+                _aimTarget = null;
+                flightDirection = _lastFlightDirection;
+            }
+        }
+
+        var rb = _mine.GetComponent<Rigidbody>();
+        rb.velocity = flightDirection * MineFlightSpeed;
     }
 
     IEnumerator DestroyAndExplodeMine()
@@ -205,6 +253,7 @@ public class RBPowerupMineHandlerServer : NetworkBehaviour
     {
         _mine = null;
         _targetTransformStartPos = Vector3.zero;
+        _lastFlightDirection = Vector3.forward;
         TargetPosition = Vector3.zero;
         TargetReached = false;
         MineDestroyed = false;

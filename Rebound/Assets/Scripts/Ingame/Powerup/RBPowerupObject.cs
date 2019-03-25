@@ -13,6 +13,7 @@ public class RBPowerupObject : NetworkBehaviour
     {
         var hitTag = collision.gameObject.tag;
 
+        if (collision.gameObject.name == "ThrowArea") return;
         if (hitTag == "Player")
         { // The player walked through the powerup.
             var playerInfo = collision.gameObject.GetComponentInParent<RBCharacter>().PlayerInfo;

@@ -45,8 +45,7 @@ public class RBPowerupMineHandler : ARBPowerupActionHandler
                 var targetRay = GetTargetRay();
 
                 // aiming complete try to throw
-                var throwAnchor = GetMineSpawnPosition();
-                _serverHandler.TryThrowMine(targetRay, throwAnchor.position);
+                _serverHandler.TryThrowMine(targetRay);
             }
         }
         else if (_serverHandler.TargetReached)
@@ -79,13 +78,5 @@ public class RBPowerupMineHandler : ARBPowerupActionHandler
 
         // get the ray for the crosshair point
         return Camera.main.ScreenPointToRay(new Vector3(xScreen, yScreen, 0));
-    }
-
-    Transform GetMineSpawnPosition()
-    {
-        var localPlayerName = RBMatch.Instance.GetLocalUser().Username;
-        var localPlayerObject = gameObject.FindPlayerByName(localPlayerName);
-        var throwAnchor = localPlayerObject.transform.Find("ThrowAnchor");
-        return throwAnchor.transform;
     }
 }
