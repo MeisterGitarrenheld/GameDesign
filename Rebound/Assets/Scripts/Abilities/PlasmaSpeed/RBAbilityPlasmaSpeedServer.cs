@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 public class RBAbilityPlasmaSpeedServer : NetworkBehaviour
 {
     [SerializeField]
-    private GameObject _plasmaParticleEffect;
+    private GameObject _plasmaVisualEffect;
     private GameObject _spawnedEffect;
 
     public void SetSpeedEffect(bool active)
@@ -28,10 +28,11 @@ public class RBAbilityPlasmaSpeedServer : NetworkBehaviour
 
         if (active)
         {
-            _spawnedEffect = Instantiate(_plasmaParticleEffect);
+            _spawnedEffect = Instantiate(_plasmaVisualEffect);
             _spawnedEffect.transform.parent = shieldScript.gameObject.transform;
             _spawnedEffect.transform.localPosition = Vector3.zero;
             _spawnedEffect.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            _spawnedEffect.transform.localScale = Vector3.one;
         }
         else
         {

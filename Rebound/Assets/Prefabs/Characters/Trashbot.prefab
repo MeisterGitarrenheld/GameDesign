@@ -6018,7 +6018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ae9bb7bfe0f264b9780d30562a5e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shieldIceEffectPrefab: {fileID: 1439418435314806, guid: 7fd30e79a83896d45b2562624daca92e,
+  _shieldIceEffectPrefab: {fileID: 1580039505079914, guid: fb6f660521b607948bf1c7acc3fe04c4,
     type: 2}
   _ballIceEffectPrefab: {fileID: 1439418435314806, guid: 7fd30e79a83896d45b2562624daca92e,
     type: 2}

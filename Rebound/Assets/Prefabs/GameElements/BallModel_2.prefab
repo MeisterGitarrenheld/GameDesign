@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 114729823228853874}
   - component: {fileID: 96286016723570950}
   - component: {fileID: 114993736828930262}
+  - component: {fileID: 114459466593447898}
   m_Layer: 11
   m_Name: BallModel_2
   m_TagString: Ball
@@ -242,6 +243,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LastHitPlayerName: 
   Team_LastHit: 0
+  IceEffectActive: 0
+  IceEffectSourceUsername: 
   GoalEffects:
   - {fileID: 1786888497351596, guid: 8c25fcd8ad427f54fad7796acae071a5, type: 2}
   - {fileID: 1908014297655390, guid: 0bb268e4143719c45b928e85740cf0f4, type: 2}
@@ -257,6 +260,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef4883432fc642b48a4bef2d471f1d1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114459466593447898
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1604070570435740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a10f5fb294ade4db57fd94c294e37f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SendTriggerMessage: 0
+  LayerMask:
+    serializedVersion: 2
+    m_Bits: 14135
+  SkinWidth: 0.1
 --- !u!114 &114576148101430680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea269a043319dd444a3f26eefe32e2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minimumVelocity: 0.5
+  MinimumVelocity: 0
 --- !u!114 &114993736828930262
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -5,25 +5,27 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(TrailRenderer))]
 
-public class ToggleTrail : MonoBehaviour {
-    public float minimumVelocity;
+public class ToggleTrail : MonoBehaviour
+{
+    public float MinimumVelocity;
 
-    private Rigidbody BallRigidBody;
-    private TrailRenderer renderer;
+    private Rigidbody _ballRigidBody;
+    private TrailRenderer _renderer;
+
     // Use this for initialization
     void Start () {
-        BallRigidBody = this.GetComponentInParent<Rigidbody>();
-        renderer = this.GetComponent<TrailRenderer>();
+        _ballRigidBody = this.GetComponentInParent<Rigidbody>();
+        _renderer = this.GetComponent<TrailRenderer>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(BallRigidBody.velocity.magnitude > minimumVelocity && !renderer.enabled )
+		if(_ballRigidBody.velocity.magnitude > MinimumVelocity && !_renderer.enabled )
         {
-            renderer.enabled = true;
-        }else if(BallRigidBody.velocity.magnitude < minimumVelocity && renderer.enabled)
+            _renderer.enabled = true;
+        }else if(_ballRigidBody.velocity.magnitude < MinimumVelocity && _renderer.enabled)
         {
-            renderer.enabled = false;
+            _renderer.enabled = false;
         }
 	}
 }

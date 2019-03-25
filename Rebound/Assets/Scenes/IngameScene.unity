@@ -19575,7 +19575,6 @@ MonoBehaviour:
   _team2PointsField: {fileID: 1756166033}
   _winStateText: {fileID: 922431710}
   _totalScreenDuration: 7
-  _showAnimation: {fileID: 7400000, guid: 4610338b652d86e468935159f1b1b856, type: 2}
 --- !u!114 &726382930
 MonoBehaviour:
   m_ObjectHideFlags: 0

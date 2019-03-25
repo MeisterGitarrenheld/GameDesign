@@ -10,6 +10,7 @@ public class RBSkillSlot : MonoBehaviour {
     public Image IconImage;
 
     private KeyCode _hotkey;
+    private float _prevCooldownCount = 0;
 
     void Awake()
     {
@@ -23,7 +24,19 @@ public class RBSkillSlot : MonoBehaviour {
         if (IconImage.sprite == null)
             IconImage.sprite = handler.Prefab.AbilityIcon;
 
-        ImageCD.fillAmount = 1 - (handler.GetCurrentCooldown() / handler.GetMaxCooldown());
+        if(ImageCD != null)
+        {
+            ImageCD.fillAmount = 1 - (handler.GetCurrentCooldown() / handler.GetMaxCooldown());
+
+            if (handler.GetCurrentCooldown() == 0 && _prevCooldownCount > 0)
+            {
+                // toggle cd finished anim
+                print("cd ready");
+                GetComponent<Animator>().SetTrigger("CDReady");
+            }
+
+            _prevCooldownCount = handler.GetCurrentCooldown();
+        }
     }
 
     public void SetHotkey(KeyCode keycode)

@@ -6,7 +6,6 @@ using UnityEngine.Networking;
 
 public class RBLoadingScreen : RBMonoBehaviourSingleton<RBLoadingScreen>
 {
-    private bool _isFadingOut = false;
     private string _targetScene = "";
 
     protected override void AwakeSingleton()

@@ -40,6 +40,7 @@ public class RBAbilityIceSlowServer : NetworkBehaviour
                 _shieldIceEffectObject.transform.parent = shieldScript.gameObject.transform;
                 _shieldIceEffectObject.transform.localPosition = Vector3.zero;
                 _shieldIceEffectObject.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                _shieldIceEffectObject.transform.localScale = Vector3.one;
             }
         }
         else

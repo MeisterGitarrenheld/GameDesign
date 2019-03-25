@@ -9,8 +9,6 @@ public class RBNetworkGameManager : NetworkBehaviour
 {
     public static RBNetworkGameManager Instance;
 
-    private Dictionary<int, int> _score;
-
     private ARBArenaSetup _arenaSetup;
     private Coroutine _coroutine;
 
@@ -25,7 +23,6 @@ public class RBNetworkGameManager : NetworkBehaviour
             RegisterHostNetworkMessages();
         }
 
-        _score = new Dictionary<int, int>();
         _arenaSetup = GameObject.Find("GameStateController").GetComponent<ARBArenaSetup>();
         //RespawnBall();
 

@@ -7,7 +7,6 @@ public class RBAbilityRobotArmy : ARBAbility
     private Transform _playerTransform;
     private RBAbilityRobotArmyServer _serverHandler;
     private Transform _robotSpawnPosition;
-    private CharacterController _characterController;
 
     protected override void OnTrigger()
     {
@@ -18,7 +17,6 @@ public class RBAbilityRobotArmy : ARBAbility
             _playerTransform = gameObject.FindTagInParentsRecursively("Player").transform;
             _serverHandler = _playerTransform.GetComponent<RBAbilityRobotArmyServer>();
             _robotSpawnPosition = _playerTransform.Find("RobotArmySpawnPosition");
-            _characterController = _playerTransform.GetComponent<CharacterController>();
         }
 
         StartCoroutine(SpawnRobots());
