@@ -164,7 +164,7 @@ public class ARBArenaSetup : NetworkBehaviour
         {
             yield return new WaitForSeconds(1);
             if (i == 0)
-                LocalPlayer.GetComponent<RBNetworkPlayer>().SetCountdown("Start");
+                LocalPlayer.GetComponent<RBNetworkPlayer>().SetCountdown("Start", true);
             else
                 LocalPlayer.GetComponent<RBNetworkPlayer>().SetCountdown(i.ToString());
 
@@ -172,7 +172,6 @@ public class ARBArenaSetup : NetworkBehaviour
         }
 
         yield return new WaitForSeconds(1);
-        LocalPlayer.GetComponent<RBNetworkPlayer>().SetCountdown("");
         StartGame();
     }
 

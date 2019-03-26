@@ -17,15 +17,43 @@ public class RBBall : NetworkBehaviour
     [SyncVar]
     public bool InGoal;
 
+    [SerializeField]
+    private float LineFullHeight = 30.0f;
+    private float LineMinHeight = 15.0f;
+    private LineRenderer _lineRenderer;
+
+    private bool _firstTick = true;
+
     void Awake()
     {
         BallTransformInstance = transform;
+        _lineRenderer = GetComponent<LineRenderer>();
+        _lineRenderer.startWidth = .45f;
+        _lineRenderer.endWidth = .45f;
     }
 
     void Update()
     {
         if (Vector3.Distance(gameObject.transform.position, Vector3.zero) > 300)
             RBNetworkGameManager.Instance.RespawnBall(gameObject);
+
+        DrawLineToGround();
+    }
+
+    private void DrawLineToGround()
+    {
+        var height = gameObject.transform.position.y;
+        var alpha = height < LineMinHeight ? 0 : Mathf.Min((height-LineMinHeight) / (LineFullHeight-LineMinHeight), 1);
+        Vector3[] positions = { gameObject.transform.position, new Vector3(gameObject.transform.position.x, 0, gameObject.transform.position.z)};
+        _lineRenderer.SetPositions(positions);
+        _lineRenderer.startColor = new Color(_lineRenderer.startColor.r, _lineRenderer.startColor.g, _lineRenderer.startColor.b, alpha);
+        _lineRenderer.endColor = new Color(_lineRenderer.endColor.r, _lineRenderer.endColor.g, _lineRenderer.endColor.b, alpha);
+
+        if (_firstTick)
+        {
+            _firstTick = false;
+            _lineRenderer.enabled = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

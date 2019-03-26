@@ -24,8 +24,9 @@ GameObject:
   - component: {fileID: 114753199776953424}
   - component: {fileID: 95472215403222090}
   - component: {fileID: 82773121850836252}
+  - component: {fileID: 114667079142854674}
   m_Layer: 5
-  m_Name: CountdownNumber
+  m_Name: CountdownEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +41,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 491f3e39d72d21747b10ffda75e7c468, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ca593290126b86944b98f874c8759c53, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.8
   m_Pitch: 1
@@ -177,6 +178,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: '-'
+--- !u!114 &114667079142854674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1353818110126360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8cefcfea45dde2408d311c5d7e07e55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114753199776953424
 MonoBehaviour:
   m_ObjectHideFlags: 1

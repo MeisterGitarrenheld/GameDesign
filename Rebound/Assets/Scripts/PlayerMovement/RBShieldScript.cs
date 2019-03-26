@@ -24,7 +24,9 @@ public class RBShieldScript : MonoBehaviour
 
     private float _minSpeedBoostFactor = 0.3f;
     private float _maxSpeedBoostCooldown = 0.5f;
-    private float _speedBoostCooldown = 0.0f;
+    private float _speedBoostCooldown = 0.4f;
+
+    private AudioSource _shootAudio;
 
     public bool PlasmaSpeedEffectActive = false;
     public bool IceSlowEffectActive = false;
@@ -35,6 +37,7 @@ public class RBShieldScript : MonoBehaviour
         _rotationPivotPoint = GameObject.Find("Camera Focus");
         _collider = GetComponent<BoxCollider>();
         _character = GetComponentInParent<RBCharacter>();
+        _shootAudio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -50,7 +53,7 @@ public class RBShieldScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             // spawn particle effect
-            SpawnShieldBashParticle();
+            SpawnShieldBashParticleAndAudio();
 
             if (_speedBoostCooldown == 0.0f)
             {
@@ -73,12 +76,14 @@ public class RBShieldScript : MonoBehaviour
         }
     }
 
-    private void SpawnShieldBashParticle()
+    private void SpawnShieldBashParticleAndAudio()
     {
         var particleSystem = Instantiate(BashParticleSystem);
         particleSystem.transform.parent = gameObject.transform;
         particleSystem.transform.localPosition = Vector3.zero;
         particleSystem.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+        _shootAudio.Play();
     }
 
     void SendPhysicsUpdate(float speedMultiplier)

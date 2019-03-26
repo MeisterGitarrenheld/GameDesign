@@ -56,15 +56,15 @@ public class RBNetworkPlayer : NetworkBehaviour
         EnableShieldByPlayerName(playerName);
     }
 
-    public void SetCountdown(string text)
+    public void SetCountdown(string text, bool end = false)
     {
-        RpcSetCountdown(text);
+        RpcSetCountdown(text, end);
     }
 
     [ClientRpc]
-    private void RpcSetCountdown(string text)
+    private void RpcSetCountdown(string text, bool end)
     {
         //print("Game Starts in " + text);
-        RBIngameCanvas.Instance.SetCountdown(text);
+        RBIngameCanvas.Instance.SetCountdown(text, end);
     }
 }

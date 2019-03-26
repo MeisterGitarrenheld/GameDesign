@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RBIngameCanvas : MonoBehaviour {
+public class RBIngameCanvas : MonoBehaviour
+{
 
     public static RBIngameCanvas Instance;
 
     public GameObject CountdownPrefab;
+    public GameObject CountdownEndPrefab;
 
     public GameObject ItemBar;
     public GameObject SkillBar;
@@ -33,7 +35,7 @@ public class RBIngameCanvas : MonoBehaviour {
 
     public void CreateSkillSlots()
     {
-        foreach(var binding in RBAbilityActivityControl.Instance.GetAbilityBinding())
+        foreach (var binding in RBAbilityActivityControl.Instance.GetAbilityBinding())
         {
             var slot = Instantiate(SkillPrefab, SkillBar.transform).GetComponent<RBSkillSlot>();
             slot.SetHotkey(binding.Key);
@@ -53,21 +55,16 @@ public class RBIngameCanvas : MonoBehaviour {
         }
     }
 
-    public void SetCountdown(string text)
+    public void SetCountdown(string text, bool end)
     {
-        print("set countdown to " + text);
-        if(string.IsNullOrEmpty(text))
-        {
-            Destroy(_currentCountdown);
-            return;
-        }
-
         if (_currentCountdown != null)
             Destroy(_currentCountdown);
 
-        print("created prefab for " + text);
-        _currentCountdown = Instantiate(CountdownPrefab, gameObject.transform);
-        //_currentCountdown.transform.localPosition = new Vector3(0, -250, 0);
+        if (end)
+            _currentCountdown = Instantiate(CountdownEndPrefab, gameObject.transform);
+        else
+            _currentCountdown = Instantiate(CountdownPrefab, gameObject.transform);
+
         _currentCountdown.GetComponent<Text>().text = text;
     }
 }
