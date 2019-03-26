@@ -1015,6 +1015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseStats:
     PowerupId: 0
+    UIIcon: {fileID: 21300000, guid: 5239cb5a629f136448a67e783df28b08, type: 3}
     Rarity: 1
     HandlerPrefab: {fileID: 1263543632565614, guid: 2ccbfb83d2e6e82488e6cbe16a19b84f,
       type: 2}

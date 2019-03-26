@@ -10,6 +10,8 @@ public class RBPowerupBaseStats
 {
     public int PowerupId = 0;
 
+    public Sprite UIIcon = null;
+
     public RBPowerupRarity Rarity = RBPowerupRarity.None;
 
     public GameObject HandlerPrefab = null;

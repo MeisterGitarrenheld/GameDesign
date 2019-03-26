@@ -7,6 +7,7 @@ public class RBItemSlot : MonoBehaviour {
 
     public Text HotkeyText;
     public Image ActiveImage;
+    public Image Icon;
 
     private KeyCode _hotkey;
 
@@ -32,12 +33,13 @@ public class RBItemSlot : MonoBehaviour {
                 break;
             case RBPowerupActivityControl.SlotState.Empty:
                 GetComponent<Image>().color = new Color(1, 1, 1, 0.3f);
+                Icon.color = new Color(Icon.color.r, Icon.color.g, Icon.color.b, 0);
                 ActiveImage.enabled = false;
-                // remove sprite
                 break;
             case RBPowerupActivityControl.SlotState.ReadyForActivation:
                 GetComponent<Image>().color = new Color(1, 1, 1, 0.75f);
-                // apply sprite
+                Icon.sprite = slot.BaseStats.UIIcon;
+                Icon.color = new Color(Icon.color.r, Icon.color.g, Icon.color.b, 1);
                 break;
         }
 	}
