@@ -59,7 +59,10 @@ public class RBPowerupMineHandlerServer : NetworkBehaviour
         if (hitInfos.Length > 0)
         {
             var spawnPosition = aimOrigin;
-            var hitInfoList = hitInfos.ToList();
+            float tmpDistance = float.MaxValue;
+            RaycastHit tmpTarget = default(RaycastHit);
+            var targetFound = false;
+
             foreach (var hitInfo in hitInfos)
             {
                 var targetObject = hitInfo.transform.gameObject;
@@ -70,24 +73,35 @@ public class RBPowerupMineHandlerServer : NetworkBehaviour
                     LayerMask.LayerToName(targetObject.layer));
                 */
                 if (targetObject.tag == "Player")
-                {
+                {   // don't hit the local player
                     var targetPlayer = targetObject.FindComponentInObjectOrParent<RBCharacter>().PlayerInfo;
 
                     if (sourceUsername == targetPlayer.Username)
                     {
-                        hitInfoList.Remove(hitInfo);
-
                         if (hitInfo.collider.transform.name == "ThrowArea")
                             spawnPosition = hitInfo.point;
+
+                        continue;
                     }
+                }
+
+                // don't aim at the penalty area
+                if (LayerMask.LayerToName(targetObject.layer) == "PenaltyArea")
+                    continue;
+
+                // select the closest target
+                if (hitInfo.distance < tmpDistance)
+                {
+                    tmpDistance = hitInfo.distance;
+                    tmpTarget = hitInfo;
+                    targetFound = true;
                 }
             }
 
-            if (hitInfoList.Count > 0)
+            if (targetFound)
             {
-                var tmpTarget = hitInfoList.Last();
 
-                //Debug.Log("Mine target is: " + tmpTarget.transform.gameObject.name);
+                Debug.Log("Mine target is: " + tmpTarget.transform.name);
 
                 _aimTarget = tmpTarget.transform;
                 _lastFlightDirection = aimDirection;
