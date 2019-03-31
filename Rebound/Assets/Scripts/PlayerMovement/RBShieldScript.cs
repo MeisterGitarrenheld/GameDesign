@@ -20,7 +20,7 @@ public class RBShieldScript : MonoBehaviour
     private float _maxBallSpeed = 150.0f;
 
     [SerializeField]
-    private GameObject BashParticleSystem;
+    private GameObject _bashParticleSystem;
 
     private float _minSpeedBoostFactor = 0.3f;
     private float _maxSpeedBoostCooldown = 0.5f;
@@ -32,12 +32,18 @@ public class RBShieldScript : MonoBehaviour
     public bool IceSlowEffectActive = false;
     public RBAbilityIceSlow IceSlowAbility = null;
 
+    private bool _isLocalPlayer;
+    private RBNetworkPlayer _nwPlayer;
+
     void OnEnable()
     {
         _rotationPivotPoint = GameObject.Find("Camera Focus");
         _collider = GetComponent<BoxCollider>();
         _character = GetComponentInParent<RBCharacter>();
         _shootAudio = GetComponent<AudioSource>();
+
+        _isLocalPlayer = _character.PlayerInfo.IsLocalUser;
+        _nwPlayer = GetComponentInParent<RBNetworkPlayer>();
     }
 
     void Update()
@@ -49,11 +55,14 @@ public class RBShieldScript : MonoBehaviour
 
     void CheckForBallSpeedBoost()
     {
+        if (!_isLocalPlayer)
+            return;
+
         _speedBoostCooldown = Mathf.Max(_speedBoostCooldown - Time.deltaTime, 0.0f);
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             // spawn particle effect
-            SpawnShieldBashParticleAndAudio();
+            _nwPlayer.SpawnShieldBashParticleAndAudio();
 
             if (_speedBoostCooldown == 0.0f)
             {
@@ -76,9 +85,9 @@ public class RBShieldScript : MonoBehaviour
         }
     }
 
-    private void SpawnShieldBashParticleAndAudio()
+    public void SpawnShieldBashParticleAndAudio()
     {
-        var particleSystem = Instantiate(BashParticleSystem);
+        var particleSystem = Instantiate(_bashParticleSystem);
         particleSystem.transform.parent = gameObject.transform;
         particleSystem.transform.localPosition = Vector3.zero;
         particleSystem.transform.localRotation = Quaternion.Euler(0, 0, 0);

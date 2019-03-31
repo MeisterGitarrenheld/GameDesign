@@ -13,6 +13,8 @@ public class RBNetworkPlayer : NetworkBehaviour
 
     public GameObject Shield;
 
+    private AudioSource _shootAudio;
+
     void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -66,5 +68,22 @@ public class RBNetworkPlayer : NetworkBehaviour
     {
         //print("Game Starts in " + text);
         RBIngameCanvas.Instance.SetCountdown(text, end);
+    }
+
+    public void SpawnShieldBashParticleAndAudio()
+    {
+        CmdSpawnShieldBashParticleAndAudio();
+    }
+
+    [Command]
+    void CmdSpawnShieldBashParticleAndAudio()
+    {
+        RpcSpawnShieldBashParticleAndAudio();
+    }
+
+    [ClientRpc]
+    void RpcSpawnShieldBashParticleAndAudio()
+    {
+        Shield.GetComponent<RBShieldScript>().SpawnShieldBashParticleAndAudio();
     }
 }

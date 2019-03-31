@@ -950,6 +950,7 @@ GameObject:
   - component: {fileID: 114397086170545574}
   - component: {fileID: 114146220898293628}
   - component: {fileID: 114972144003757236}
+  - component: {fileID: 114732708979723502}
   m_Layer: 12
   m_Name: Trashbot
   m_TagString: Player
@@ -5988,7 +5989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeedBoostMultiplier: 5
   _maxBallSpeed: 180
-  BashParticleSystem: {fileID: 1439418435314806, guid: bc777a778b5200843ab2101923c733b1,
+  _bashParticleSystem: {fileID: 1439418435314806, guid: bc777a778b5200843ab2101923c733b1,
     type: 2}
   PlasmaSpeedEffectActive: 0
   IceSlowEffectActive: 0
@@ -6149,6 +6150,19 @@ MonoBehaviour:
   TargetReached: 0
   MineDestroyed: 0
   AimTargetFound: 0
+--- !u!114 &114732708979723502
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1560550957580946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a032b45dc42a0654a9480101e90e67ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeedEffect: {fileID: 198664411231989518, guid: eeeaeced4a26e5041beb85287bcd45af,
+    type: 2}
 --- !u!114 &114759744918730430
 MonoBehaviour:
   m_ObjectHideFlags: 1
