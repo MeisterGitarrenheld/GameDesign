@@ -1,0 +1,72 @@
+.active {
+    background: #a9a9a95e !important;
+}
+
+.page-header {
+    height: 100vh;
+}
+
+.header-bg-contain {
+    background: url('../img/background.jpg') no-repeat fixed center center !important;
+
+    -webkit-background-size: contain !important;
+    -moz-background-size: contain !important;
+    -o-background-size: contain !important;
+
+    background-size: contain !important;
+}
+
+.header-bg-cover {
+    background: url('../img/background.jpg') no-repeat fixed center center !important;
+
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+
+    background-size: cover !important;
+}
+
+@media(min-width: 992px) {
+    .page-header {
+        height: 100vh;
+        padding: 0;
+    }
+}
+
+@media (max-width: 991px) {
+    .bg-transparent {
+        background: #343a40 !important;
+    }
+}
+
+.bd-example-modal-lg .modal-dialog{
+    display: table;
+    position: relative;
+    margin: 0 auto;
+    top: calc(50% - 24px);
+}
+
+.bd-example-modal-lg .modal-dialog .modal-content{
+    background-color: transparent;
+    border: none;
+}
+
+.contact-row {
+	overflow-wrap: break-word;
+	font-size: large;
+	font-weight: 400;
+	padding-bottom: 50px;
+}
+
+.contact-col {
+	padding-top: 50px;
+}
+
+.contact-data-wrapper {
+	box-shadow: 0 0 30px 1px #8080804f;
+	padding:25px;
+}
+
+.e-mail-icon {
+	padding-right:5px;
+}

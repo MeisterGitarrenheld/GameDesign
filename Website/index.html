@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <title>Rebound</title>
+	<meta name="description" content="Rebound - Home" />
+	<meta name="author" content="Rebound">
+	
+    <!-- Required meta tags always come first -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	
+	<!-- Add the fav icon -->
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+	
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/app.css">
+	
+	<!-- Fonts -->
+	<link rel="stylesheet" type="text/css" href="css/simplifica.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-transparent" id="nav-wrapper">
+        <a class="navbar-brand" href="#" onclick="loadHomePage()">
+            <img src="img/logo_klein_weiß.png" style="height: 56px;"/>
+        </a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="nav nav-pills nav-justified navbar-collapse collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+					<a class="nav-link" href="#home" style="width: max-content">
+						Home
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#gamestart" style="width: max-content">
+						Game Start
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#characters" style="width: max-content">
+						Characters
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#powerups" style="width: max-content">
+						Powerups
+					</a>
+				</li>
+
+				<!--
+				<li class="nav-item">
+					<a class="nav-link" href="#contact" style="width: max-content">
+						Contact
+					</a>
+				</li>
+				-->
+            </ul>
+        </div>
+    </nav>
+	
+	<!-- Home -->
+	<header id="home" class="page-header header-bg-cover">
+		<div class="container d-flex h-100 align-items-center">
+			<div class="mx-auto text-center">
+				<h1 class="mx-auto" style="font-size: 4rem; color: white;">
+					Action multiplayer<br/>for the LAN
+				</h1>
+				<a href="#gamestart" role="button" class="btn btn-danger" style="width: max-content">
+						Read More
+				</a>
+			</div>
+		</div>
+    </header>
+
+	<!-- Game start -->
+	<section id="gamestart" style="padding-bottom:40px;">
+		<div class="container">
+			<div class="row justify-content-center">
+				<h2 style="padding:20px 0">Game Start</h2>
+			</div>
+			<div class="row">
+				<div>
+				In the beginning everyone has to select an username. 
+				Afterwords one has to choose between hosting a new game or joining an existing game.
+				In the lobby one has to select a character and to set the ready flag.
+				Once everyone is ready, the host is able to assign the teams and to start the game. This action moves all players into the arena.
+				It's all about shooting more goals than the enemy team. One can win through getting 11 goals before the timebank is gone
+				or through having more goals when there is no time left.
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<!-- Characters -->
+	<section id="characters" style="background:#eaeaea;padding-bottom:40px;">
+		<div class="container">
+			<div class="row justify-content-center">
+				<h2 style="padding:20px 0">Characters</h2>
+			</div>
+			
+			<!-- Character 1 -->
+			<div class="row">
+				<div class="col-12 col-md-6">
+				Character Image 1
+				</div>
+				<div class="col-12 col-md-6 align-self-center">
+					<h3>Erosion</h3>
+					<ul>
+						<li>highly movable plasma arms</li>
+						<li>control over ice and ball speed</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-md-6 align-self-center">
+					<h5>Ice Slow</h5>
+					<ul>
+						<li>activates an ice effect on the shield</li>
+						<li>transmits the effect on the ball on hit</li>
+						<li>slows the next player that is hit by the ball</li>
+					</ul>
+				</div>
+				<div class="col-12 col-md-6">
+					<img src="img/pics/ability_ice.png" style="max-height: 200px;"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-md-6">
+					<img src="img/pics/ability_speed.png" style="max-height: 200px;"/>
+				</div>
+				<div class="col-12 col-md-6 align-self-center">
+					<h5>Power Bash</h5>
+					<ul>
+						<li>empowers the shield with a bash effect for a few seconds</li>
+						<li>applies the maximum speed to the ball when it hits the shield while the effect is active</li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- Character 2 -->
+			<div class="row" style="padding-top:15px;">
+				<div class="col-12 col-md-6 align-self-center">
+					<h3>Trashbot</h3>
+					<ul>
+						<li>trashcan rolling on two wheels</li>
+						<li>control over temporary walls and support bots</li>
+					</ul>
+				</div>
+				<div class="col-12 col-md-6">
+				Character Image 1
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-md-6">
+					<img src="img/pics/ability_wall.png" style="max-height: 200px;"/>
+				</div>
+				<div class="col-12 col-md-6 align-self-center">
+					<h5>Wall</h5>
+					<ul>
+						<li>allows the player to place a wall inside the arena</li>
+						<li>the wall blocks the ball and players</li>
+						<li>it gets split into pieces after a few seconds</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-md-6 align-self-center">
+					<h5>Robot Army</h5>
+					<ul>
+						<li>shoots some small robots into the look direction of the player</li>
+						<li>the robots move forward until they hit something</li>
+						<li>each robot gets despawned on hit and slows players when they get hit</li>
+					</ul>
+				</div>
+				<div class="col-12 col-md-6">
+					<img src="img/pics/ability_robots.png" style="max-height: 200px;"/>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Powerups -->
+	<section id="powerups" style="padding-bottom:40px;">
+		<div class="container">
+			<div class="row justify-content-center">
+				<h2 style="padding:20px 0">Powerups</h2>
+			</div>
+			<div class="row">
+				<div class="col-12 col-md-6">
+					<img src="img/pics/mine03.png" style="max-height: 200px;"/>
+				</div>
+				<div class="col-12 col-md-6 align-self-center">
+					<h5>Mine</h5>
+					<ul>
+						<li>the player gets a crosshair for aiming at the mine target</li>
+						<li>when thrown the mine flies towards the target and changes the direction when the target is moving</li>
+						<li>the mine gets attached to the target when it is reached</li>
+						<li>it explodes either on activation through the player or after a few seconds</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-md-6 align-self-center">
+					<h5>Enlarge Shield</h5>
+					<ul>
+						<li>enlarges the player shield for a few seconds</li>
+						<li>this makes it easier to hit the ball</li>
+					</ul>
+				</div>
+				<div class="col-12 col-md-6">
+					<img src="img/pics/shield01.png" style="max-height: 200px;"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12 col-md-6">
+					<img src="img/pics/speed01.png" style="max-height: 200px;"/>
+				</div>
+				<div class="col-12 col-md-6 align-self-center">
+					<h5>Speed Boost</h5>
+					<ul>
+						<li>increases the movement speed of the player for some time</li>
+						<li>it helps the player move faster and for example help the team mate</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact -->
+	<section id="contact" style="background:#eaeaea;padding-bottom:40px;">
+		<div class="container">
+			<div class="row justify-content-center">
+				<h2 style="padding-top:20px">Contact</h2>
+			</div>
+			<div class="row contact-row">
+				<div class="col-lg-6 contact-col">
+					<div class="contact-data-wrapper">
+						<div>Julian Stockmann</div>
+						<div>
+							<a href="mailto:julian.stockmann@student.uni-tuebingen.de">
+								<i class="fas fa-envelope e-mail-icon"></i>julian.stockmann@student.uni-tuebingen.de
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 contact-col">
+					<div class="contact-data-wrapper">
+						<div>Michael H&auml;glsperger</div>
+						<div>
+							<a href="mailto:michael.haeglsperger@student.uni-tuebingen.de">
+								<i class="fas fa-envelope e-mail-icon"></i>michael.haeglsperger@student.uni-tuebingen.de
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 contact-col">
+					<div class="contact-data-wrapper">
+						<div>Samuel Wunderlich</div>
+						<div>
+							<a href="mailto:samuel.wunderlich@student.uni-tuebingen.de">
+								<i class="fas fa-envelope e-mail-icon"></i>samuel.wunderlich@student.uni-tuebingen.de
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 contact-col">
+					<div class="contact-data-wrapper">
+						<div>Tom Haeschke</div>
+						<div>
+							<a href="mailto:tom.haeschke@student.uni-tuebingen.de">
+								<i class="fas fa-envelope e-mail-icon"></i>tom.haeschke@student.uni-tuebingen.de
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/bootstrap.bundle.js"></script>
+	<script src="js/application.js"></script>
+</body>
+</html>
